@@ -1,0 +1,71 @@
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=2cm, minimum height=1cm,text centered, draw=black]
+\tikzstyle{io} = [minimum width=3cm, minimum height=1cm, text centered]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text width=4.7cm, text centered, draw=black]
+\tikzstyle{decision} = [diamond, aspect=2, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+%\tikzstyle{arrow} = [thick,-Stealth]
+\tikzstyle{arrow} = [->,>=stealth]
+
+\begin{tikzpicture}[node distance=2.4cm]
+
+% Define nodes for the primal simplex method
+\node[io](start1){单纯形法};
+\node[process, below of = start1, yshift=1.5cm](cul1){典式对应原规划的\\ 基本解是可行的};
+\node[decision, below of = cul1](dec1){所有$\sigma_i\le0?$};
+\node[process, below of = dec1](cul2){计算
+$\sigma_k=\max\{\sigma_j|\sigma_j>0\}$};
+\node[decision, below of = cul2](dec2){所有$a_{ik}\le0$?};
+\node[process, below of = dec2](cul3){计算\\ $\theta=\min\left\{\frac{b_i}{a_{ik}}|a_{ik}>0\right\}=\frac{b_e}{a_{ek}}$};
+\node[process, below of = cul3](end1){以$a_{ek}$为中心元素进行迭代};
+
+% Define nodes for the dual simplex method
+\node[io, right of = start1, xshift=7.5cm](start2){对偶单纯形法};
+\node[process, below of = start2, yshift=1.5cm](pro1){ 典式对应原规划的\\ 基本解的检验数$\sigma_j\le0$ };
+\node[decision, below of = pro1](deci1){所有$b_i\ge0?$};
+\node[process, below of = deci1](pro2){计算
+$b_e=\min\{b_i|b_i<0\}$};
+\node[decision, below of = pro2](deci2){所有$a_{lj}\ge0$?};
+\node[process, below of = deci2](pro3){计算\\ $\theta=\min\left\{\frac{\sigma_i}{a_{ej}}|a_{ej}<0\right\}=\frac{\sigma_k}{a_{ek}}$};
+\node[process, below of = pro3](end2){以$a_{ek}$为中心元素进行迭代};
+
+
+% center
+\node[process, right of=dec1, xshift=2.6cm, text width=1.5cm](cpro1){得到\\最优解};
+\node[startstop, below of=cpro1](cstop){结束};
+\node[process, right of=dec2, xshift=.7cm, minimum width=1cm, text width=.5cm](cpro2){没有有限最优解};
+\node[process, left of=deci2, xshift=-.7cm, minimum width=1cm, text width=.5cm](cpro3){没有有限最优解};
+
+% return
+\node[point, left of = end1, node distance=3cm](point1){};
+\node[point, above of = dec1, yshift=-1cm](point2){};
+\node[point, right of = end2, node distance=3cm](point3){};
+\node[point, above of = deci1, yshift=-1cm](point4){};
+
+% arrow
+\draw [arrow] (cul1) -- (dec1);
+\draw [arrow] (dec1) -- node[right]{N} (cul2);
+\draw [arrow] (cul2) -- (dec2);
+\draw [arrow] (dec2) -- node[right]{N} (cul3);
+\draw [arrow] (cul3) -- (end1);
+
+\draw [arrow] (pro1) -- (deci1);
+\draw [arrow] (deci1) -- node[right]{N} (pro2);
+\draw [arrow] (pro2) -- (deci2);
+\draw [arrow] (deci2) -- node[right]{N} (pro3);
+\draw [arrow] (pro3) -- (end2);
+
+\draw [arrow] (dec1) -- node[above]{Y} (cpro1);
+\draw [arrow] (deci1) -- node[above]{Y} (cpro1);
+\draw [arrow] (cpro1) -- (cstop);
+\draw [arrow] (dec2) -- node[above]{Y} (cpro2);
+\draw [arrow] (cpro2) -- (cstop);
+\draw [arrow] (deci2) -- node[above]{Y} (cpro3);
+\draw [arrow] (cpro3) -- (cstop);
+
+\draw [-](end1) -- (point1);
+\draw [arrow](point1) |- node{}(point2);
+\draw [-](end2) -- (point3);
+\draw [arrow](point3) |- node{}(point4);
+
+\end{tikzpicture}
+
