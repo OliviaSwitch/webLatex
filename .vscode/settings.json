@@ -45,6 +45,7 @@
 		{
 			"name": "XeLaTeX",
 			"tools": [
+				"xelatex",
 				"xelatex"
 			]
 		},
@@ -118,7 +119,7 @@
 	"latex-workshop.latex.clean.method": "glob",
 	// Edit the following property to change export directory
 	"latex-workshop.latex.outDir": "./PDF",
-	"latex-workshop.latex.autoClean.run": "onBuilt",
+	"latex-workshop.latex.autoClean.run": "onSucceeded",
 	"latex-workshop.latex.build.forceRecipeUsage": false,
 	"latex-workshop.synctex.afterBuild.enabled": true,
 	"latex-workshop.view.pdf.viewer": "tab",
