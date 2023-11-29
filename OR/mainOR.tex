@@ -1,4 +1,4 @@
-%!TEX program = xelatex
+%TEX program = lualatex
 
 \documentclass{book}
 
@@ -824,6 +824,16 @@ $$
 
 \subsection{收敛性概念}
 
+在规划问题的的求解过程中，由于迭代算法是以产生一系列迭代点为目的的，因此算法的收敛性表现在产生的点列$ \{ \boldsymbol{x}^{(k)} \} $上。
 
+理想的收敛性概念一般是指：设 $\boldsymbol{x}^*$ 为问题 $(fS)$ 的全局最优解。当 $\boldsymbol{x}^* \in \{\boldsymbol{x}^{(k)}\}$ 或 $\boldsymbol{x}^{(k)} \ne \boldsymbol{x}^*$ 对于所有 $k$ 成立，并且满足 $\lim_{k \rightarrow \infty} \|\boldsymbol{x}^{(k)} - \boldsymbol{x}^*\| = 0$ 时，称算法收敛到最优解 $\boldsymbol{x}^*$。
+
+\subsection{收敛准则}
+
+\begin{enumerate}
+    \item $ ||\boldsymbol{x}^{(k+m)}-\boldsymbol{x}^{(k)}|| < \varepsilon $
+    \item $\frac{||\boldsymbol{x}^{(k+1)}-\boldsymbol{x}^{(k)}||}{||\boldsymbol{x}^{(k)}||}<\varepsilon$
+    \item $|f(\boldsymbol{x}^{(k+1)})-f(\boldsymbol{x}^{(k)})|<\varepsilon$
+\end{enumerate}
 
 \end{document}
