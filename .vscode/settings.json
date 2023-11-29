@@ -1,4 +1,90 @@
 {
+	"latex-workshop.latex.tools": [
+		{
+			"name": "xelatex",
+			"command": "xelatex",
+			"args": [
+				"-synctex=1",
+				"-interaction=nonstopmode",
+				"-file-line-error",
+				"%DOCFILE%"
+			]
+		},
+		{
+			"name": "pdflatex",
+			"command": "pdflatex",
+			"args": [
+				"-synctex=1",
+				"-interaction=nonstopmode",
+				"-file-line-error",
+				"%DOCFILE%"
+			]
+		},
+		{
+			"name": "latexmk",
+			"command": "latexmk",
+			"args": [
+				"-synctex=1",
+				"-interaction=nonstopmode",
+				"-file-line-error",
+				"-pdf",
+				"-outdir=%OUTDIR%",
+				"%DOCFILE%"
+			]
+		},
+		{
+			"name": "bibtex",
+			"command": "bibtex",
+			"args": [
+				"%DOCFILE%"
+			]
+		}
+	],
+	// 用于配置编译链
+	"latex-workshop.latex.recipes": [
+		{
+			"name": "XeLaTeX",
+			"tools": [
+				"xelatex"
+			]
+		},
+		{
+			"name": "PDFLaTeX",
+			"tools": [
+				"pdflatex"
+			]
+		},
+		{
+			"name": "BibTeX",
+			"tools": [
+				"bibtex"
+			]
+		},
+		{
+			"name": "LaTeXmk",
+			"tools": [
+				"latexmk"
+			]
+		},
+		{
+			"name": "xelatex -> bibtex -> xelatex*2",
+			"tools": [
+				"xelatex",
+				"bibtex",
+				"xelatex",
+				"xelatex"
+			]
+		},
+		{
+			"name": "pdflatex -> bibtex -> pdflatex*2",
+			"tools": [
+				"pdflatex",
+				"bibtex",
+				"pdflatex",
+				"pdflatex"
+			]
+		}
+	],
 	"latex-workshop.latex.clean.fileTypes": [
 		"*.aux",
 		"*.bbl",
@@ -23,25 +109,27 @@
 		"*.synctex.gz(busy)",
 		"*.nav",
 		"*.vrb",
+		"*.xdv",
 		"*.gz", // Added Manually
 		"*.bcf", // Added Manually
 		"*.nlo", // Added Manually
 		"*.run.xml" // Added Manually
 	],
+	"latex-workshop.latex.clean.method": "glob",
 	// Edit the following property to change export directory
 	"latex-workshop.latex.outDir": "./PDF",
 	"latex-workshop.latex.autoClean.run": "onBuilt",
 	"latex-workshop.latex.build.forceRecipeUsage": false,
 	"latex-workshop.synctex.afterBuild.enabled": true,
 	"latex-workshop.view.pdf.viewer": "tab",
-	"latex-workshop.latex.clean.subfolder.enabled": true,
+	// "latex-workshop.latex.clean.subfolder.enabled": true,
 	"latex-workshop.latex.magic.args": [
 		"-output-directory=PDF", // to change the output directory
 		"%DOC%"
 	],
 	// Remove / comment the next 3 lines to remove dark view for pdf
 	"latex-workshop.view.pdf.color.dark.pageColorsBackground": "#171717", // For Dark Viewwer
-	"latex-workshop.latex.autoBuild.run": "never",
+	"latex-workshop.latex.autoBuild.run": "onSave",
 	"latex-workshop.view.pdf.color.dark.pageColorsForeground": "#FFFFFF", // For Dark Viewer
 	"latex-workshop.view.pdf.color.dark.backgroundColor": "#171717", // For Dark Viewer
 	"editor.formatOnSave": true,

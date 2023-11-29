@@ -1,13 +1,15 @@
-%!TEX program = lualatex
+%!TEX program = xelatex
+
 \documentclass{book}
 
 \title{OR}
-\author{G.Olivia}
+\author{S.Olivia}
 \date{September 2023}
 
 \usepackage{graphicx} % Required for inserting images
 \usepackage{geometry}
-\usepackage{ctex}
+%\usepackage{ctex}
+\usepackage[UTF8]{ctex}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{hyperref}
 \usepackage{palatino}
@@ -499,7 +501,7 @@ $$
 
 第二阶段 删除人工变量，并把基本可行解填入表中
 
-\begin{table}[h]
+\begin{table}[ht]
     \centering
     \begin{tabular}{c|c|c|cccc|c}
         \hline
@@ -596,7 +598,7 @@ $$
 
 原问题与对偶问题的对应关系
 
-\begin{table}[h]
+\begin{table}[ht]
     \centering
     \begin{tabular}{cc|cc}
         \hline
@@ -735,7 +737,7 @@ $y_i^*$表示$b_i$变化一个单位对目标$f$产生的影响，称$y_i^*$为$
         y_i^*>0\quad \mbox{无剩余}
     \end{cases}$
 
-\subsubsection{目标函数系数c变化$\star$}
+\subsubsection{目标函数系数c变化\textasteriskcentered}
 若只有一个系数$c_j$变化，其他系数不变。$c_j$的变化只影响检验数$\sigma_j$，而不影响解的非负性。
 $$\sigma_j=c_j-\boldsymbol{c_B}^T\boldsymbol{B}^{-1}\boldsymbol{p}_j, j=1, 2, \cdots, n $$
 \begin{enumerate}
