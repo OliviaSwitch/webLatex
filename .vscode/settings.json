@@ -43,15 +43,15 @@
 	// 用于配置编译链
 	"latex-workshop.latex.recipes": [
 		{
-			"name": "XeLaTeX",
+			"name": "XeLaTeX*2",
 			"tools": [
+				"xelatex",
 				"xelatex"
 			]
 		},
 		{
-			"name": "XeLaTeX*2",
+			"name": "XeLaTeX",
 			"tools": [
-				"xelatex",
 				"xelatex"
 			]
 		},
