@@ -14,40 +14,40 @@
 \tikzstyle{arrow} = [->,>=stealth]
 
 \begin{tikzpicture}[node distance=2cm]
-%定义流程图具体形状
-\node[startstop](start){确定初始基本可行解(极点)\\ 即单位矩阵$x$};
-\node[process, below of = start](cul1){计算
-$\boldsymbol{\sigma_N^T=c_N^T-c_B^TB^{-1}N}$};
-\node[decision, below of = cul1](dec1)
-{所有$\boldsymbol{\sigma_N\le 0}?$};
-\node[process, below of = dec1](cul2){计算
-$\boldsymbol{\sigma_k}=max\{\sigma_j|\sigma_j>0\}$};
-\node[decision, below of = cul2](dec2){$
-\boldsymbol{B^{-1}p_k\le0}?$};
-\node[process, below of = dec2](cul3){计算
-$\theta=min\left\{\frac{(\boldsymbol{B^{-1}b)_{i}}}{\boldsymbol{B^{-1}p_k)}_{i}}|\boldsymbol{(B^{-1}p_k)}_{i}>0\right\}=\frac{(\boldsymbol{B^{-1}b)_{r}}}{\boldsymbol{B^{-1}p_k)}_{r}}$};
-\node[process, below of = cul3](end){使$x_k$进基，$x_r$出基进行迭代};
-\node[startstop, right of = dec1, xshift=3cm](stop1){停，x-opt};
-\node[startstop, right of = dec2, xshift=3.5cm](stop2){停，无有限最优解};
-\node[point, left of = end, node distance=5cm](point1){};
-\node[point, above of = cul1, yshift=-1cm](point2){};
+    %定义流程图具体形状
+    \node[startstop](start){确定初始基本可行解(极点)\\ 即单位矩阵$x$};
+    \node[process, below of = start](cul1){计算
+    $\boldsymbol{\sigma_N^T=c_N^T-c_B^TB^{-1}N}$};
+    \node[decision, below of = cul1](dec1)
+    {所有$\boldsymbol{\sigma_N\le 0}?$};
+    \node[process, below of = dec1](cul2){计算
+        $\boldsymbol{\sigma_k}=max\{\sigma_j|\sigma_j>0\}$};
+    \node[decision, below of = cul2](dec2){$
+            \boldsymbol{B^{-1}p_k\le0}?$};
+    \node[process, below of = dec2](cul3){计算
+        $\theta=min\left\{\frac{(\boldsymbol{B^{-1}b)_{i}}}{\boldsymbol{B^{-1}p_k)}_{i}}|\boldsymbol{(B^{-1}p_k)}_{i}>0\right\}=\frac{(\boldsymbol{B^{-1}b)_{r}}}{\boldsymbol{B^{-1}p_k)}_{r}}$};
+    \node[process, below of = cul3](end){使$x_k$进基，$x_r$出基进行迭代};
+    \node[startstop, right of = dec1, xshift=3cm](stop1){停，x-opt};
+    \node[startstop, right of = dec2, xshift=3.5cm](stop2){停，无有限最优解};
+    \node[point, left of = end, node distance=5cm](point1){};
+    \node[point, above of = cul1, yshift=-1cm](point2){};
 
-%连接具体形状
-\draw [arrow] (start) -- (cul1);
-\draw [arrow] (cul1) -- (dec1);
-\draw [arrow] (dec1) -- node[right]{N} (cul2);
-\draw [arrow] (cul2) -- (dec2);
-\draw [arrow] (dec2) -- node[right]{N} (cul3);
-\draw [arrow] (cul3) -- (end);
-\draw [arrow] (dec1) -- node[above]{Y} (stop1);
-\draw [arrow] (dec2) -- node[above]{Y} (stop2);
-\draw [-](end) -- (point1);
-\draw [arrow](point1) |- node{}(point2);
+    %连接具体形状
+    \draw [arrow] (start) -- (cul1);
+    \draw [arrow] (cul1) -- (dec1);
+    \draw [arrow] (dec1) -- node[right]{N} (cul2);
+    \draw [arrow] (cul2) -- (dec2);
+    \draw [arrow] (dec2) -- node[right]{N} (cul3);
+    \draw [arrow] (cul3) -- (end);
+    \draw [arrow] (dec1) -- node[above]{Y} (stop1);
+    \draw [arrow] (dec2) -- node[above]{Y} (stop2);
+    \draw [-](end) -- (point1);
+    \draw [arrow](point1) |- node{}(point2);
 
-%\draw (dec1) -- node [above] {Y} (point1);
-%\draw [arrow] (point1) |- (pro1);
-%\draw [arrow] (dec1) -- (dec1|-pro1) -> (pro1);
-%\draw [arrow] (dec1) -- node [right] {N} (pro2);
+    %\draw (dec1) -- node [above] {Y} (point1);
+    %\draw [arrow] (point1) |- (pro1);
+    %\draw [arrow] (dec1) -- (dec1|-pro1) -> (pro1);
+    %\draw [arrow] (dec1) -- node [right] {N} (pro2);
 \end{tikzpicture}
 
 %\end{document}
