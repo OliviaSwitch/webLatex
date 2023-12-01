@@ -1,11 +1,12 @@
 
-\begin{tikzpicture}[node distance=3cm,line width=1pt]
-    \tikzstyle{startstop} = [rectangle, rounded corners, minimum width = 2cm, minimum height=1cm,text centered, draw = black, align=center]
-    \tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, align=center]
-    \tikzstyle{decision} = [diamond, aspect = 3, text centered, draw=black, align=center]
-    \tikzstyle{point}=[coordinate]
-    % 箭头形式
-    \tikzstyle{arrow} = [->,>=stealth]
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width = 2cm, minimum height=1cm,text centered, draw = black, align=center]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, align=center]
+\tikzstyle{decision} = [diamond, aspect = 3, text centered, draw=black, align=center]
+\tikzstyle{point}=[coordinate]
+% 箭头形式
+\tikzstyle{arrow} = [->,>=stealth]
+
+\begin{tikzpicture}[node distance=3cm,line width=1pt, scale=0.8, every node/.style={scale=0.8}]
 
     % Nodes
     \node (start) [startstop] {初始区间 $[\alpha_1,\beta_1]$\\ $\gamma=\frac{\sqrt{5}-1}{2},\varepsilon,k=1$ };
