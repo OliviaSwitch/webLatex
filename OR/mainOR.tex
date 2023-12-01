@@ -1131,5 +1131,79 @@ $\xi$ 所在区间去掉后不会失去最优解，因此可以用缩小区间�
     \label{fig:flow of Golden section method}
 \end{figure}
 
+\subsection{牛顿法和插值法}
+
+\subsubsection{牛顿法}
+
+牛顿法的基本思想是通过迭代逼近一个函数的最小值点。具体来说，该方法使用函数的二阶导数（也称为Hessian矩阵）来构建一个二次逼近，然后通过解这个二次逼近的极小值问题来更新当前的估计值。
+
+主要用于已经知道 $\lambda_k$ 求 $\lambda^*$ 。
+
+设函数 $\varphi(\lambda)$ 二次可微，考虑 $\varphi(\lambda)$ 在 $\lambda_k$ 处的泰勒展开
+$$
+    \varphi(\lambda)=\varphi(\lambda_k)+\varphi^{\prime}(\lambda_k)(\lambda-\lambda_k)+\frac{1}{2}\varphi^{\prime\prime}(\lambda_k)(\lambda-\lambda_k)^2+o(\lambda-\lambda_k)^2
+$$
+舍去高阶项，得到二次式
+\begin{equation}
+    q(\lambda)=\varphi(\lambda_k)+\varphi^{\prime}(\lambda_k)(\lambda-\lambda_k)+\frac{1}{2}\varphi^{\prime\prime}(\lambda_k)(\lambda-\lambda_k)^2
+    \label{equ:Quadratic form of Newton's method}
+\end{equation}
+
+取 $q(\lambda)$ 作为 $\varphi(\lambda)$ 在 $\lambda_k$ 邻域的近视，当 $\varphi^{\prime\prime}(\lambda_k)>0$ 时，$q(\lambda)$ 的驻点即为极小（即为凸函数），作为新的迭代点。对式 \ref{equ:Quadratic form of Newton's method} 求导，并令其为零
+$$
+    q^{\prime}(\lambda)=\varphi^{\prime}(\lambda_k)+\varphi^{\prime\prime}(\lambda_k)(\lambda-\lambda_k)=0
+$$
+当 $\varphi^{\prime\prime}(\lambda_k)>0$ 时，解之得到牛顿迭代公式$\star$
+\begin{equation}
+    \lambda_{k+1}=\lambda_k-\frac{\varphi^{\prime}(\lambda_k)}{\varphi^{\prime\prime}(\lambda_k)}
+    \label{equ:Newton's method}
+\end{equation}
+
+牛顿法的主要特点是二阶收敛，但是局部收敛。而且它的收敛速度很快。
+
+\begin{figure}
+    \centering
+    \input{NewtonMethodFlow.tex}
+    \caption{牛顿法流程}
+    \label{fig:flow of Newton's method}
+\end{figure}
+
+\subsubsection{插值法}
+
+插值法的基本思想是利用插值函数逼近所需求解的目标函数，然后求出插值函数的极小值点，作为新的迭代点。
+常见的有三点二次插值、二点二次插值和三次插值多项式
+
+（感觉不是很重要，具体见课本）
+
+设 $\varphi(\lambda):\mathbf{R}\rightarrow \mathbf{R}$
+\begin{enumerate}
+    \item 三点二次插值。取 $\lambda_0,\lambda_1,\lambda_2$ ，得到各函数值 $\varphi_0=\varphi(\lambda_0), \varphi_1=\varphi(\lambda_1),\varphi_2=\varphi(\lambda_2)$ ，构造二次插值多项式：$\psi (\lambda)=a\lambda^2+b\lambda+c$ 有
+          $$\begin{cases}
+                  a\lambda_0^2+b\lambda_0+c=\varphi_0 \\
+                  a\lambda_1^2+b\lambda_1+c=\varphi_1 \\
+                  a\lambda_2^2+b\lambda_2+c=\varphi_2
+              \end{cases}$$
+          解得
+          $$\begin{cases}
+                  a=-\frac{(\lambda_0-\lambda_1)\varphi_2+(\lambda_1-\lambda-2)\varphi_0+(\lambda_2-\lambda_0)\varphi_1}{(\lambda_0-\lambda_1)(\lambda_1-\lambda_2)(\lambda_2-\lambda_0)}            \\
+                  b=\frac{(\lambda_0^2-\lambda_1^2)\varphi_2+(\lambda_1^2-\lambda_2^2)\varphi_0+(\lambda_2^2-\lambda_0^2)\varphi_1}{(\lambda_0-\lambda_1)(\lambda_1-\lambda_2)(\lambda_2-\lambda_0)} \\
+              \end{cases}$$
+          有极小值点为 $$\bar{\lambda}=-\frac{b}{2a}$$
+    \item 二点二次插值。
+    \item 三次插值。
+\end{enumerate}
+
+\subsection{不精确的一维搜索}
+
+在实际搜索中，往往不需要特别精确，只要满足一定的条件即可，这样可以减少计算量。
+
+\subsubsection{Goldstein法}
+
+\begin{figure}
+    \centering
+    \input{GoldsteinMethodAxis.tex}
+    \caption{Goldstein法示意}
+    \label{fig:Axis of Goldstein's method}
+\end{figure}
 
 \end{document}
