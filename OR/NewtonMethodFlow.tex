@@ -1,0 +1,31 @@
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width = 2cm, minimum height=1cm,text centered, draw = black, align=center]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, align=center]
+\tikzstyle{decision} = [diamond, aspect = 3, text centered, draw=black, align=center]
+\tikzstyle{point}=[coordinate]
+% 箭头形式
+\tikzstyle{arrow} = [->,>=stealth]
+
+\begin{tikzpicture}[node distance=2cm,line width=1pt]
+    \node (start) [startstop] {初始 $\lambda,\varepsilon_1,\varepsilon_2,k=1$ };
+    \node (dec1) [decision, below of=start] {$|\varphi^{\prime}(\lambda_k)|<\varepsilon_1 ?$ };
+    \node (stop1) [startstop, right of=dec1, xshift=3cm] {停止，解$\lambda_k$ };
+    \node (dec2) [decision, below of=dec1] {$\varphi^{\prime\prime}(\lambda_k)>0 ?$ };
+    \node (stop2) [startstop, left of=dec2, xshift=-3cm] {停止};
+    \node (pro1) [process, below of=dec2] {$\lambda_{k+1}=\lambda_k-\frac{\varphi^{\prime}(\lambda_k)}{\varphi^{\prime\prime}(\lambda_k)}$\\ $\varphi(\lambda_{k+1})$ };
+    \node (dec3) [decision, right of=pro1, xshift=3cm] {$|\lambda_{k+1}-\lambda_k|<\varepsilon_2 ?$ };
+
+    \node (pro2) [process, right of=dec2, xshift=6cm] {$k=k+1$ };
+    \node (point) [point, below of=start, yshift=1.1cm] {};
+
+    % arrows
+    \draw [arrow] (start) -- (dec1);
+    \draw [arrow] (dec1) -- node[above]{Y} (stop1);
+    \draw [arrow] (dec1) -- node[right]{N} (dec2);
+    \draw [arrow] (dec2) -- node[above]{N} (stop2);
+    \draw [arrow] (dec2) -- node[right]{Y} (pro1);
+    \draw [arrow] (pro1) -- (dec3);
+    \draw [arrow] (dec3) -- node[right]{Y} (stop1);
+    \draw [arrow] (dec3) -| node[right]{N} (pro2);
+    \draw [arrow] (pro2) |- (point);
+
+\end{tikzpicture}
