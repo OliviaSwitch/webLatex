@@ -1,4 +1,3 @@
-%TEX program = lualatex
 
 \documentclass{book}
 
@@ -11,11 +10,16 @@
 %\usepackage{ctex}
 \usepackage[UTF8]{ctex}
 \usepackage{amsmath,amssymb,amsfonts}
+\newtheorem{theorem}{定理}[chapter]
+\newtheorem{definition}{\indent 定义}[chapter]
+
 \usepackage{hyperref}
 \usepackage{palatino}
 \usepackage{tikz}
+\usetikzlibrary{patterns}
 \usepackage{pgfplots}
 \usepackage{multirow}
+\usepackage{newtxmath}
 
 \geometry{a4paper,scale=0.8}
 
@@ -59,13 +63,15 @@
 
 \subsection{正定矩阵}
 
-对一个 $n$ 阶方阵 $\boldsymbol{M}$，如果其对任意非零向量 $\boldsymbol{Z}$ 都有 $\boldsymbol{Z^TMZ}>0$，其中$\boldsymbol{Z^T}$ 为 $\boldsymbol{Z}$ 的转置，则 $\boldsymbol{M}$为正定矩阵。\\
-定理：对于 $n$ 阶实对称矩阵$\boldsymbol{M}$，下列条件是等价的：
-\begin{enumerate}
-    \item $\boldsymbol{M}$ 是正定矩阵。
-    \item $\boldsymbol{M}$ 的特征值均为正。
-    \item $\boldsymbol{M}$ 的一切顺序主子式均为正。
-\end{enumerate}
+对一个 $n$ 阶方阵 $\boldsymbol{M}$，如果其对任意非零向量 $\boldsymbol{Z}$ 都有 $\boldsymbol{Z^TMZ}>0$，其中$\boldsymbol{Z^T}$ 为 $\boldsymbol{Z}$ 的转置，则 $\boldsymbol{M}$为正定矩阵。
+\begin{theorem}
+    对于 $n$ 阶实对称矩阵$\boldsymbol{M}$，下列条件是等价的：
+    \begin{enumerate}
+        \item $\boldsymbol{M}$ 是正定矩阵。
+        \item $\boldsymbol{M}$ 的特征值均为正。
+        \item $\boldsymbol{M}$ 的一切顺序主子式均为正。
+    \end{enumerate}
+\end{theorem}
 
 \section{基本理论}
 \subsection{数学规划模型的一般形式}
@@ -81,11 +87,13 @@
 \subsection{凸集、凸函数和凸规划}
 \subsubsection{凸集}
 
-定义：设$S \subset \boldsymbol{R}^n$，如果$\boldsymbol{x}^{(1)}, \boldsymbol{x}^{(2)} \in S, \lambda \in [0, 1]$，均有
-\begin{equation}
-    \boldsymbol{\lambda x}^{(1)}+(1-\boldsymbol{\lambda})\boldsymbol{x}^{(2)} \in S
-\end{equation}
-则称$S$为凸集
+\begin{definition}
+    设$S \subset \boldsymbol{R}^n$，如果$\boldsymbol{x}^{(1)}, \boldsymbol{x}^{(2)} \in S, \lambda \in [0, 1]$，均有
+    \begin{equation}
+        \boldsymbol{\lambda x}^{(1)}+(1-\boldsymbol{\lambda})\boldsymbol{x}^{(2)} \in S
+    \end{equation}
+    则称$S$为凸集
+\end{definition}
 
 集合中任意两点连成的线段必属于该集合；规定空集$\varnothing$为凸集，单点集$\{x\}$为凸集。
 
@@ -99,25 +107,31 @@
 
 有一特殊的凸集：凸锥
 
-定义：设非空集合$C\subset\boldsymbol{R}^n$，如果$\forall\boldsymbol{x}\in C$对$\forall\lambda>0$有$\boldsymbol{\lambda x \in C}$，则称$C$为以0为顶点的锥（不一定含$0$点）。若$C$又是凸集，则称$C$为凸锥。
+\begin{definition}
+    设非空集合$C\subset\boldsymbol{R}^n$，如果$\forall\boldsymbol{x}\in C$对$\forall\lambda>0$有$\boldsymbol{\lambda x \in C}$，则称$C$为以0为顶点的锥（不一定含$0$点）。若$C$又是凸集，则称$C$为凸锥。
+\end{definition}
 
 \subsubsection{凸函数}
-定义2-7：设$S\subset \boldsymbol{R}^n$，非空，凸集，函数$f:S\rightarrow \boldsymbol{R}$，如果对$\forall x^{(1)}, x^{(2)}\in S, \forall\lambda\in (0,1)$恒有
-\begin{equation}
-    f(\boldsymbol{\lambda x^{(1)}+(1-\boldsymbol{\lambda})\boldsymbol{x^{(2)}})\le\boldsymbol{\lambda}f(\boldsymbol{x^{(1)}})+(1-\boldsymbol{\lambda})f(\boldsymbol{x^{(2)}})}
-    \label{con:convex function}
-\end{equation}
-则称$f$为$S$上的凸函数。如果式(\ref{con:convex function})恒以严格不等式成立，则称$f$为$S$上的严格凸函数。
+\begin{definition}
+    设$S\subset \boldsymbol{R}^n$，非空，凸集，函数$f:S\rightarrow \boldsymbol{R}$，如果对$\forall x^{(1)}, x^{(2)}\in S, \forall\lambda\in (0,1)$恒有
+    \begin{equation}
+        f(\boldsymbol{\lambda x^{(1)}+(1-\boldsymbol{\lambda})\boldsymbol{x^{(2)}})\le\boldsymbol{\lambda}f(\boldsymbol{x^{(1)}})+(1-\boldsymbol{\lambda})f(\boldsymbol{x^{(2)}})}
+        \label{con:convex function}
+    \end{equation}
+    则称$f$为$S$上的凸函数。如果式(\ref{con:convex function})恒以严格不等式成立，则称$f$为$S$上的严格凸函数。
+\end{definition}
 
 几何意义：任意两个点连线在函数曲线的上方。
 
 \subsubsubsection{水平集}
-定义2-8：设$S\subset\boldsymbol{R}^n$，非空，$f:S\rightarrow\boldsymbol{R}, a\in \boldsymbol{R},$则称
-\begin{equation}
-    S_{\alpha}=\{\boldsymbol{x}|f(\boldsymbol{x)}\le\alpha,\boldsymbol{x}\in S\}
-    \label{con:level set}
-\end{equation}
-为$f$的水平集。
+\begin{definition}
+    设$S\subset\boldsymbol{R}^n$，非空，$f:S\rightarrow\boldsymbol{R}, a\in \boldsymbol{R},$则称
+    \begin{equation}
+        S_{\alpha}=\{\boldsymbol{x}|f(\boldsymbol{x)}\le\alpha,\boldsymbol{x}\in S\}
+        \label{con:level set}
+    \end{equation}
+    为$f$的水平集。
+\end{definition}
 
 水平集的概念相当于在地形图中，海拔高度不高于某一数值的区域。
 
@@ -126,12 +140,12 @@
 \subsubsubsection{凸函数的性质}
 
 \begin{enumerate}
-    \item 定理 $f(x)$为凸集$S$上的凸函数$\Leftrightarrow S$上任意有限点的凸组合的函数值不大于各点函数值的凸组合
+    \item $f(x)$为凸集$S$上的凸函数$\Leftrightarrow S$上任意有限点的凸组合的函数值不大于各点函数值的凸组合
     \item 设$f_1,f_2$为凸函数，$\lambda_1,\lambda_2>0$，则：
           \begin{itemize}
               \item $\lambda_1f_1+\lambda_2f_2$是凸函数
-              \item $f(x)=max\{f_1(x),f_2(x)\}$是凸函数
-              \item $g(x)=min\{f_1(x),f_2(x)\}$不一定是凸函数
+              \item $f(x)=\max\{f_1(x),f_2(x)\}$是凸函数
+              \item $g(x)=\min\{f_1(x),f_2(x)\}$不一定是凸函数
           \end{itemize}
     \item 若$f$在$S$上凸，那么$f$在$S$的内点集（$intS$）上连续（注：$f$在$S$上不一定连续）
     \item 若$f$在非空凸集$S$上凸，则对任意方向的方向导数存在
@@ -174,13 +188,17 @@
 
 \subsubsection{凸规划}
 
-定义：
-\begin{itemize}
-    \item 当$(fS)$中，$S$为凸集，$f$是$S$上的凸函数（求$min$时），称$(fS)$为凸规划。
-    \item 对于$(fgh)$，当$f, g_i$为凸函数，$h_i$为线性函数时，$(fgh)$为凸规划。
-\end{itemize}
+\begin{definition}
+    有两种情况
+    \begin{itemize}
+        \item 当$(fS)$中，$S$为凸集，$f$是$S$上的凸函数（求$\min$时），称$(fS)$为凸规划。
+        \item 对于$(fgh)$，当$f, g_i$为凸函数，$h_i$为线性函数时，$(fgh)$为凸规划。
+    \end{itemize}
+\end{definition}
 
-定理2-4：设$S\subset \boldsymbol{R}^n$，非空，凸，$f:S\rightarrow\boldsymbol{R}$是凸函数。$x^*$为问题$(fS)$的l.opt.，则$x^*$为g.opt.；又如果$f$是严格凸函数，那么$x^*$是问题$(fS)$的唯一g.opt.。
+\begin{theorem}
+    设$S\subset \boldsymbol{R}^n$，非空，凸，$f:S\rightarrow\boldsymbol{R}$是凸函数。$x^*$为问题$(fS)$的l.opt.，则$x^*$为g.opt.；又如果$f$是严格凸函数，那么$x^*$是问题$(fS)$的唯一g.opt.。
+\end{theorem}
 
 \subsection{多面体、极点、极方向}
 （看书上p29开始的图更好理解）
@@ -196,11 +214,10 @@
     \item 极方向：方向$d$不能表示为两个不同方向的组合$(d=d^{(1)}+d^{(2)})$。
 \end{itemize}
 
-\subsubsection{极点特征定理}
-
-设$A$行满秩，$x$是$S$极点的充要条件是：
-
-存在分解$A=(B,N)$，其中$B$为$m$阶非奇异矩阵，使$x^T=(x_B^T,x_N^T)$，这里$x_B=B^{-1}b\ge0,x_N=0$
+\begin{theorem}[极点特征定理]
+    设$A$行满秩，$\boldsymbol{x}$是$S$极点的充要条件是：\\
+    存在分解$\boldsymbol{A}=(\boldsymbol{B},\boldsymbol{N})$，其中$\boldsymbol{B}$为$m$阶非奇异矩阵，使$\boldsymbol{x}^T=(\boldsymbol{x_B}^T,\boldsymbol{x_N}^T)$，这里$\boldsymbol{x_B}=\boldsymbol{B}^{-1}b\ge0,\boldsymbol{x_N}=0$
+\end{theorem}
 
 $S$中必定存在有限多个极点$(\le C_n^m)$
 
@@ -256,7 +273,13 @@ $$\boldsymbol{B}=
 $\boldsymbol{B}$中的每个列向量$\boldsymbol{p}_j=(a_{1j}, a_{2j}, \cdots, a_{mj})^T$为\textbf{基向量}，基向量中的$a_{mj}$们即为\textbf{基变量}。
 一般的，我们讲基变量为$m$个线性无关的变量。（一般是标准化后的松弛变量所对应的列们的系数，也是\textbf{单位矩阵}）
 
-\input{SimplexMethodFlow}
+\begin{figure}[ht]
+    \centering
+    \input{SimplexMethodFlow.tex}
+    \caption{单纯形法流程图}
+    \label{fig:SimplexMethodFlow}
+\end{figure}
+
 
 需要注意的是，$\sigma$在表中的计算没有那么复杂，可以先略过。
 
@@ -645,18 +668,27 @@ $$
      &     &
 \end{flalign*}
 
-定理3-3：若$\boldsymbol{x}$和$\boldsymbol{y}$分别为原规划$(P)$和$(D)$对偶规划，则
-$$
-    \boldsymbol{c}^T\boldsymbol{x}\le \boldsymbol{b}^T\boldsymbol{y}
-$$
+\begin{theorem}
+    若$\boldsymbol{x}$和$\boldsymbol{y}$分别为原规划$(P)$和$(D)$对偶规划，则
+    $$
+        \boldsymbol{c}^T\boldsymbol{x}\le \boldsymbol{b}^T\boldsymbol{y}
+    $$
+\end{theorem}
 
-推论3-1：设$\boldsymbol{x}$和$\boldsymbol{y}$分别为原规划$(P)$和$(D)$的可行解，当$\boldsymbol{c}^T\boldsymbol{x}= \boldsymbol{b}^T\boldsymbol{y}$时，$\boldsymbol{x},\boldsymbol{y}$分别是两个问题的最优解
+\begin{theorem}
+    设$\boldsymbol{x}$和$\boldsymbol{y}$分别为原规划$(P)$和$(D)$的可行解，当$\boldsymbol{c}^T\boldsymbol{x}= \boldsymbol{b}^T\boldsymbol{y}$时，$\boldsymbol{x},\boldsymbol{y}$分别是两个问题的最优解
+\end{theorem}
+\begin{theorem}
+    若规划$(P)$有可行解，则规划$(P)$有最优解的充分必要条件是规划$(D)$有可行解
+\end{theorem}
 
-推论3-2：若规划$(P)$有可行解，则规划$(P)$有最优解的充分必要条件是规划$(D)$有可行解
+\begin{theorem}
+    若规划$(D)$有可行解，则规划$(D)$有最优解的充分必要条件是规划$(P)$有可行解
+\end{theorem}
 
-推论3-3：若规划$(D)$有可行解，则规划$(D)$有最优解的充分必要条件是规划$(P)$有可行解
-
-定理3-4：若原规划$(P)$有最优解，则对偶规划$(D)$也有最优解，反之亦然，且两者的目标函数值相等。
+\begin{theorem}
+    若原规划$(P)$有最优解，则对偶规划$(D)$也有最优解，反之亦然，且两者的目标函数值相等。
+\end{theorem}
 
 \subsubsection{对偶单纯形法}
 
@@ -684,14 +716,13 @@ STEPS:
     \item 以$b_{rk}$为中心元素，按照与单纯形法类似的方法，在表中进行迭代计算，返回第2步。
 \end{enumerate}
 
-%\begin{figure}[h]
-%    \centering
-%    \includegraphics[scale=.5]{DualSMFlow.pdf}
-%    \caption{单纯形法与对偶单纯形法流程图}
-%    \label{con:DualSMFlow}
-%\end{figure}
+\begin{figure}[ht]
+    \centering
+    \input{DualSMFlow}
+    \caption{单纯形法与对偶单纯形法流程图}
+    \label{con:DualSMFlow}
+\end{figure}
 
-\input{DualSMFlow}
 
 \subsection{灵敏度分析}
 
@@ -760,7 +791,7 @@ $$\sigma_j=c_j-\boldsymbol{c_B}^T\boldsymbol{B}^{-1}\boldsymbol{p}_j, j=1, 2, \c
           为保证最优解不变，$\Delta c_l$要满足$$\max\left\{ \frac{\sigma_j}{a_{ij}^{\prime}}|a_{ij}^{\prime}>0 \right\}\le\Delta c_l\le\min\left\{ \frac{\sigma_j}{a_{ij}^{\prime}}|a_{ij}^{\prime}<0 \right\}$$若$\Delta c_l$超出此范围，应求出新的检验数$\bar{\sigma}_j$，选择其中大于零的检验数对应的变量$x_j$为进基变量，继续迭代。
 \end{enumerate}
 
-\subsubsection{右端常数b变化$\star$}
+\subsubsection{右端常数b变化\textasteriskcentered}
 
 $b_r$的变化影响解的可行性，但不影响检验数的符号变化。由$\boldsymbol{x_B}=\boldsymbol{B}^{-1}\boldsymbol{b}$可知$b_r$的变化必会引起最优解数值变化。
 
@@ -875,8 +906,230 @@ $$
 
 \subsection{下降算法模型}
 
+考虑规范形式的规划问题 $$
+    (fS)\quad\begin{cases}
+        min\quad  & f(\boldsymbol{x})   \\
+        s.t.\quad & \boldsymbol{x}\in S
+    \end{cases}
+$$
+希望能更接近目标函数的最优解，即对 $\forall k,f(\boldsymbol{x}^{(k+1)})<f(\boldsymbol{x}^{(k)})$，这样的算法称为下降算法。
 
-\input{DescentOptimizationFlow.tex}
+首先要找到下降可行的方向，即能够接近最优解的方向。
+
+设 $\bar{\boldsymbol{x}}\in S$，对方向 $\boldsymbol{d}$ ，如果 $\exists\delta>0$，使 \begin{equation}
+    f(\boldsymbol{x}+\boldsymbol{\lambda d})<f(\bar{\boldsymbol{x}}),\forall\lambda\in(0,\delta)
+    \label{con:3.1}
+\end{equation}
+那么称 $\boldsymbol{d}$ 为 $f(\boldsymbol{x})$ 在点 $\bar{\boldsymbol{x}}$ 的下降方向；就是说在某个点上，沿着这个方向移动可以朝着更优的解靠近。
+
+然而，对于问题 $(fS)$ ，只找到下降方向，有时不能产生新的迭代点，还要求 $\boldsymbol{d}$ 为可行方向（换句话说，沿着可行方向前进，可以保持在可行解的范围内），即 $\exists\delta>0$ ，使
+\begin{equation}
+    \boldsymbol{x}+\boldsymbol{\lambda d}\in S,\forall\lambda\in(0,\delta)
+    \label{con:3.2}
+\end{equation}
+
+如果方向 $\boldsymbol{D}$ 同时满足式（\ref{con:3.1}）和（\ref{con:3.2}），那么称 $\boldsymbol{d}$ 为问题 $(fS)$ 的下降可行方向。
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \draw (0,0) circle (1cm);
+        \filldraw[black] (0.5,0.5) circle (1pt) node[anchor=west] {$\bar{\boldsymbol{x}}$};
+        \draw[->] (0.5,0.5) -- (-0.4,-0.5) node[anchor=west] {$\boldsymbol{d}$};
+        \node[anchor=south] at (0,1.1) {$S$};
+    \end{tikzpicture}
+    \caption{下降可行方向}
+    \label{fig:Feasible Descent Direction}
+\end{figure}
+
+下降算法模型如图\ref{fig:DescentOptimizationFlow}所示，接下来先要利用一维搜索找到步长因子 $\lambda_k$
+
+\begin{figure}[ht]
+    \centering
+    \input{DescentOptimizationFlow.tex}
+    \caption{下降算法模型}
+    \label{fig:DescentOptimizationFlow}
+\end{figure}
+
+\section{一维搜索}
+
+一元函数求最小值和线性搜索均为一维搜索，用于求步长因子 $\lambda_k$ 即：
+\begin{align*}
+     & \min\quad f(\boldsymbol{x}^{(k)}+\lambda\boldsymbol{d}^{(k)})=\varphi (\lambda) \\
+     & s.t.\quad \lambda\in S
+\end{align*}
+这里 $S$ 有三种情况：$(-\infty,+\infty),(0,+\infty),[a,b]$
+
+\subsection{缩小区间的精确一维搜索}
+
+考虑问题 $P$
+\begin{align*}
+     & \min\quad \varphi(\lambda)                 \\
+     & s.t.\quad \lambda\in[\alpha,\beta]         \\
+     & \varphi: \mathbf{R} \rightarrow \mathbf{R}
+\end{align*}
+
+\subsubsection{不确定区间和单峰函数}
+
+不确定区间：表示 $[\alpha,\beta]$ 含最优解，即 $\varphi(\lambda)$ 的最小值，但是不知道具体位置
+
+\begin{definition}
+    设函数 $\varphi:\mathbf{R}\rightarrow\mathbf{R}, [\alpha,\beta]$为不确定区间，$\lambda^*$为 $\varphi$ 在 $[\alpha,\beta]$ 上的最小值点，如果 $\forall\lambda_1,\lambda_2\in[\alpha,\beta], \lambda_1<\lambda_2$满足：
+    \begin{enumerate}
+        \item 当 $\lambda_2\le\lambda^*$ 时，$\varphi(\lambda_1)>\varphi(\lambda_2)$
+        \item 当 $\lambda_1\ge\lambda^*$ 时，$\varphi(\lambda_1)<\varphi(\lambda_2)$
+    \end{enumerate}
+    则称 $\varphi(\lambda)$ 在 $[\alpha,\beta]$ 上为是强单峰的。
+
+    如果再加上条件，当 $\varphi(\lambda_1)\ne\varphi(\lambda^*), \varphi(\lambda_2)\ne\varphi(\lambda^*)$ 时，上式成立，则称 $\varphi(\lambda)$ 在 $[\alpha,\beta]$ 上为是单峰的。
+\end{definition}
+
+\begin{figure}[ht]
+    \centering
+    \input{stronglyUnimodalAndUnimodal.tex}
+    \caption{强单峰与单峰}
+    \label{fig:stronglyUnimodalAndUnimodal}
+\end{figure}
+
+单峰函数的特点是在最优解 $\lambda^*$ 的某一侧，距离 $\lambda^*$ 远的点的函数值必定不小于距离 $\lambda^*$ 近的点的函数值。根据该特点有下面的定理：
+
+\begin{theorem}
+    设 $\varphi(\lambda):\mathbf{R}\rightarrow\mathbf{R}$，在区间 $[\alpha,\beta]$ 上单峰。$\lambda, \mu\in [\alpha,\beta]$，且 $\lambda<\mu$，则
+    \begin{enumerate}
+        \item 若 $\varphi(\lambda)>\varphi(\mu)$，则 $\varphi(\xi)\ge\varphi(\mu),\forall \xi\in[\alpha,\lambda]$
+        \item 若 $\varphi(\lambda)<\varphi(\mu)$，则 $\varphi(\xi)\ge\varphi(\mu),\forall \xi\in[\mu,\beta]$
+        \item 若 $\varphi(\lambda)=\varphi(\mu)$，则 $\varphi(\xi)\ge\varphi(\mu),\forall \xi\in[\alpha,\lambda]\cup[\mu,\beta]$
+    \end{enumerate}
+\end{theorem}
+
+$\xi$ 所在区间去掉后不会失去最优解，因此可以用缩小区间的方法求解最优解。也就是说，只需要在 $[\alpha,\beta]$ 上取两个点 $\lambda,\mu$ ，比较函数值 $\varphi(\lambda),\varphi(\mu)$ ，可以去掉$\xi$ 所在区间。
+
+\subsubsection{进退法求出初始不确定区间}
+
+实际计算时，往往不知道最优解的位置，因此需要先找到一个初始的不确定区间，基本思想是找三个点，使两端点的函数值比中间点的函数值大。
+
+先任取点 $\lambda_0$ ，选取步长 $\delta >0$ 取 $\lambda_1=\lambda_0+\delta$ ，那么有两种情况
+\begin{enumerate}
+    \item 若 $\varphi(\lambda_0)<\varphi(\lambda_1)$，向左找，取 $\lambda_2=\lambda_0-2\delta$ ，再考察 $\varphi(\lambda_2)$：
+          \begin{enumerate}
+              \item 若 $\varphi(\lambda_0)\le\varphi(\lambda_2)$，则停，得到不确定区间 $[\lambda_2,\lambda_1]$
+              \item 否则，取 $\lambda_1=\lambda_0,\lambda_0=\lambda_2,\delta=2\delta$ ，重复该过程。
+          \end{enumerate}
+    \item 若 $\varphi(\lambda_0)\ge\varphi(\lambda)$ ，向右找，取 $\lambda_2=\lambda_0+2\delta$ ，再考察 $\varphi(\lambda_2)$：
+          \begin{enumerate}
+              \item 若 $\varphi(\lambda_1)\le\varphi(\lambda_2)$，则停，得到不确定区间 $[\lambda_0,\lambda_2]$
+              \item 否则，取 $\lambda_0=\lambda_1,\lambda_1=\lambda_2,\delta=2\delta$ ，重复该过程。
+          \end{enumerate}
+\end{enumerate}
+
+如图\ref{fig:case of the retreat method 1}与\ref{fig:case of the retreat method 2}所示
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        % 第一幅图的代码
+        \begin{tikzpicture}
+            \draw[line width=1pt] (-1,0) -- (5,0);
+
+            \draw[line width=1pt] (0,0.1) -- (0,0) node[anchor=north] {$\lambda_2$};
+            \draw[line width=1pt] (4,0.1) -- (4,0) node[anchor=north] {$\lambda_1$};
+            \draw[line width=1pt] (3,0.1) -- (3,0) node[anchor=north] {$\lambda_0$};
+            \draw[line width=1pt, dashed] (4,0) -- (4,3.5) node[anchor=south] {$\varphi(\lambda_1)$};
+            \draw[line width=1pt, dashed] (3,0) -- (3,3) node[anchor=south] {$\varphi(\lambda_0)$};
+
+            \draw[line width=1pt, decorate,decoration={brace,amplitude=5pt}] (0,0.1) -- (3,0.1) node[anchor=south,midway,yshift=0.3cm] {$2\delta$};
+            \draw[line width=1pt, decorate,decoration={brace,amplitude=5pt}] (3,0.1) -- (4,0.1) node[anchor=south,midway,yshift=0.3cm] {$\delta$};
+        \end{tikzpicture}
+        \caption{进退法情况1}
+        \label{fig:case of the retreat method 1}
+    \end{minipage}
+    % \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        % 第二幅图的代码
+        \begin{tikzpicture}%[scale=0.9]
+            \draw[line width=1pt] (-1,0) -- (5,0);
+
+            \draw[line width=1pt] (0,0.1) -- (0,0) node[anchor=north] {$\lambda_0$};
+            \draw[line width=1pt] (1,0.1) -- (1,0) node[anchor=north] {$\lambda_1$};
+            \draw[line width=1pt] (4,0.1) -- (4,0) node[anchor=north] {$\lambda_2$};
+            \draw[line width=1pt, dashed] (0,0) -- (0,3) node[anchor=south] {$\varphi(\lambda_0)$};
+            \draw[line width=1pt, dashed] (1,0) -- (1,3.5) node[anchor=south] {$\varphi(\lambda_1)$};
+
+            \draw[line width=1pt, decorate,decoration={brace,amplitude=5pt}] (0,0.1) -- (1,0.1) node[anchor=south,midway,yshift=0.3cm] {$\delta$};
+            \draw[line width=1pt, decorate,decoration={brace,amplitude=5pt}] (1,0.1) -- (4,0.1) node[anchor=south,midway,yshift=0.3cm] {$2\delta$};
+        \end{tikzpicture}
+        \caption{进退法情况2}
+        \label{fig:case of the retreat method 2}
+    \end{minipage}
+    % \label{fig:Two cases of the retreat method}
+\end{figure}
+
+需要注意的是，步长 $\delta$ 的选择要适度，太大时含有多个单峰区间，太小时迭代次数过多；另外，当 $\varphi(\lambda)$ 单调时，进退法无结果，因此需要加入迭代次数的限制。
+
+\subsubsection{中点法}
+
+若 $\varphi(\lambda):\mathbf{R}\rightarrow\mathbf{R}$ 可微，且 $\varphi(\lambda)$ 在 $[\alpha,\beta]$ 上单峰，那么可以用中点法求解最优解。
+
+设 $\varphi(\lambda)$ 在单峰区间 $[\alpha,\beta]$ 可微，且不存在拐点（即 $\varphi^{\prime}(\lambda)$ 及 $\varphi^{\prime\prime}(\lambda)$ 同时为零的点），取 $\lambda=\frac{\alpha+\beta}{2}$ ，有中点法一般步骤：
+\begin{enumerate}
+    \item 若 $\varphi^{\prime}(\lambda)=0$ ，则 $\lambda$ 为最优解
+    \item 若 $\varphi^{\prime}(\lambda)>0$ ，则 $\lambda$ 在上升段，$\lambda^*<\lambda$ ，去掉 $(\lambda,\beta]$ ，新区间为 $[\alpha,\lambda]$
+    \item 若 $\varphi^{\prime}(\lambda)<0$ ，则 $\lambda$ 在下降段，$\lambda^*>\lambda$ ，去掉 $[\alpha,\lambda)$ ，新区间为 $[\lambda,\beta ]$
+\end{enumerate}
+
+利用中点法进行 $k$ 次迭代后，存在精度区间 $[\alpha^*,\beta^*]<\varepsilon$ ，也就是说有
+\begin{align*}
+    \frac{\beta-\alpha}{2^k}            & <\varepsilon                                      \\
+    \frac{\beta-\alpha}{\varepsilon}    & <2^k                                              \\
+    \ln\frac{\beta-\alpha}{\varepsilon} & <k\ln2                                            \\
+    k                                   & >\frac{\ln\frac{\beta-\alpha}{\varepsilon}}{\ln2} \\
+\end{align*}
+
+需要注意的是，中点法只能用于单峰函数，就是说对函数的可微性有要求。
+
+\subsubsection{黄金分割法}
+
+黄金分割法是一种比较经典的缩小区间的方法，要求考虑条件：
+\begin{enumerate}
+    \item 对称性 $\lambda-\alpha=\beta-\mu$
+    \item 缩减比不变 $\gamma=\frac{\hbox{保留区间的长度}}{\hbox{原区间的长度}}$
+\end{enumerate}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[line width=1pt]
+        \draw (0,0) -- (10,0);
+
+        \draw (0,0.1) -- (0,0) node[anchor=north] {$\alpha$};
+        \draw (10,0.1) -- (10,0) node[anchor=north] {$\beta$};
+        \draw (4,0.1) -- (4,0) node[anchor=north] {$\lambda$};
+        \draw (6,0.1) -- (6,0) node[anchor=north] {$\mu$};
+
+        \fill[pattern=north west lines] (6,0) rectangle (10,0.2);
+    \end{tikzpicture}
+    \caption{黄金分割法示意图}
+    \label{fig:Golden section method}
+\end{figure}
+
+不妨设迭代选择的新的两个点为 $\lambda,\mu$ ，通过比较函数值去掉 $[\mu,\beta]$ （或 $[\alpha,\mu]$ ）段，如图\ref{fig:Golden section method} ，那么有
+
+\begin{gather*}
+    \frac{\mu-\alpha}{\beta-\alpha}=\frac{\lambda-\alpha}{\mu-\alpha}=\gamma       \\
+    \mu=\alpha+\gamma(\beta-\alpha),\lambda=\alpha+(1-\gamma)(\beta-\alpha) \\
+    \gamma^2+\gamma-1 =0                                       \\
+    \gamma=\frac{\sqrt{5}-1}{2}\approx0.618
+\end{gather*}
+
+下图为黄金分割法的流程图
+
+\begin{figure}[ht]
+    \centering
+    \input{GoldenSectionMethodFlow.tex}
+    \caption{黄金分割法流程}
+    \label{fig:flow of Golden section method}
+\end{figure}
 
 
 \end{document}
