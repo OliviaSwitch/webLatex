@@ -10,7 +10,9 @@
 
     % 绘制直线
     \draw[line width=1pt] (0,5) -- (9,-0.5) node[below] {$y=f(\boldsymbol{x}^{(k)})+(1-\rho)\nabla f^T(\boldsymbol{x}^{(k)})\boldsymbol{d}^{(k)}\lambda$};
-    \draw[line width=1pt, domain=0:15] (0,5) node[above]{$y=f(\boldsymbol{x}^{(k)})+\rho\nabla f^T(\boldsymbol{x}^{(k)})\boldsymbol{d}^{(k)}\lambda$} -- (15,2);
+    \draw[line width=1pt, domain=0:15] (0,5)  -- (15,2);
+
+    \node[above] at (2.5,5.2) {$y=f(\boldsymbol{x}^{(k)})+\rho\nabla f^T(\boldsymbol{x}^{(k)})\boldsymbol{d}^{(k)}\lambda$};
     \node[above] at (9,4.5) {$y=f(\boldsymbol{x}^{(k+1)}+\lambda\boldsymbol{d}^{(k)})$};
 
     \draw (4.83,0) -- (4.83,2.05);
