@@ -1,0 +1,38 @@
+
+\begin{tikzpicture}
+    % 坐标轴
+    \draw[->] (0,0) -- (15,0) node[right] {$\lambda$};
+    \draw[->] (0,0) -- (0,6) node[above] {$f$};
+    \node[below] at (0,0) {O};
+
+    % 函数图像
+    \draw[thick] plot[smooth] coordinates {(0,5) (3,1.5) (9,4) (11.7,2) (14.5,3)};
+
+    % 绘制斜率
+    \draw (1,2.6) -- (4,0.8);
+    \node[left] at (2.5,1.65) {斜率为$\beta$};
+    \draw (9.95,3) -- (12.95,1.2);
+    \node[left] at (11.4,2.12) {斜率为$\beta$};
+
+    % 绘制直线
+    % \draw[line width=1pt] (0,5) -- (9,-0.5) node[below] {$y=f(\boldsymbol{x}^{(k)})+(1-\rho)\nabla f^T(\boldsymbol{x}^{(k)})\boldsymbol{d}^{(k)}\lambda$};
+    \draw[line width=1pt, domain=0:15] (0,5)  -- (15,2);
+    \node[above] at (4.3,4.5) {$y=f(\boldsymbol{x}^{(k)})+\rho\nabla f^T(\boldsymbol{x}^{(k)})\boldsymbol{d}^{(k)}\lambda$};
+
+    \node[above] at (.7,5) {$f(\boldsymbol{x}^{(k)})$};
+    \node[above] at (9,4.1) {$f(\boldsymbol{x}^{(k+1)}+\lambda\boldsymbol{d}^{(k)})$};
+
+    \draw (2.55,0) -- (2.55,1.65);
+    \draw (7.58,0) -- (7.58,3.5);
+    \draw (11.45,0) -- (11.45,2.12);
+    \draw (13.2,0) -- (13.2,2.38);
+
+    \fill[pattern=north west lines] (2.55,0) rectangle (7.58,0.2);
+    \node[anchor=north] at (5.065, -0.1) {可接受范围};
+    \fill[pattern=north west lines] (11.45,0) rectangle (13.2,0.2);
+    \node[anchor=north] at (12.325, -0.1) {可接受范围};
+
+    \node[above] at (7.55,5.7) {斜率$\beta=\rho\nabla f^T(\boldsymbol{x}^{(k+1)})\boldsymbol{d}^{(k)}$};
+
+\end{tikzpicture}
+
