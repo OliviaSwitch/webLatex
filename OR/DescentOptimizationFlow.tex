@@ -16,7 +16,7 @@
 
     % \begin{document}
 
-    \node (start) [startstop] {选初始点 $\boldsymbol{x}^{(1)}\in S$，\\ 确定停机条件 $k=1$ };
+    \node (start) [startstop] {选初始点 $\boldsymbol{x}^{(1)}\in S$，\\ 确定停机条件， $k=1$ };
     \node (pro1) [process, below of=start] {对 $\boldsymbol{x}^{(k)}$ 点选择\\
         $\boldsymbol{d}^{(k)}$ 为下降可行方向};
     \node (pro2) [process, below of=pro1] {线性搜索求步长因子 $\lambda_k$\\ $\boldsymbol{x}^{(k+1)}=\boldsymbol{x}^k+\lambda_k\boldsymbol{d}^{(k)}$\\ 使 $\boldsymbol{x}^{(k+1)}\in S$，且\\ $f(\boldsymbol{x}^{(k+1)})<f(\boldsymbol{x^{(k)}})$ };
@@ -31,7 +31,7 @@
     \draw [arrow] (pro2) -- (dec1);
     \draw [arrow] (dec1) -| node[anchor=north] {N} (pro3);
     \draw [arrow] (pro3) -- (point1);
-    \draw [arrow] (dec1) -- (stop);
+    \draw [arrow] (dec1) -- node[above] {Y} (stop);
 
 \end{tikzpicture}
 % \end{document}
