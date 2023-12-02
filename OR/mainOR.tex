@@ -13,13 +13,13 @@
 \newtheorem{theorem}{定理}[chapter]
 \newtheorem{definition}{\indent 定义}[chapter]
 
-\usepackage{hyperref}
 \usepackage{palatino}
 \usepackage{tikz}
 \usetikzlibrary{patterns}
 \usepackage{pgfplots}
 \usepackage{multirow}
 \usepackage{newtxmath}
+\usepackage{hyperref}
 
 \geometry{a4paper,scale=0.8}
 
@@ -28,6 +28,11 @@
 \newcommand{\subsubsubsection}[1]{\paragraph{#1}\mbox{}\\}
 \setcounter{secnumdepth}{4} % how many sectioning levels to assign numbers to
 \setcounter{tocdepth}{4} % how many sectioning levels to show in ToC
+
+\hypersetup{
+colorlinks=true,
+linkcolor=blue,
+}
 
 \begin{document}
 
