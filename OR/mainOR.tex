@@ -93,7 +93,7 @@ linkcolor=blue,
 \subsubsection{凸集}
 
 \begin{definition}
-    设$S \subset \boldsymbol{R}^n$，如果$\boldsymbol{x}^{(1)}, \boldsymbol{x}^{(2)} \in S, \lambda \in [0, 1]$，均有
+    设$S \subset \mathbf{R}^n$，如果$\boldsymbol{x}^{(1)}, \boldsymbol{x}^{(2)} \in S, \lambda \in [0, 1]$，均有
     \begin{equation}
         \boldsymbol{\lambda x}^{(1)}+(1-\boldsymbol{\lambda})\boldsymbol{x}^{(2)} \in S
     \end{equation}
@@ -113,14 +113,14 @@ linkcolor=blue,
 有一特殊的凸集：凸锥
 
 \begin{definition}
-    设非空集合$C\subset\boldsymbol{R}^n$，如果$\forall\boldsymbol{x}\in C$对$\forall\lambda>0$有$\boldsymbol{\lambda x \in C}$，则称$C$为以0为顶点的锥（不一定含$0$点）。若$C$又是凸集，则称$C$为凸锥。
+    设非空集合$C\subset\mathbf{R}^n$，如果$\forall\boldsymbol{x}\in C$对$\forall\lambda>0$有$\boldsymbol{\lambda x \in C}$，则称$C$为以0为顶点的锥（不一定含$0$点）。若$C$又是凸集，则称$C$为凸锥。
 \end{definition}
 
 \subsubsection{凸函数}
 \begin{definition}
-    设$S\subset \boldsymbol{R}^n$，非空，凸集，函数$f:S\rightarrow \boldsymbol{R}$，如果对$\forall x^{(1)}, x^{(2)}\in S, \forall\lambda\in (0,1)$恒有
+    设$S\subset \mathbf{R}^n$，非空，凸集，函数$f:S\rightarrow \mathbf{R}$，如果对$\forall x^{(1)}, x^{(2)}\in S, \forall\lambda\in (0,1)$恒有
     \begin{equation}
-        f(\boldsymbol{\lambda x^{(1)}+(1-\boldsymbol{\lambda})\boldsymbol{x^{(2)}})\le\boldsymbol{\lambda}f(\boldsymbol{x^{(1)}})+(1-\boldsymbol{\lambda})f(\boldsymbol{x^{(2)}})}
+        f(\boldsymbol{\lambda x}^{(1)}+(1-\boldsymbol{\lambda})\boldsymbol{x}^{(2)})\le\boldsymbol{\lambda}f(\boldsymbol{x}^{(1)})+(1-\boldsymbol{\lambda})f(\boldsymbol{x}^{(2)})
         \label{con:convex function}
     \end{equation}
     则称$f$为$S$上的凸函数。如果式(\ref{con:convex function})恒以严格不等式成立，则称$f$为$S$上的严格凸函数。
@@ -130,7 +130,7 @@ linkcolor=blue,
 
 \subsubsubsection{水平集}
 \begin{definition}
-    设$S\subset\boldsymbol{R}^n$，非空，$f:S\rightarrow\boldsymbol{R}, a\in \boldsymbol{R},$则称
+    设$S\subset\mathbf{R}^n$，非空，$f:S\rightarrow\mathbf{R}, a\in \mathbf{R},$则称
     \begin{equation}
         S_{\alpha}=\{\boldsymbol{x}|f(\boldsymbol{x)}\le\alpha,\boldsymbol{x}\in S\}
         \label{con:level set}
@@ -140,7 +140,7 @@ linkcolor=blue,
 
 水平集的概念相当于在地形图中，海拔高度不高于某一数值的区域。
 
-注意：容易证明，当$f$为凸函数时，$\forall\alpha\in\boldsymbol{R}, S_{\alpha}$是凸集。但是它的逆不成立。
+注意：容易证明，当$f$为凸函数时，$\forall\alpha\in\mathbf{R}, S_{\alpha}$是凸集。但是它的逆不成立。
 
 \subsubsubsection{凸函数的性质}
 
@@ -202,7 +202,7 @@ linkcolor=blue,
 \end{definition}
 
 \begin{theorem}
-    设$S\subset \boldsymbol{R}^n$，非空，凸，$f:S\rightarrow\boldsymbol{R}$是凸函数。$x^*$为问题$(fS)$的l.opt.，则$x^*$为g.opt.；又如果$f$是严格凸函数，那么$x^*$是问题$(fS)$的唯一g.opt.。
+    设$S\subset \mathbf{R}^n$，非空，凸，$f:S\rightarrow\mathbf{R}$是凸函数。$x^*$为问题$(fS)$的l.opt.，则$x^*$为g.opt.；又如果$f$是严格凸函数，那么$x^*$是问题$(fS)$的唯一g.opt.。
 \end{theorem}
 
 \subsection{多面体、极点、极方向}
@@ -215,7 +215,7 @@ linkcolor=blue,
 
 极方向：
 \begin{itemize}
-    \item 方向：$d\in \boldsymbol{R}^n, d\ne 0$及对于任意$x\in S,\lambda>0$，总有$x+\lambda d\in S$（可行方向）。其中，当$d^{(1)}=\lambda d^{(2)}(\lambda>0)$时，称$d^{(1)}$和$d^{(2)}$同方向。
+    \item 方向：$d\in \mathbf{R}^n, d\ne 0$及对于任意$x\in S,\lambda>0$，总有$x+\lambda d\in S$（可行方向）。其中，当$d^{(1)}=\lambda d^{(2)}(\lambda>0)$时，称$d^{(1)}$和$d^{(2)}$同方向。
     \item 极方向：方向$d$不能表示为两个不同方向的组合$(d=d^{(1)}+d^{(2)})$。
 \end{itemize}
 
