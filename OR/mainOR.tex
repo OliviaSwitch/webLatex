@@ -1194,16 +1194,30 @@ $$
 \end{enumerate}
 
 \subsection{不精确的一维搜索}
+% TODO: fix 一维搜索的不精确性
 
 在实际搜索中，往往不需要特别精确，只要满足一定的条件即可，这样可以减少计算量。
 
-\subsubsection{Goldstein法}
+\subsubsection{Wolfe-Powell法}
 
-\begin{figure}
+考虑从 $\boldsymbol{x}^{(k)}$ ，沿方向 $\boldsymbol{d}^{(k)}$ 搜索新的迭代点 $\boldsymbol{x}^{(k)}+\lambda_k\boldsymbol{d}^{(k)}$
+
+有规则 Wolfe-Powell ：
+\begin{equation}
+    f(\boldsymbol{x}^{(k+1)})\le f(\boldsymbol{x}^{(k)})+\rho\nabla f^T(\boldsymbol{x}^{(k)})\boldsymbol{s}^{(k)}
+    \label{equ:Wolfe-Powell rule 1}
+\end{equation}
+\begin{equation}
+    \nabla f(\boldsymbol{x}^{(k+1)})\boldsymbol{s}^{(k)}\ge\sigma\nabla f^T(\boldsymbol{x}^{(k)})\boldsymbol{s}^{(k)}
+    \label{equ:Wolfe-Powell rule 2}
+\end{equation}
+
+
+\begin{figure}[ht]
     \centering
-    \input{GoldsteinMethodAxis.tex}
-    \caption{Goldstein法示意}
-    \label{fig:Axis of Goldstein's method}
+    \input{WolfePowellMethodAxis.tex}
+    \caption{Wolfe-Powell法几何意义}
+    \label{fig:Axis of Wolfe-Powell method}
 \end{figure}
 
 \end{document}
