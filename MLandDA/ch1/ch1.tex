@@ -1,0 +1,31 @@
+\chapter{Support Vector Machine: SVM}
+
+该方法的机理可以简单描述为：寻找一个满足分类要求的最优分类超平面(\ref{sec:optimal-classification-hyperplane})，使得该超平面在保证分类精度的同时，能够使超平面两侧的空白区域最大化；从理论上来说，支持向量机能够实现对线性可分数据的最优分类。为了进一步解决非线性问题，Vapnik等人通过引入核映射方法转化为高维空间的线性可分问题来解决。
+
+\section{最优分类超平面}\label{sec:optimal-classification-hyperplane}
+
+对于两类线性可分的情形，可以直接构造最优超平面，使得样本集中的所有样本满足如下条件（结构风险最小化（SRM）的原则）：
+\begin{enumerate}
+    \item 能被某一超平面正确划分
+    \item 距该超平面最近的异类向量与超平面之间的距离最大，即分类间隔（margin）最大
+\end{enumerate}
+
+我们可以训练样本输入为
+$$
+    \mathbf{x}_i,\quad (1, 2, \cdots, l), \quad \mathbf{x}_i \in \mathbf{R}^d
+$$
+
+对应的期望输出为
+$$
+    y_i \in \{-1, +1\}
+$$
+
+如果训练集中的所有向量均能被某超平面正确划分，并且距离平面最近的异类向量之间的距离最大（即边缘margin最大化），则该超平面为最优超平面（Optimal Hyperplane）
+
+% 最优超平面示意图
+\begin{figure}[ht]
+    \centering
+    \input{ch1/optimal-classification-hyperplane.tex}
+    \caption{最优超平面示意图}
+    \label{fig:optimal-classification-hyperplane}
+\end{figure}

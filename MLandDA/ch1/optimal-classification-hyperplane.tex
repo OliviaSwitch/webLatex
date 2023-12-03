@@ -1,0 +1,27 @@
+\begin{tikzpicture}[line width=1pt]
+    % 绘制数据点
+    \draw[fill=blue] (1,4) circle (2pt);
+    \draw[fill=blue] (3,6) circle (2pt);
+    \draw[fill=blue] (2,3.7) circle (2pt);
+    \draw[fill=blue] (2.4,4.5) circle (2pt);
+    \draw[fill=blue] (2.5,5) circle (2pt);
+    \draw[fill=red] (3,1) circle (2pt);
+    \draw[fill=red] (4,2) circle (2pt);
+    \draw[fill=red] (3.3,2.75) circle (2pt);
+    \draw[fill=red] (2,1.68) circle (2pt);
+    \draw[fill=red] (3.1,2) circle (2pt);
+    \draw[fill=red] (4.2,2.5) circle (2pt);
+
+    % 绘制分类面
+    \draw (0,0) node[left] {$H_2$} -- (6,5);
+    \draw (0,1) node[left] {$H$} -- (6,6);
+    \draw (0,2) node[left] {$H_1$} -- (6,7);
+
+    % 绘制分类面的法向量
+    \draw[<->] (5.7,4.75) -- ($(0,2)!(5.7,4.75)!(6,7)$);
+
+    % 添加标签
+    \node[right] at (5.5,5.4) {margin};
+    \draw[->] (1.5,0) node[below, align=center]{支持向量\\(Support Vect)} -- (1.95,1.57);
+\end{tikzpicture}
+
