@@ -1218,11 +1218,43 @@ $$
 
 \subsubsection{Goldstein 法}
 
+设 $(fS)$ ，在 $\boldsymbol{x}^{(k)}$ 取方向 $\boldsymbol{d}^{(k)}$ ，有 $f^T(\boldsymbol{x}^{(k)})\boldsymbol{d}^{(k)}<0$ ，求解下面的问题
+\begin{align*}
+    (L-R)\begin{cases}
+             \min\quad & f(\boldsymbol{x}^{(k)}+\lambda\boldsymbol{d}^{(k)}) \\
+             s.t.\quad & \lambda\ge 0
+         \end{cases}
+\end{align*}
+
+那么有 $\boldsymbol{x}^{(k+1)}=\boldsymbol{x}^{(k)}\lambda_k\boldsymbol{d}^{(k)}$，这里令 $\boldsymbol{s}^{(k)}=\boldsymbol{x}^{(k+1)}-\boldsymbol{x}=\lambda_k\boldsymbol{d}^{(k)}$。
+
+Goldstein法遵循下面的规则：
+\begin{equation}
+    f(\boldsymbol{x}^{(k+1)})-f(\boldsymbol{x}^{(k)})\le\rho\nabla f^T(\boldsymbol{x}^{(k)})\boldsymbol{d}^{(k)}\boldsymbol{s}^{(k)}
+    \label{equ:Goldstein rule 1}
+\end{equation}
+\begin{equation}
+    f(\boldsymbol{x}^{(k+1)})-f(\boldsymbol{x}^{(k)})\ge(1-\rho)\nabla f^T(\boldsymbol{x}^{(k)})\boldsymbol{d}^{(k)}\boldsymbol{s}^{(k)}
+    \label{equ:Goldstein rule 2}
+\end{equation}
+其中，$\rho\in(0,1/2)$，实际经验中常取 $\rho=0.1$ 或更小。
+
+这里式\ref{equ:Goldstein rule 1}表示 $\lambda_k$ 取值应使 $f(\boldsymbol{x}^{(k+1)})$ 的值在直线 $y=f(\boldsymbol{x}^{(k)})+\rho\nabla f^T(\boldsymbol{x}^{(k)})\boldsymbol{d}^{(d)}\lambda$下方；式 \ref{equ:Goldstein rule 2} 表示 $\lambda_k$ 取值应使 $f(\boldsymbol{x}^{(k+1)})$ 的值在直线 $y=f(\boldsymbol{x}^{(k)})+(1-\rho)\nabla f^T(\boldsymbol{x}^{(k)})\boldsymbol{d}^{(d)}\lambda$上方。
+
+几何意义如图\ref{fig:Axis of Goldstein method}所示，其中 $\nabla f^T(\boldsymbol{x}^{(k)})\boldsymbol{s}^{(k)}=\nabla f^T(\boldsymbol{x}^{(k)})\boldsymbol{d}^{(k)}\lambda_k$。
+
 \begin{figure}[ht]
     \centering
     \input{GoldsteinMethodAxis.tex}
     \caption{Goldstein法几何意义}
     \label{fig:Axis of Goldstein method}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \input{GoldsteinMethodFlow.tex}
+    \caption{Goldstein法流程}
+    \label{fig:flow of Goldstein method}
 \end{figure}
 
 \subsubsection{Wolfe-Powell法}
@@ -1238,7 +1270,6 @@ $$
     \nabla f(\boldsymbol{x}^{(k+1)})\boldsymbol{s}^{(k)}\ge\sigma\nabla f^T(\boldsymbol{x}^{(k)})\boldsymbol{s}^{(k)}
     \label{equ:Wolfe-Powell rule 2}
 \end{equation}
-
 
 \begin{figure}[ht]
     \centering

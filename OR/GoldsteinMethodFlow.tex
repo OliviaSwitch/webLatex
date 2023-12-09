@@ -1,0 +1,30 @@
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width = 2cm, minimum height=1cm,text centered, draw = black, align=center]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, align=center]
+\tikzstyle{decision} = [diamond, aspect = 3, text centered, draw=black, align=center]
+\tikzstyle{point}=[coordinate]
+% 箭头形式
+\tikzstyle{arrow} = [->,>=stealth]
+
+\begin{tikzpicture}[node distance=2cm,line width=1pt]
+    \node (start) [startstop] {给$\rho\in(0,\frac{1}{2},\alpha>1,\beta\in(0,1))$\\初始$\lambda,\varphi_1=f(\boldsymbol{x}^{(k)}),\varphi^{\prime}_1=\nabla f^T(\boldsymbol{x}^{(k)})\boldsymbol{d}^{(k)}$};
+    \node (pro1) [process, below of=start] {$\varphi_2=f(\boldsymbol{x}^{(k)}+\lambda\boldsymbol{d}^{(k)})$};
+    \node (dec1) [decision, below of=pro1] {$\varphi_2\le\varphi_1+\rho\varphi_1^{\prime}\lambda$?};
+    \node (dec2) [decision, below of=dec1] {$\varphi_2\ge\varphi_1+(1-\rho)\varphi_1^{\prime}\lambda$?};
+    \node (pro2) [process, right of=dec1, xshift=3cm] {$\lambda=\beta\lambda$};
+    \node (pro3) [process, right of=dec2, xshift=3cm] {$\lambda=\alpha\lambda$};
+    \node (stop) [startstop, left of=dec2, xshift=-3cm] {停，解$\lambda_k$};
+    \node (point1) [point, right of=pro1, xshift=5cm, yshift=1cm] {};
+    \node (point2) [point, below of=start, yshift=1cm] {};
+
+    % arrows
+    \draw [arrow] (start) -- (pro1);
+    \draw [arrow] (pro1) -- (dec1);
+    \draw [arrow] (dec1) -- node[right]{Y} (dec2);
+    \draw [arrow] (dec1) -- node[above]{N} (pro2);
+    \draw [arrow] (dec2) -- node[above]{N} (pro3);
+    \draw [arrow] (dec2) -- node[above]{Y} (stop);
+    \draw [-] (pro2) -| (point1);
+    \draw [-] (pro3) -| (point1);
+    \draw [arrow] (point1) -- (point2);
+
+\end{tikzpicture}
