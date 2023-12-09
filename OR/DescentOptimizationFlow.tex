@@ -1,11 +1,4 @@
-% \documentclass{article}
-% \usepackage{tikz}
-% \usetikzlibrary{shapes.geometric, arrows}
-% \usepackage{amsmath}
-
-% \thispagestyle{empty}
-% 流程图定义基本形状
-\begin{tikzpicture}[node distance=3cm]
+\begin{tikzpicture}[node distance=3cm, line width=1pt]
     \tikzstyle{startstop} = [rectangle, rounded corners, minimum width = 2cm, minimum height=1cm,text centered, draw = black, align=center]
     %\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=2cm, minimum height=1cm, text centered, draw=black]
     \tikzstyle{process} = [rectangle, minimum width=2cm, minimum height=1cm, text centered, draw=black, align=center]
@@ -13,8 +6,6 @@
     \tikzstyle{point}=[coordinate,]
     % 箭头形式
     \tikzstyle{arrow} = [->,>=stealth]
-
-    % \begin{document}
 
     \node (start) [startstop] {选初始点 $\boldsymbol{x}^{(1)}\in S$，\\ 确定停机条件， $k=1$ };
     \node (pro1) [process, below of=start] {对 $\boldsymbol{x}^{(k)}$ 点选择\\
@@ -34,4 +25,3 @@
     \draw [arrow] (dec1) -- node[above] {Y} (stop);
 
 \end{tikzpicture}
-% \end{document}

@@ -68,7 +68,7 @@ linkcolor=blue,
 
 \subsection{正定矩阵}
 
-对一个 $n$ 阶方阵 $\boldsymbol{M}$，如果其对任意非零向量 $\boldsymbol{Z}$ 都有 $\boldsymbol{Z^TMZ}>0$，其中$\boldsymbol{Z^T}$ 为 $\boldsymbol{Z}$ 的转置，则 $\boldsymbol{M}$为正定矩阵。
+对一个 $n$ 阶方阵 $\boldsymbol{M}$，如果其对任意非零向量 $\boldsymbol{Z}$ 都有 $\boldsymbol{Z}^T\boldsymbol{MZ}>0$，其中$\boldsymbol{Z}^T$ 为 $\boldsymbol{Z}$ 的转置，则 $\boldsymbol{M}$为正定矩阵。
 \begin{theorem}
     对于 $n$ 阶实对称矩阵$\boldsymbol{M}$，下列条件是等价的：
     \begin{enumerate}
@@ -113,7 +113,7 @@ linkcolor=blue,
 有一特殊的凸集：凸锥
 
 \begin{definition}
-    设非空集合$C\subset\mathbf{R}^n$，如果$\forall\boldsymbol{x}\in C$对$\forall\lambda>0$有$\boldsymbol{\lambda x \in C}$，则称$C$为以0为顶点的锥（不一定含$0$点）。若$C$又是凸集，则称$C$为凸锥。
+    设非空集合$C\subset\mathbf{R}^n$，如果$\forall\boldsymbol{x}\in C$对$\forall\lambda>0$有$\boldsymbol{\lambda x} \in C$，则称$C$为以0为顶点的锥（不一定含$0$点）。若$C$又是凸集，则称$C$为凸锥。
 \end{definition}
 
 \subsubsection{凸函数}
@@ -250,9 +250,9 @@ $S$中必定存在有限多个极点$(\le C_n^m)$
 \begin{equation}
     (LP)
     \begin{cases}
-        max\  & \boldsymbol{c^Tx}              \\
-        s.t.  & \boldsymbol{Ax}=\boldsymbol{b} \\
-              & \boldsymbol{x\ge0}
+        \max\  & \boldsymbol{c}^T\boldsymbol{x}  \\
+        s.t.   & \boldsymbol{Ax}=\boldsymbol{b}  \\
+               & \boldsymbol{x}\ge\boldsymbol{0}
     \end{cases}
     \label{con:standard form of LP}
 \end{equation}
@@ -293,7 +293,7 @@ $\boldsymbol{B}$中的每个列向量$\boldsymbol{p}_j=(a_{1j}, a_{2j}, \cdots, 
 考虑规范形式的线性规划问题：$b_i>0,i=1,\cdots,m$
 $$
     \begin{aligned}
-         & max\quad z=c_1x_1+c_2x_2+\cdots+c_nx_n & \\
+         & \max\quad z=c_1x_1+c_2x_2+\cdots+c_nx_n & \\
          & s.t.\quad
         \begin{cases}
             a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n & \le b_1 \\
@@ -307,7 +307,7 @@ $$
 加入松弛变量，化为标准形：
 \begin{equation}
     \begin{cases}
-        max\quad  & z=c_1x_1+c_2x2+\cdots+c_nx_n                                \\
+        \max\quad & z=c_1x_1+c_2x2+\cdots+c_nx_n                                \\
         s.t.\quad & a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n +x_{n+1}=b_1           \\
                   & a_{21}x_1+a_{22}x_2+\cdots+a_{2n}x_n \quad+x_{n+2}=b_2      \\
                   & \quad\vdots                                                 \\
@@ -353,17 +353,17 @@ STEPS：
     \item 判断是否所有检验数$\sigma_j\le0$，如果全部小于等于0，则当前的基本可行解是最优解；如果有一检验数大于0，那么进行下一步的计算。
     \item 求入基变量$x_k$：
           \begin{itemize}
-              \item 先求出大于0的检验数中最大的\textbf{检验数}$\boldsymbol{\sigma_k}$
-              \item 得到的下标$k$，$\boldsymbol{\sigma_k}$所在的列就是主元列
+              \item 先求出大于0的检验数中最大的\textbf{检验数}$\boldsymbol{\sigma}_k$
+              \item 得到的下标$k$，$\boldsymbol{\sigma}_k$所在的列就是主元列
               \item 那么所对应的$x_k$就是入基变量
           \end{itemize}
     \item 求出基变量$x_r$：
           \begin{itemize}
               \item 找出主元列（$x_k$列）对应元素$a_{ik}>0$的
-              \item 使每个大于0的$a_{ik}$被对应行中的$b_i$除，得到$\theta_i=\frac{b_i}{a_{ik}}$\\
-                    （若$a_{ik}\le0$，则$\boldsymbol{\theta_i}=\infty$）
-              \item 找出$min\{\boldsymbol{\theta_i}\}=\boldsymbol{\theta_r}$
-              \item 此时$\boldsymbol{\theta_r}$所在的行$r$即为主元行，$x_r$为出基变量
+              \item 使每个大于0的$a_{ik}$被对应行中的$b_i$除，得到$\boldsymbol{\theta}_i=\frac{b_i}{a_{ik}}$\\
+                    （若$a_{ik}\le0$，则$\boldsymbol{\theta}_i=\infty$）
+              \item 找出$\min\{\boldsymbol{\theta}_i\}=\boldsymbol{\theta}_r$
+              \item 此时$\boldsymbol{\theta}_r$所在的行$r$即为主元行，$x_r$为出基变量
           \end{itemize}
     \item 求出入基变量$x_k$和出基变量$x_r$后，就可以构建下一张表，这张表中：
           \begin{itemize}
@@ -575,23 +575,23 @@ $$
           \begin{flalign*}
                & (P)
               \begin{cases}
-                  MAX\quad  & z=\boldsymbol{c^T x} \\
-                  s.t.\quad & Ax \le b             \\
-                            & x\ge 0
+                  \max\quad & z=\boldsymbol{c}^T \boldsymbol{x}  \\
+                  s.t.\quad & \boldsymbol{Ax} \le \boldsymbol{b} \\
+                            & \boldsymbol{x}\ge \boldsymbol{0}
               \end{cases}
                & (D)
               \begin{cases}
-                  MIN\quad  & f=\boldsymbol{b^T y} \\
-                  s.t.\quad & A^Ty \ge c           \\
-                            & y\ge 0
+                  \min\quad & f=\boldsymbol{b}^T \boldsymbol{y}                 \\
+                  s.t.\quad & \boldsymbol{A}^T\boldsymbol{y} \ge \boldsymbol{c} \\
+                            & \boldsymbol{y}\ge \boldsymbol{0}
               \end{cases}
                &     &
           \end{flalign*}
 
           一对对称形式的对偶规划之间具有下面的对应关系
           \begin{itemize}
-              \item “$Max，\le$”和“$Min，\ge$”相对应
-              \item 从约束系数矩阵看：一个模型中为$Ａ$，则另一个模型中为$A^T$；一个模型是m个约束、n个变量，则它的对偶模型为n个约束、m个变量
+              \item “$\max，\le$”和“$\min，\ge$”相对应
+              \item 从约束系数矩阵看：一个模型中为$\boldsymbol{A}$，则另一个模型中为$\boldsymbol{A}^T$；一个模型是m个约束、n个变量，则它的对偶模型为n个约束、m个变量
               \item 从数据b、c的位置看：在两个规划模型中，b和c的位置对换
               \item 两个规划模型中的变量皆非负
           \end{itemize}
@@ -603,14 +603,14 @@ $$
           \begin{flalign*}
                & (P)
               \begin{cases}
-                  MAX\quad  & z=\boldsymbol{c^T x} \\
-                  s.t.\quad & Ax = b               \\
-                            & x\ge 0
+                  \max\quad & z=\boldsymbol{c}^T \boldsymbol{x} \\
+                  s.t.\quad & \boldsymbol{Ax} = \boldsymbol{b}  \\
+                            & \boldsymbol{x}\ge \boldsymbol{0}
               \end{cases}
                & (D)
               \begin{cases}
-                  MIN\quad  & f=\boldsymbol{b^T y} \\
-                  s.t.\quad & A^Ty \ge c
+                  \min\quad & f=\boldsymbol{b^T y}                              \\
+                  s.t.\quad & \boldsymbol{A}^T\boldsymbol{y} \ge \boldsymbol{c}
               \end{cases}
                &     &
           \end{flalign*}
@@ -618,7 +618,7 @@ $$
           一般称不具有对称形式的一对线性规划为非对称形式的对偶规划。
           对于非对称形式的规划，可以按照下面的对应关系直接给出其对偶规划。
           \begin{itemize}
-              \item 将模型统一为“$Max，\le$”或“$Min，\ge$” 的形式
+              \item 将模型统一为“$\max，\le$”或“$\min，\ge$” 的形式
               \item 若原规划的某个约束条件为等式约束，则在对偶规划中与此约束对应的那个变量取值没有非负限制
               \item 若原规划的某个变量的值没有非负限制，则在对偶问题中与此变量对应的那个约束为等式
           \end{itemize}
@@ -660,15 +660,15 @@ $$
 \begin{flalign*}
      & (P)
     \begin{cases}
-        MAX\quad  & z=\boldsymbol{c^T x} \\
-        s.t.\quad & Ax \le b             \\
-                  & x\ge 0
+        \max\quad & z=\boldsymbol{c}^T \boldsymbol{x}  \\
+        s.t.\quad & \boldsymbol{Ax} \le \boldsymbol{b} \\
+                  & \boldsymbol{x}\ge \boldsymbol{0}
     \end{cases}
      & (D)
     \begin{cases}
-        MIN\quad  & f=\boldsymbol{b^T y} \\
-        s.t.\quad & A^Ty \ge c           \\
-                  & y\ge 0
+        \min\quad & f=\boldsymbol{b}^T \boldsymbol{y}                 \\
+        s.t.\quad & \boldsymbol{A}^T\boldsymbol{y} \ge \boldsymbol{c} \\
+                  & \boldsymbol{y}\ge \boldsymbol{0}
     \end{cases}
      &     &
 \end{flalign*}
@@ -717,7 +717,7 @@ $$
 STEPS:
 \begin{enumerate}
     \item 根据线性规划典式形式，建立初始单纯形表（就是还按照单纯形法填初始单纯形表）。此表对应原规划的一个基本解。表要求：检验数数行各元素一定非正，原规划的基本解可以有小于零的分量。
-    \item 若基本解的所有分量皆非负，则得到原规划的最优解，停止计算；若基本解中有小于零的分量$b_i$，并且$b_i$所在行各系数$a_{ij}\ge0$，则原规划无可行解，停止计算；若$b_i<0$，并且存在$a_{ir}<0$，则确定$x_r$为出基变量，并计算$$\theta=min\left\{\frac{\sigma_j}{a_{rj}}|a_{rj}<0\right\}=\frac{\sigma_k}{a_{rk}}$$确定$x_k$为进基向量。若有多个$b_i<0$，则选择最小的进行分析计算。
+    \item 若基本解的所有分量皆非负，则得到原规划的最优解，停止计算；若基本解中有小于零的分量$b_i$，并且$b_i$所在行各系数$a_{ij}\ge0$，则原规划无可行解，停止计算；若$b_i<0$，并且存在$a_{ir}<0$，则确定$x_r$为出基变量，并计算$$\theta=\min\left\{\frac{\sigma_j}{a_{rj}}|a_{rj}<0\right\}=\frac{\sigma_k}{a_{rk}}$$确定$x_k$为进基向量。若有多个$b_i<0$，则选择最小的进行分析计算。
     \item 以$b_{rk}$为中心元素，按照与单纯形法类似的方法，在表中进行迭代计算，返回第2步。
 \end{enumerate}
 
@@ -745,7 +745,7 @@ STEPS:
               \end{pmatrix}$$
           其中：
           \begin{itemize}
-              \item 最后一行的检验数$\sigma^T =- \boldsymbol{c_B^TB}^{-1}$，各检验数取相反数（即$\boldsymbol{c_B^TB}^{-1}$）即为对偶问题的最优解。
+              \item 最后一行的检验数$\sigma^T =- \boldsymbol{c_B}^T\boldsymbol{B}^{-1}$，各检验数取相反数（即$\boldsymbol{c_B}^T\boldsymbol{B}^{-1}$）即为对偶问题的最优解。
               \item 除最后一行外（即线上方的）矩阵即为$\boldsymbol{B}^{-1}$
           \end{itemize}
 \end{enumerate}
@@ -754,7 +754,7 @@ STEPS:
 
 影子价格是一个向量，它的分量表示最优目标值随相应资源数量变化的变化率。
 
-若$x^*, y^*$分别为$(LP)$和$(DP)$的最优解，那么有$$\boldsymbol{c^Tx^*}=\boldsymbol{b^Ty^*}$$根据$f=\boldsymbol{b^Ty^*}=b_1y^*_1, b_2y^*_2, \cdots, b_my^*_m$可知$$\frac{\partial f}{\partial b_i} = y_i^*$$
+若$x^*, y^*$分别为$(LP)$和$(DP)$的最优解，那么有$$\boldsymbol{c}^T\boldsymbol{x}^*=\boldsymbol{b}^T\boldsymbol{y}^*$$根据$f=\boldsymbol{b}^T\boldsymbol{y}^*=b_1y^*_1, b_2y^*_2, \cdots, b_my^*_m$可知$$\frac{\partial f}{\partial b_i} = y_i^*$$
 
 $y_i^*$表示$b_i$变化一个单位对目标$f$产生的影响，称$y_i^*$为$b_i$的影子价格
 
@@ -1155,7 +1155,7 @@ $\xi$ 所在区间去掉后不会失去最优解，因此可以用缩小区间�
 
 牛顿法的基本思想是通过迭代逼近一个函数的最小值点。具体来说，该方法使用函数的二阶导数（也称为Hessian矩阵）来构建一个二次逼近，然后通过解这个二次逼近的极小值问题来更新当前的估计值。
 
-主要用于已经知道 $\lambda_k$ 求 $\lambda^*$ 。
+主要用于已经���道 $\lambda_k$ 求 $\lambda^*$ 。
 
 设函数 $\varphi(\lambda)$ 二次可微，考虑 $\varphi(\lambda)$ 在 $\lambda_k$ 处的泰勒展开
 $$

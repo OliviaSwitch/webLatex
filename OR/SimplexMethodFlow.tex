@@ -13,19 +13,16 @@
 % 箭头形式
 \tikzstyle{arrow} = [->,>=stealth]
 
-\begin{tikzpicture}[node distance=2cm]
+\begin{tikzpicture}[node distance=2cm, line width=1pt]
     %定义流程图具体形状
     \node[startstop](start){确定初始基本可行解(极点)\\ 即单位矩阵$x$};
-    \node[process, below of = start](cul1){计算
-    $\boldsymbol{\sigma_N^T=c_N^T-c_B^TB^{-1}N}$};
+    \node[process, below of = start](cul1){计算$\boldsymbol{\sigma_N}^T=\boldsymbol{c_N}^T-\boldsymbol{c_B}^T\boldsymbol{B}^{-1}\boldsymbol{N}$};
     \node[decision, below of = cul1](dec1)
-    {所有$\boldsymbol{\sigma_N\le 0}?$};
-    \node[process, below of = dec1](cul2){计算
-        $\boldsymbol{\sigma_k}=max\{\sigma_j|\sigma_j>0\}$};
-    \node[decision, below of = cul2](dec2){$
-            \boldsymbol{B^{-1}p_k\le0}?$};
+    {所有$\boldsymbol{\sigma_N}\le \boldsymbol{0}?$};
+    \node[process, below of = dec1](cul2){计算$\boldsymbol{\sigma}_k=\max\{\sigma_j|\sigma_j>0\}$};
+    \node[decision, below of = cul2](dec2){$\boldsymbol{B}^{-1}\boldsymbol{p}_k\le\boldsymbol{0}?$};
     \node[process, below of = dec2](cul3){计算
-        $\theta=min\left\{\frac{(\boldsymbol{B^{-1}b)_{i}}}{\boldsymbol{B^{-1}p_k)}_{i}}|\boldsymbol{(B^{-1}p_k)}_{i}>0\right\}=\frac{(\boldsymbol{B^{-1}b)_{r}}}{\boldsymbol{B^{-1}p_k)}_{r}}$};
+        $\theta=\min\left\{\frac{(\boldsymbol{B}^{-1}\boldsymbol{b})_{i}}{\boldsymbol{B}^{-1}\boldsymbol{p}_k)_{i}}|(\boldsymbol{B}^{-1}\boldsymbol{p}_k)_{i}>0\right\}=\frac{(\boldsymbol{B}^{-1}\boldsymbol{b})_{r}}{\boldsymbol{B}^{-1}\boldsymbol{p}_k)_{r}}$};
     \node[process, below of = cul3](end){使$x_k$进基，$x_r$出基进行迭代};
     \node[startstop, right of = dec1, xshift=3cm](stop1){停，x-opt};
     \node[startstop, right of = dec2, xshift=3.5cm](stop2){停，无有限最优解};
@@ -44,10 +41,6 @@
     \draw [-](end) -- (point1);
     \draw [arrow](point1) |- node{}(point2);
 
-    %\draw (dec1) -- node [above] {Y} (point1);
-    %\draw [arrow] (point1) |- (pro1);
-    %\draw [arrow] (dec1) -- (dec1|-pro1) -> (pro1);
-    %\draw [arrow] (dec1) -- node [right] {N} (pro2);
 \end{tikzpicture}
 
 %\end{document}
