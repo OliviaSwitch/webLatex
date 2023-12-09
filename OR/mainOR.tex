@@ -909,6 +909,19 @@ $$
           收敛的阶数 $p_0=2$，说明二阶收敛是超线性收敛的一个特例
 \end{enumerate}
 
+\subsection{二次终结性}
+\begin{definition}
+    一个算法用于解正定二次函数的无约束极小时，有限步迭代可达最优解，则称该算法具有二次终结性。
+\end{definition}
+
+二次终结性=共轭方向+精确一维搜索
+
+\subsubsection{共轭方向}
+
+\begin{definition}
+    设 $A_{n\times n}$ 对称正定，$d^{(1)},d^{(2)} \in R^n,d^{(1)} \ne 0，d^{(2)} \ne 0$，满足$d^{(1)T}Ad^{(2)}=0$, 称$d^{(1)},d^{(2)}$ 关于矩阵$\boldsymbol{A}$共轭。
+\end{definition}
+
 \subsection{下降算法模型}
 
 考虑规范形式的规划问题 $$
