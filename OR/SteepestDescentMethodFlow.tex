@@ -1,0 +1,24 @@
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width = 2cm, minimum height=1cm,text centered, draw = black, align=center]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, align=center]
+\tikzstyle{decision} = [diamond, aspect = 3, text centered, draw=black, align=center]
+\tikzstyle{point}=[coordinate]
+% 箭头形式
+\tikzstyle{arrow} = [->,>=stealth]
+
+\begin{tikzpicture}[node distance=2cm,line width=1pt]
+    \node (start) [startstop] {$\boldsymbol{x}^{(k)}, \varepsilon>0, k=1$};
+    \node (dec1) [decision, below of=start] {$\|\nabla f(\boldsymbol{x}^{(k)})\|<\varepsilon$?};
+    \node (pro1) [process, below of=dec1] {$\boldsymbol{d}^{(k)}=-\nabla f(\boldsymbol{x}^{(k)})$};
+    \node (pro2) [process, below of=pro1] {解$\begin{cases}\min f(\boldsymbol{x}^{(k)}+\boldsymbol{\lambda}\boldsymbol{d}^{(k)})\\ s.t.\quad \boldsymbol{\lambda}>0\end{cases}$\\ 得$\boldsymbol{x}^{(k+1)}=\boldsymbol{x}^{(k)}+\lambda_k\boldsymbol{x}^{(k)}$};
+    \node (stop) [startstop, right of=dec1, xshift=3cm] {停，解$\boldsymbol{x}^{(k)}$};
+    \node (pro3) [process, left of=dec1, xshift=-3cm, yshift=1cm] {$k=k+1$};
+    \node (point) [point, below of=start, yshift=1cm] {};
+
+    % arrows
+    \draw [arrow] (start) -- (dec1);
+    \draw [arrow] (dec1) -- node[above]{Y} (stop);
+    \draw [arrow] (dec1) -- node[right]{N} (pro1);
+    \draw [arrow] (pro1) -- (pro2);
+    \draw [arrow] (pro2) -| (pro3);
+    \draw [arrow] (pro3) -- (point);
+\end{tikzpicture}

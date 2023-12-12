@@ -1155,7 +1155,7 @@ $\xi$ 所在区间去掉后不会失去最优解，因此可以用缩小区间�
 
 牛顿法的基本思想是通过迭代逼近一个函数的最小值点。具体来说，该方法使用函数的二阶导数（也称为Hessian矩阵）来构建一个二次逼近，然后通过解这个二次逼近的极小值问题来更新当前的估计值。
 
-主要用于已经�������������道 $\lambda_k$ 求 $\lambda^*$ 。
+主要用于已经�����������������������������道 $\lambda_k$ 求 $\lambda^*$ 。
 
 设函数 $\varphi(\lambda)$ 二次可微，考虑 $\varphi(\lambda)$ 在 $\lambda_k$ 处的泰勒展开
 $$
@@ -1308,6 +1308,33 @@ $$
 注意：$f(\boldsymbol{x})\ge f(\boldsymbol{x}^*)+\nabla^T(\boldsymbol{x}^*)(\boldsymbol{x}-\boldsymbol{x}^*),\forall x$ ，故 $f(\boldsymbol{x}^*)\le f(x)$
 
 \section{最速下降法}
+
+最速下降法是无约束最优化中最简单也是最古老而基本的方法。
+
+在前面的下降算法中，方向去负梯度方向 $\boldsymbol{d}^{(k)}=-\nabla f(\boldsymbol{x}^{(k)})$ 进行精确一维搜索，即得到最速下降法。
+
+\begin{itemize}
+    \item 方向：在迭代点 $\boldsymbol{x}^{(k)}$ 取方向 $\boldsymbol{d}^{(k)}=-\nabla f(\boldsymbol{x}^{(k)})$
+    \item 步长：精确一维搜索，即求 $\lambda_k$ ，使得
+          $$f(\boldsymbol{x}^{(k)}+\boldsymbol{\lambda}_k\boldsymbol{d}^{(k)})=\min_{\lambda\in\mathbf{R}}f(\boldsymbol{x}^{(k)}+\boldsymbol{\lambda}\boldsymbol{d}^{(k)})$$
+    \item 更新：$\boldsymbol{x}^{(k+1)}=\boldsymbol{x}^{(k)}+\boldsymbol{\lambda}_k\boldsymbol{d}^{(k)}$
+\end{itemize}
+
+\begin{theorem}
+    设 $f(\boldsymbol{x})$ 可微，$\nabla f(\boldsymbol{x}^*)\ne\boldsymbol{0}$ 那么，$\boldsymbol{d}^{(k)}=-\frac{\nabla f(\boldsymbol{x}^{(k)})}{\|\nabla f(\boldsymbol{x}^{(k)})\|}$ 是 $f$ 在 $\boldsymbol{x}^{(k)}$ 处的最速下降方向。
+\end{theorem}
+
+\begin{figure}[ht]
+    \centering
+    \input{SteepestDescentMethodFlow.tex}
+    \caption{最速下降法流程}
+    \label{fig:flow of steepest descent method}
+\end{figure}
+
+如图\ref{fig:flow of steepest descent method}所示，即为最速下降法的流程图。
+
+特点：全局收敛，线性收敛，易产生扭摆现象而造成早停（当x(k)距最优点较远时，速度快，而接近最优点时，速度下降）
+% TODO：pic
 
 \section{牛顿法及其修正}
 
