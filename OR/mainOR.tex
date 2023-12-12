@@ -1155,7 +1155,7 @@ $\xi$ 所在区间去掉后不会失去最优解，因此可以用缩小区间�
 
 牛顿法的基本思想是通过迭代逼近一个函数的最小值点。具体来说，该方法使用函数的二阶导数（也称为Hessian矩阵）来构建一个二次逼近，然后通过解这个二次逼近的极小值问题来更新当前的估计值。
 
-主要用于已经���道 $\lambda_k$ 求 $\lambda^*$ 。
+主要用于已经�������������道 $\lambda_k$ 求 $\lambda^*$ 。
 
 设函数 $\varphi(\lambda)$ 二次可微，考虑 $\varphi(\lambda)$ 在 $\lambda_k$ 处的泰勒展开
 $$
@@ -1270,6 +1270,7 @@ Goldstein法遵循下面的规则：
     \nabla f(\boldsymbol{x}^{(k+1)})\boldsymbol{s}^{(k)}\ge\sigma\nabla f^T(\boldsymbol{x}^{(k)})\boldsymbol{s}^{(k)}
     \label{equ:Wolfe-Powell rule 2}
 \end{equation}
+其中，$\rho\in(0,1/2),\sigma\in(\rho,1)$，实际经验中常取 $\rho=0.1, \sigma=0.7$ 或附近。
 
 \begin{figure}[ht]
     \centering
@@ -1287,6 +1288,24 @@ $$
 其中，$f:\mathbf{R}\rightarrow\mathbf{R}$
 
 \section{最优性条件}
+
+\begin{theorem}[极小点的一阶必要条件]
+    设 $f(\boldsymbol{x})$ 可微，$\boldsymbol{x}^*$ 为 $f(\boldsymbol{x})$ 的局部极小点，则 $\boldsymbol{x}^*$ 为驻点，即 $\nabla f(\boldsymbol{x}^*)=0$
+\end{theorem}
+
+\begin{theorem}[极小点的二阶必要条件]
+    设 $f(\boldsymbol{x})$ 二次连续可微，$\boldsymbol{x}^*$ 为 $f(\boldsymbol{x})$ 的局部极小点，则 $\nabla f(\boldsymbol{x}^*)=0$，且二阶黑塞矩阵 $\nabla^2 f(\boldsymbol{x}^*)$ 半正定。
+\end{theorem}
+
+\begin{theorem}[极小点的二阶充分条件]
+    设 $f(\boldsymbol{x})$ 二次连续可微，$\boldsymbol{x}^*\in \mathbf{R}^n$ ，如果$\nabla f(\boldsymbol{x}^*)=0$，且二阶黑塞矩阵 $\nabla^2 f(\boldsymbol{x}^*)$ 正定，则$\boldsymbol{x}^*$ 为 $f(\boldsymbol{x})$ 的局部极小点。
+\end{theorem}
+
+\begin{theorem}
+    当 $f$ 凸时，$\boldsymbol{x}^*$ 为 $f(\boldsymbol{x})$ 的局部极小点 $\rightleftarrows \nabla f(\boldsymbol{x})=0$
+\end{theorem}
+
+注意：$f(\boldsymbol{x})\ge f(\boldsymbol{x}^*)+\nabla^T(\boldsymbol{x}^*)(\boldsymbol{x}-\boldsymbol{x}^*),\forall x$ ，故 $f(\boldsymbol{x}^*)\le f(x)$
 
 \section{最速下降法}
 
