@@ -1155,7 +1155,7 @@ $\xi$ 所在区间去掉后不会失去最优解，因此可以用缩小区间�
 
 牛顿法的基本思想是通过迭代逼近一个函数的最小值点。具体来说，该方法使用函数的二阶导数（也称为Hessian矩阵）来构建一个二次逼近，然后通过解这个二次逼近的极小值问题来更新当前的估计值。
 
-主要用于已经���������������������������������������道 $\lambda_k$ 求 $\lambda^*$ 。
+主要用于已经���������道 $\lambda_k$ 求 $\lambda^*$ 。
 
 设函数 $\varphi(\lambda)$ 二次可微，考虑 $\varphi(\lambda)$ 在 $\lambda_k$ 处的泰勒展开
 $$
@@ -1380,6 +1380,55 @@ $$
 \end{enumerate}
 
 但是牛顿法二阶收敛是非常好的性质，所以牛顿法的修正针对上面的缺点进行。
+
+\subsection{减少计算量的直接修正}
+
+不需要每次迭代都计算 $\nabla^2f(\boldsymbol{x}^{(k)})$ ，而是把 $m$ 次迭代作为一组，每一组用同一个 Hesse 矩阵，那么有公式
+$$
+    \boldsymbol{x}^{(km+j+1)} = \boldsymbol{x}^{(km+j)}-[\nabla^2f(\boldsymbol{x}^{(km)})]^{-1}\nabla f(\boldsymbol{x}^{(km+j)})
+$$
+
+该算法的收敛速度为 $(m+1)^{1/m}$ 阶，当 $m$ 越大，收敛速度越慢。当$m=1$时，即为牛顿法，当$m\rightarrow\infty$ 时即为线性收敛。
+
+\subsection{带一维线性搜索的牛顿算法}
+
+也称阻尼牛顿法，阻尼因子 $\lambda_k$
+
+\begin{enumerate}
+    \item 利用 $\nabla^2f(\boldsymbol{x}^{(x)})\boldsymbol{d}^{(k)}=-\nabla f(\boldsymbol{x}^{(k)})$ 求出 $\boldsymbol{d}^{(k)}=-[\nabla^2f(\boldsymbol{x}^{(x)})]^{-1}\nabla f(\boldsymbol{x}^{(k)})$
+    \item 解 $\min f(\boldsymbol{x}^{(k)}+\boldsymbol{\lambda}_k \boldsymbol{d}^{(k)})$
+    \item 得到 $\boldsymbol{\lambda}_k, \boldsymbol{x}^{(k+1)}=\boldsymbol{x}^{(k)}+\boldsymbol{\lambda}_k\boldsymbol{d}^{(k)}$
+\end{enumerate}
+
+特点：可改善局部收敛性，当$d^{(k)}$为函数上升方向时，可向负方向搜索，但可能出现$\pm d^{(k)}$均非下降方向的情况
+
+\subsection{Goldstein-Price方法}
+
+将牛顿方向同最速下降方向结合起来，在一维搜索中采用 Goldstein 不精确一维搜索：
+
+假设已有 $\boldsymbol{x}^{(k)}, \nabla f(\boldsymbol{x}^{(k)}), \nabla^2f(\boldsymbol{x})^{(k)}$ ，则有方向
+\begin{equation}
+    \boldsymbol{d}^{(k)}=
+    \begin{cases}
+        -[\nabla^2f(\boldsymbol{x}^{(k)})]^{-1}\nabla f(\boldsymbol{x}^{(k)}),\quad \nabla^2f(\boldsymbol{x}^{(k)})\hbox{正定} \\
+        -\nabla f(\boldsymbol{x}^{(k)}), \qquad \hbox{其它}
+    \end{cases}
+    \label{equ:Goldstein-Price Method}
+\end{equation}
+
+再进行非精确一维搜索，$\lambda=1$ 优先，$\rho\in(0,\frac{1}{2})$
+\begin{enumerate}
+    \item $f(\boldsymbol{x}^{(k)}+\boldsymbol{\lambda}_k\boldsymbol{d}^{(k)})\le f(\boldsymbol{x}^{(k)})+\boldsymbol{\rho}\nabla f^T(\boldsymbol{x}^{(k)})\boldsymbol{d}^{(k)}\boldsymbol{\lambda}_k$
+    \item $f(\boldsymbol{x}^{(k)}+\boldsymbol{\lambda}_k\boldsymbol{d}^{(k)})\ge f(\boldsymbol{x}^{(k)})+(1-\boldsymbol{\rho})\nabla f^T(\boldsymbol{x}^{(k)})\boldsymbol{d}^{(k)}\boldsymbol{\lambda}_k$
+\end{enumerate}
+
+特点：在一定条件下， G-P法全局收敛。但当$\nabla^2f(x^{(k)})$非正定情况较多时，收敛速度降为接近线性。
+
+\subsection{L-M法}
+
+用 $[\nabla^2f(\boldsymbol{x}^{(k)}) +\mu E ]$ 取代 $\nabla^2f(\boldsymbol{x}^{(k)})$ 进行迭代，其中 $E$ 为单位矩阵。 $\mu>0$ 使 $[\nabla^2f(\boldsymbol{x}^{(k)}) +\mu E ]$ 正定，$\mu$ 尽量小。
+
+特点：全局二阶收敛。
 
 \section{共轭梯度法}
 
