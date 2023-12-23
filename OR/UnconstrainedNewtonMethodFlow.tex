@@ -1,0 +1,22 @@
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width = 2cm, minimum height=1cm,text centered, draw = black, align=center]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, align=center]
+\tikzstyle{decision} = [diamond, aspect = 3, text centered, draw=black, align=center]
+\tikzstyle{point}=[coordinate]
+% 箭头形式
+\tikzstyle{arrow} = [->,>=stealth]
+
+\begin{tikzpicture}[node distance=2.5cm,line width=1pt]
+    \node (start) [startstop] {$\boldsymbol{x}^{(1)}, \varepsilon>0, k=1$};
+    \node (pro1) [process, below of=start] {计算$\nabla f(\boldsymbol{x}^{(k)}), \nabla^2f(\boldsymbol{x}^{(k)})$\\ 解$\nabla^2f(\boldsymbol{x}^{(k)})\boldsymbol{s}=-\nabla f(\boldsymbol{x}^{(k)})$\\ 得$\boldsymbol{s}^{(k)},\boldsymbol{x}^{(k+1)}=\boldsymbol{x}^{(k)}+\boldsymbol{s}^{(k)}$};
+    \node (dec1) [decision, below of=pro1] {$\Vert \boldsymbol{s}^{(k)}\Vert<\varepsilon$?};
+    \node (stop) [startstop, right of=dec1, xshift=3cm] {停，解$\boldsymbol{x}^{(k+1)}$};
+    \node (pro2) [process, left of=pro1, xshift=-3cm, yshift=1.5cm] {$k=k+1$};
+    \node (point) [point, below of=start, yshift=1.5cm] {};
+
+    % arrows
+    \draw [arrow] (start) -- (pro1);
+    \draw [arrow] (pro1) -- (dec1);
+    \draw [arrow] (dec1) -- node[above]{Y} (stop);
+    \draw [arrow] (dec1) -| node[left]{N} (pro2);
+    \draw [arrow] (pro2) -- (point);
+\end{tikzpicture}
