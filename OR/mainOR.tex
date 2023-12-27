@@ -919,6 +919,7 @@ $$
 \subsubsection{共轭方向}
 
 \begin{definition}
+    \label{def:conjugate_direction}
     设 $A_{n\times n}$ 对称正定，$d^{(1)},d^{(2)} \in R^n,d^{(1)} \ne 0，d^{(2)} \ne 0$，满足$d^{(1)T}Ad^{(2)}=0$, 称$d^{(1)},d^{(2)}$ 关于矩阵$\boldsymbol{A}$共轭。
 \end{definition}
 
@@ -1153,7 +1154,7 @@ $\xi$ 所在区间去掉后不会失去最优解，因此可以用缩小区间�
 
 \subsubsection{牛顿法}
 
-牛顿法的基本思想是通过迭代逼近一个函数的最小值点。具体来说，该方法使用函数的二阶导数（也称为Hessian矩阵）来构建一个二次逼近，然后通过解这个二次逼近的极小值问题来更新当前的估计值。
+牛顿法的基本思想是通过迭代逼近一个函数的最小值点。具体来说，该方法使用函数的二阶导数（也称为Hessian矩阵）来构建一个二次逼近，然后通过解这个二次逼近的极小值问题来更新当前��估计值。
 
 主要用于已经知道 $\lambda_k$ 求 $\lambda^*$ 。
 
@@ -1431,5 +1432,88 @@ $$
 特点：全局二阶收敛。
 
 \section{共轭梯度法}
+%共轭方向算法 TODO
+共轭梯度法是介于最速下降法与牛顿法之间的一个方法，它仅需利用一阶导数信息, 但克服了最速下降法收敛慢的缺点, 又避免了牛顿法需要存储和计算Hesse矩阵并求逆的缺点。
+
+共轭梯度法不仅是解大型线性方程组最有用的方法之一，也是解大型非线性最优化问题最有效的算法之一。
+
+共轭梯度法是一个典型的共轭方向(定义\ref{def:conjugate_direction})法, 它的每一个搜索方向是互相共轭的。思路：搜索方向$d^{(k)}$仅仅是负梯度方向$-g_k$与上一次迭代的搜索方向$d^{(k-1)}$的组合。设
+$$
+    f(\boldsymbol{x})=\frac{1}{2}\boldsymbol{x}^T\boldsymbol{G}\boldsymbol{x}-\boldsymbol{b}^T\boldsymbol{x}+c
+$$
+其中$G$是$n\times n$对称正定矩阵，$b$是$n\times1$向量，$f$的梯度为 $\nabla f(\boldsymbol{x})=\boldsymbol{Gx}+\boldsymbol{b}$
+
+\subsection{共轭梯度法的方向}
+
+设 $f(\boldsymbol{x})=\frac{1}{2}\boldsymbol{x}^T\boldsymbol{G}\boldsymbol{x}-\boldsymbol{b}^T\boldsymbol{x}+c$ 其中 $G_{n \times n}$ 对称正定，$b\in \mathbf{R}$ ，从最速下降方向开始构造一组共轭方向（虽然但是步骤并不完整，仍然需要结合课本）：
+
+\begin{enumerate}
+    \item 设初始点$x^{(1)}$,取$d^{(1)}= -\nabla f(\boldsymbol{x}^{(1)})$ (最速下降方向)
+    \item 设$k\ge1$,已得到$k$个相互共轭的方向$\boldsymbol{d}^{(1)},\boldsymbol{d}^{(2)}, \cdots,\boldsymbol{d}^{(k)}$,以及由$\boldsymbol{x}^{(1)}$开始依次沿上述方向精确一维搜索得到点$\boldsymbol{x}^{(2)}, \cdots，\boldsymbol{x}^{(k)},\boldsymbol{x}^{(k+1)}$。即有下式：
+          $$\boldsymbol{x}^{(i+1)}=\boldsymbol{x}^{(i)}+\alpha_i\boldsymbol{d}^{(i)} , i=1,2, \cdots, k$$
+    \item 精确一维搜索保证方向导数为零：
+          \begin{equation}
+              \nabla f^T(\boldsymbol{x}^{(i+1)})\boldsymbol{d}^{(i)}=0, i=1,2, \cdots,k
+              \label{equ:conjugate-step-3}
+          \end{equation}
+    \item 在$\boldsymbol{x}^{(i+1)}$点构造新方向$\boldsymbol{d}^{(k+1)}$为$-\nabla f(\boldsymbol{x}^{(k+1)})$ 与 $\boldsymbol{d}^{(1)},\boldsymbol{d}^{(2)}, \cdots,\boldsymbol{d}^{(k)}$的组合：
+          $$ \boldsymbol{d}^{(k+1)}=-\nabla f(\boldsymbol{x}^{(k+1)})+\sum_{j=1}^k\beta_j^{(k)}\boldsymbol{d}^{(j)}$$
+    \item 使得$\boldsymbol{d}^{(k+1)}$与$\boldsymbol{d}^{(1)},\boldsymbol{d}^{(2)}, \cdots,\boldsymbol{d}^{(k)}$都共轭：
+          \begin{equation}
+              \boldsymbol{d}^{(k+1)T}\boldsymbol{Gd}^{(j)}=0, j=1,2, \cdots,k
+              \label{equ:construction-conjugate}
+          \end{equation}
+    \item 下面利用Gram-Schmidt过程使其共轭化：($i,j=1,2,\cdots,k$ )
+          记 \begin{align}
+              \boldsymbol{y}^{(j)} & =\nabla f(\boldsymbol{x}^{(j+1)})-\nabla f(\boldsymbol{x}^{(j)}) \\
+                                   & =\boldsymbol{G}(\boldsymbol{x}^{(j+1)}-\boldsymbol{x}^{(j)})     \\
+                                   & =\alpha_j\boldsymbol{G}\boldsymbol{d}^{(j)}
+              \label{equ:Gram-Schmidt}
+          \end{align}
+    \item 由式\ref{equ:Gram-Schmidt}得到
+          \begin{equation}
+              \boldsymbol{d}^{(i)T}\boldsymbol{y}^{(j)}=\alpha_j\boldsymbol{d}^{(i)T}\boldsymbol{Gd}^{(j)}=0
+              \label{equ:conjugate-step-7}
+          \end{equation}
+    \item 根据第四到六步的式子，可得\begin{equation}
+              \boldsymbol{d}^{(k+1)T}\boldsymbol{y}^{(j)}=\alpha_j\boldsymbol{d}^{(k+1)T}\boldsymbol{Gd}^{(j)}=0, j=1,2, \cdots,k
+          \end{equation}
+    \item 注意，根据构造式\ref{equ:construction-conjugate}，有
+          \begin{equation}
+              \nabla f(\boldsymbol{x}^{(j)})=-\boldsymbol{d}^{(j)}+\sum_{i=1}^{j-1}\beta_i^{(j-1)}\boldsymbol{d}^{(i)}
+              \label{equ:conjugate-step-9}
+          \end{equation}
+    \item 又根据式\ref{equ:Gram-Schmidt}, \ref{equ:conjugate-step-7}, \ref{equ:conjugate-step-3}可得，对于 $\forall j\le k, i<j$ 有
+          \begin{equation}
+              \nabla f^T(\boldsymbol{x}^{(j+1)})\boldsymbol{d}^{(i)}=(\nabla f(\boldsymbol{x}^{(j+1)})+\sum_{l=i+1}^{j}\boldsymbol{y}^{(l)})^T\boldsymbol{d}^{(i)}=0
+          \end{equation}
+    \item 根据\ref{equ:conjugate-step-9}，对 $\forall j\le k, i<j$ 有
+          \begin{equation}
+              \nabla f^T(\boldsymbol{x}^{(j+1)})\nabla f(\boldsymbol{x}^{(i)})=0
+          \end{equation}
+    \item 由\ref{equ:construction-conjugate}, \ref{equ:Gram-Schmidt}得到，当 $j=1,2,\cdots,k-1$ 时
+          \begin{equation}
+              -\nabla f^T (\boldsymbol{x}^{(k+1)})[\nabla f(\boldsymbol{x}^{(j+1)})-\nabla f(\boldsymbol{x}^{(j)})]+\beta_j^{(k)}\boldsymbol{d}^{(j)T}\boldsymbol{y}^{(j)}=0
+          \end{equation}
+    \item 最终当 $j=k$ 时
+          \begin{equation}
+              \beta_k=\frac{\nabla f^T(\boldsymbol{x}^{(k+1)})[\nabla f(\boldsymbol{x}^{(k+1)})-\nabla f(\boldsymbol{x}^{(k)})]}{\boldsymbol{d}^{(k)T}\boldsymbol{y}^{(k)}}
+          \end{equation}
+          并有等价形式
+          \begin{align}
+              \beta_k & =\frac{\nabla f^T(\boldsymbol{x}^{(k+1)})\nabla f(\boldsymbol{x}^{(k+1)})}{\nabla f^T(\boldsymbol{x}^{(k)})\nabla f(\boldsymbol{x}^{(k)})}  \quad \hbox{FR法}                                    \\
+              \beta_k & =\frac{\nabla f^T(\boldsymbol{x}^{(k+1)})[\nabla f(\boldsymbol{x}^{(k+1)})-\nabla f(\boldsymbol{x}^{(k)})]}{\nabla f^T(\boldsymbol{x}^{(k)})\nabla f(\boldsymbol{x}^{(k+1)})} \quad \hbox{PRP法} \\
+              \beta_k & =\frac{\nabla f^T(\boldsymbol{x}^{(k+1)})\nabla f(\boldsymbol{x}^{(k+1)})}{-\nabla f^T(\boldsymbol{x}^{(k)})\boldsymbol{d}^{(k)}}\quad \hbox{共轭下降法}
+          \end{align}
+\end{enumerate}
+
+特点：
+\begin{itemize}
+    \item 全局收敛，线性收敛，共轭梯度方向即为下降方向
+    \item 每步迭代只需储存若干向量（适用于大规模问题）
+    \item 有二次总结性：对于正定二次函数，最多迭代n次即可达opt.
+\end{itemize}
+
+需要注意的是，不同的 $\beta_k$ 公式对于正定二次函数的效果是相同的；对于非正定二次函数，经验上PRP法效果最好，FR法次之，共轭下降法最差。
 
 \end{document}
