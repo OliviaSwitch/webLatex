@@ -1507,7 +1507,7 @@ $$
           \end{align}
 \end{enumerate}
 
-图\ref{fig:flow of conjugate gradient method}为共轭梯度法的流程图。
+图\ref{fig:flow of conjugate gradient method}为共轭梯度法的流程图。其中实线为对正定二次函数的FR方法，若加入虚线部分，即为一般函数的再开始的方法。
 
 \begin{figure}
     \centering
@@ -1516,7 +1516,25 @@ $$
     \label{fig:flow of conjugate gradient method}
 \end{figure}
 
-图\ref{fig:flow of conjugate gradient method}中实线为对正定二次函数的FR方法，若加入虚线部分，即为一般函数的再开始的方法。
+\subsection{再开始共轭梯度法}
+
+再开始技术：对于一般非二次函数, 共轭梯度法常常采用再开始技术, 即每n步以后周期性地采用最速下降方向作为新的搜索方向从而使方法有较快的收敛速度。
+
+再开始策略：每隔n步迭代再开始；还有当 $g_k^Td_k>0$ ,即dk是上升方向时再开始；对于二次函数, 相邻二次迭代的梯度互相直交, 因此, 如果它们偏离直交性较大, 则进行再开始。
+
+精确算法步长计算：\\
+确定搜索方向后，代入目标函数 $f(\boldsymbol{x})=\frac{1}{2}\boldsymbol{x}^T\boldsymbol{G}\boldsymbol{x}-\boldsymbol{b}^T\boldsymbol{x}+c$得到
+$$
+    f(\boldsymbol{x}_k+\lambda\boldsymbol{d}_k) = \frac{1}{2}(\boldsymbol{x}_k+\lambda\boldsymbol{d}_k)^T\boldsymbol{G}(\boldsymbol{x}_k+\lambda\boldsymbol{d}_k)-\boldsymbol{b}^T(\boldsymbol{x}_k+\lambda\boldsymbol{d}_k)+c
+$$
+关于 $\lambda$ 求导得
+$$
+    f^{\prime}_{\lambda}(\boldsymbol{x}_k+\lambda\boldsymbol{d}_k) = \boldsymbol{d}_k^T(\boldsymbol{Gx}_k+\boldsymbol{b})+\lambda\boldsymbol{d}_k^T\boldsymbol{Gd}_k
+$$
+令其为$0$，解得
+$$
+    \lambda=-\frac{\boldsymbol{d}_k^T(\boldsymbol{Gx}_k+\boldsymbol{b})}{\boldsymbol{d}_k^T\boldsymbol{Gd}_k}=-\frac{\boldsymbol{d}_k^T\nabla f(\boldsymbol{x}_k)}{\boldsymbol{d}_k^T\boldsymbol{Gd}_k}
+$$
 
 \subsection{算法特点}
 
