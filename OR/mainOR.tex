@@ -1546,4 +1546,56 @@ $$
 
 需要注意的是，不同的 $\beta_k$ 公式对于正定二次函数的效果是相同的；对于非正定二次函数，经验上PRP法效果最好，FR法次之，共轭下降法最差。
 
+\section{变尺度法}
+
+\subsection{基本思路}
+
+变尺度法从广义上仍可看作是牛顿法的改进。基本想法是用对称正定矩阵近似二阶黑塞矩阵，或黑塞矩阵的逆。是某种意义上的近似，要求满足拟牛顿方程(\ref{subsubsec:quasi-newton equation})，因此这类算法又称拟牛顿法。
+
+基本思想为用对称正定矩阵$\boldsymbol{H}^{(k)}$近似$\nabla^2f(\boldsymbol{x}^{(k)})$, 而$\boldsymbol{H}^{(k)}$的产生从给定$\boldsymbol{H}^{(1)}$开始逐步修正得到。
+
+变尺度法的一般模型如图\ref{fig:flow of variable metric method}所示。
+\begin{figure}[ht]
+    \centering
+    \input{VariableMetricMethodFlow.tex}
+    \caption{变尺度法流程}
+    \label{fig:flow of variable metric method}
+\end{figure}
+
+\subsubsection{拟牛顿方程}
+\label{subsubsec:quasi-newton equation}
+
+设
+$$
+    f(\boldsymbol{x})=\frac{1}{2}\boldsymbol{x}^T\boldsymbol{G}\boldsymbol{x}-\boldsymbol{b}^T\boldsymbol{x}+c
+$$
+$$\nabla f=\boldsymbol{Gx}+\boldsymbol{b}$$
+
+那么记 $\boldsymbol{s}^{(k)}=\boldsymbol{x}^{(k+1)}-\boldsymbol{x}^{(k)}, \boldsymbol{y}^{(k)}=\nabla f(\boldsymbol{x}^{(k+1)})-\nabla f(\boldsymbol{x}^{(k)})=\boldsymbol{Gs}^{(k)}$
+
+称 $\boldsymbol{Hy}=\boldsymbol{S}$ 或 $\boldsymbol{y}=\boldsymbol{GS}$ 为拟牛顿方程。
+
+显然，当$\boldsymbol{H}$正定时，$\boldsymbol{G}^{-1}=\boldsymbol{H}$
+
+对于$f(\boldsymbol{x})$的二阶收敛Taylor展开，舍去高阶项，有
+$$
+    \boldsymbol{y}^{(k)}\approx \nabla^2 f^T(\boldsymbol{x}^{(k)})\boldsymbol{s}^{(k)}
+    \quad\hbox{或}\quad
+    \boldsymbol{s}^{(k)}\approx [\nabla^2 f^T(\boldsymbol{x}^{(k)})]^{-1}\boldsymbol{y}^{(k)}
+$$
+
+用矩阵 $\boldsymbol{B}^{(k)}$ 或 $\boldsymbol{H}^{(k)}$ 分别取代 $\nabla^2 f(\boldsymbol{x}^{(k)})$ 或者 $(\nabla^2 f(\boldsymbol{x}^{(k)}))^{-1}$ 使拟 Newton 方程成立，可看做是对 $\nabla^2 f(\boldsymbol{x}^{(k)})$ 或 $(\nabla^2 f(\boldsymbol{x}^{(k)}))^{-1}$ 的一种\underline{近似}。此种近似 $\boldsymbol{H}$ 或 $\boldsymbol{B}$ 不唯一。
+
+\subsection{变尺度法的特点}
+
+\begin{itemize}
+    \item 只需用到函数的一阶梯度（Newton法用到二阶Hesse矩阵）；
+    \item 下降算法，故全局收敛；
+    \item 不需求矩阵逆（计算量小）；
+    \item 一般可达到超线性收敛（速度快）；
+    \item 有二次终结性。
+\end{itemize}
+
+% \section{DFP ( Davidon(1959),Fletcher and Powell(1963) ) 法和BFGS ( Broyden(1970), Fletcher(1970),Goldfarb(1970),Schanno(1970) ) 法}
+
 \end{document}
