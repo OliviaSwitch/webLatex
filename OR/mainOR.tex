@@ -1507,7 +1507,19 @@ $$
           \end{align}
 \end{enumerate}
 
-特点：
+图\ref{fig:flow of conjugate gradient method}为共轭梯度法的流程图。
+
+\begin{figure}
+    \centering
+    \input{ConjugateGradientMethodFlow.tex}
+    \caption{共轭梯度法流程}
+    \label{fig:flow of conjugate gradient method}
+\end{figure}
+
+图\ref{fig:flow of conjugate gradient method}中实线为对正定二次函数的FR方法，若加入虚线部分，即为一般函数的再开始的方法。
+
+\subsection{算法特点}
+
 \begin{itemize}
     \item 全局收敛，线性收敛，共轭梯度方向即为下降方向
     \item 每步迭代只需储存若干向量（适用于大规模问题）

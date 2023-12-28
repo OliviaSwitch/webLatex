@@ -1,0 +1,30 @@
+\begin{tikzpicture}[node distance=3cm, line width=1pt]
+    \tikzstyle{startstop} = [rectangle, rounded corners, minimum width = 2cm, minimum height=1cm,text centered, draw = black, align=center]
+    %\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=2cm, minimum height=1cm, text centered, draw=black]
+    \tikzstyle{process} = [rectangle, minimum width=2cm, minimum height=1cm, text centered, draw=black, align=center]
+    \tikzstyle{decision} = [diamond, aspect = 3, text centered, draw=black,align=center]
+    \tikzstyle{point}=[coordinate,]
+    % 箭头形式
+    \tikzstyle{arrow} = [->,>=stealth]
+
+    \node (start)[startstop] {选初始点 $\boldsymbol{x}^{(1)}, \varepsilon>0$，\\ $\boldsymbol{d}^{(1)}=-\nabla f(\boldsymbol{x}^{(1)}),k=1$ };
+    \node (dec1)[decision, below of=start] {$\Vert \nabla f(\boldsymbol{x}^{(k)})\Vert <\varepsilon$？};
+    \node (pro1)[process, below of=dec1] {解 $\begin{cases} \min& f(\boldsymbol{x}^{(k)}+\lambda\boldsymbol{d}^{(k)})\\ s.t.&\lambda\ge0 \end{cases}$\\ 得$\lambda_k,\boldsymbol{x}^{(k+1)}=\boldsymbol{x}^k+\lambda_k\boldsymbol{d}^{(k)}$};
+    \node (dec2)[decision, below of=pro1] {$k=n$？};
+    \node (pro2)[process, left of=dec2, xshift=-3cm] {利用FR法的式子计算$\beta_k$\\ $\boldsymbol{d}^{(k+1)}=-\nabla f(\boldsymbol{x}^{(k+1)})+\beta_k\boldsymbol{d}^{(k)}$};
+    \node (pro3)[process, right of=dec2, xshift=3cm] {$\boldsymbol{x}^{(1)}=\boldsymbol{x}^{(n+1)}$\\ $\boldsymbol{d}^{(1)}=-\nabla f(\boldsymbol{x}^{(1)}),k=1$};
+    \node (stop)[startstop, right of=dec1, xshift=1cm] {$\boldsymbol{x}^{(k)}$-opt. };
+    \node (point)[point, below of=start, yshift=1.5cm] {};
+    \node (pro4)[process, left of=point, xshift=-3cm] {$k=k+1$};
+
+    \draw [arrow](start) -- (dec1);
+    \draw [arrow](dec1) -- node[anchor=east] {N} (pro1);
+    \draw [arrow](dec1) -- node[anchor=south] {Y} (stop);
+    \draw [arrow](pro1) -- (dec2);
+    \draw [arrow](dec2) -- node[anchor=south] {Y} (pro3);
+    \draw [arrow](dec2) -- node[anchor=south] {N} (pro2);
+    \draw [arrow](pro2) -- (pro4);
+    \draw [dashed, ->, >=stealth](pro3) |- (point);
+    \draw [arrow](pro4) -- (point);
+
+\end{tikzpicture}
