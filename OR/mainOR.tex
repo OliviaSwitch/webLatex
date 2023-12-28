@@ -1598,4 +1598,90 @@ $$
 
 % \section{DFP ( Davidon(1959),Fletcher and Powell(1963) ) 法和BFGS ( Broyden(1970), Fletcher(1970),Goldfarb(1970),Schanno(1970) ) 法}
 
+\chapter{约束最优化方法}
+
+本章问题的一般形式为
+\begin{equation*}
+    (fgh)\begin{cases}
+        \min & f(\boldsymbol{x})                       \\
+        s.t. & g_i(\boldsymbol{x})\le0, i=1,2,\cdots,m \\
+             & h_j(\boldsymbol{x})=0, j=1,2,\cdots,l
+    \end{cases}
+\end{equation*}
+
+或为了便捷写成矩阵形式
+\begin{equation*}
+    (f\boldsymbol{gh})\begin{cases}
+        \min & f(\boldsymbol{x})                             \\
+        s.t. & \boldsymbol{g}(\boldsymbol{x})\le0            \\
+             & \boldsymbol{h}(\boldsymbol{x})=\boldsymbol{0}
+    \end{cases}
+\end{equation*}
+
+\section{Kuhn-Tucker条件}
+
+\subsection{等式约束的最优性条件}
+
+只考虑含有等式约束的问题：
+\begin{equation}
+    (f\boldsymbol{h})\begin{cases}
+        \min & f(\boldsymbol{x})                             \\
+        s.t. & \boldsymbol{h}(\boldsymbol{x})=\boldsymbol{0}
+    \end{cases}
+    \label{equ:constrained optimization problem with equality constraints}
+\end{equation}
+
+这是一个条件极值问题，其最优性条件由Lagrange函数的一阶必要条件给出。
+
+高等数学中，条件极值为：在 $\Phi(x,y)=0$ 的条件下，求 $z=f(x,y)$的极值，可以对应为
+$$
+    \begin{cases}
+        \min & f(x,y)      \\
+        s.t. & \Phi(x,y)=0
+    \end{cases}
+$$
+
+于是可以建立Lagrange函数
+\begin{equation}
+    L(\boldsymbol{x},\boldsymbol{y};\boldsymbol{\lambda})=f(\boldsymbol{x}\boldsymbol{y})+\lambda\Phi(\boldsymbol{x},\boldsymbol{y})
+    % \label{equ:Lagrange function}
+\end{equation}
+其中，$\boldsymbol{\lambda}$ 为拉格朗日乘子向量，$\lambda$ 为拉格朗日乘子。
+
+若$(\boldsymbol{x}^*,\boldsymbol{y}^*)$是条件极值，则存在$\boldsymbol{\lambda}^*$使得
+$$\begin{cases}
+        f_x(\boldsymbol{x}^*,\boldsymbol{y}^*)+\boldsymbol{\lambda}^*\Phi_x(\boldsymbol{x}^*,\boldsymbol{y}^*)=0 \\
+        f_y(\boldsymbol{x}^*,\boldsymbol{y}^*)+\boldsymbol{\lambda}^*\Phi_y(\boldsymbol{x}^*,\boldsymbol{y}^*)=0 \\
+        \Phi(\boldsymbol{x}^*,\boldsymbol{y}^*)=0
+    \end{cases}$$
+
+推广到多个等式约束，可得到对于$(f\boldsymbol{h})$的情况：对于问题\ref{equ:constrained optimization problem with equality constraints}，可以建立Lagrange函数
+\begin{equation}
+    L(\boldsymbol{x},\boldsymbol{v})=f(\boldsymbol{x})+\boldsymbol{v}^T\boldsymbol{h}(\boldsymbol{x})
+    \label{equ:Lagrange function}
+\end{equation}
+
+若 $\boldsymbol{x}^*$ 是问题\ref{equ:constrained optimization problem with equality constraints}的极小点，则存在 $\boldsymbol{v}^*$ 使得
+\begin{equation}
+    \nabla f(\boldsymbol{x}^*)+\sum_{i=1}^{l}\boldsymbol{v}_i^*\nabla h_i(\boldsymbol{x}^*)=\boldsymbol{0}
+    % \label{equ:Kuhn-Tucker condition}
+\end{equation}
+
+矩阵形式：
+\begin{equation}
+    \nabla f(\boldsymbol{x}^*)+\frac{\partial\boldsymbol{h}(\boldsymbol{x}^*)}{\partial\boldsymbol{x}}\boldsymbol{v}^*=\boldsymbol{0}
+\end{equation}
+
+最优性条件即为Kuhn-Tucker条件
+\begin{equation}
+    \nabla f(\boldsymbol{x}^*) = -\sum_{i=1}^{l}\boldsymbol{v}_i^*\nabla h_i(\boldsymbol{x}^*)
+    \label{equ:Kuhn-Tucker condition}
+\end{equation}
+
+\subsection{不等式约束问题的Kuhn-Tucker条件}
+
+\subsection{一般约束问题的Kuhn-Tucker条件}
+
+\section{既约梯度法}
+
 \end{document}
