@@ -1723,14 +1723,33 @@ $$
         % \nabla f(\boldsymbol{x}^*)+\frac{\partial\boldsymbol{g}(\boldsymbol{x}^*)}{\partial\boldsymbol{x}}\boldsymbol{u}^* =\boldsymbol{0} \\
         \nabla f(\boldsymbol{x}^*)+\sum_{i=1}^{m}u_i^*\nabla g_i(\boldsymbol{x}^*)=\boldsymbol{0} \\
         \boldsymbol{u}^*\ge\boldsymbol{0}                                                         \\
-        \boldsymbol{u}^{*T}\boldsymbol{g}(\boldsymbol{x}^*)=0\hbox{（互补松弛条件）}                                      \\
+        \boldsymbol{u}^{*T}\boldsymbol{g}(\boldsymbol{x}^*)=0\hbox{（互补松弛条件）}
     \end{gather}
-    \label{thm:Kuhn-Tucker condition}
+    \label{thm:Kuhn-Tucker condition of inequality constraints}
 \end{theorem}
 
 称满足K-T条件的 $\boldsymbol{x}^*$ 为K-T点。
 
 \subsection{一般约束问题的Kuhn-Tucker条件}
+
+考虑一般约束问题 $(f\boldsymbol{gh})$，结合定理 \ref{thm:Kuhn-Tucker condition of inequality constraints} ，可以平行得到下面的定理。
+
+\begin{theorem}
+    考虑问题$(f\boldsymbol{gh})$, $\boldsymbol{x}^* \in S = \{\boldsymbol{x}|\boldsymbol{g}(\boldsymbol{x}) \le 0, \boldsymbol{h}(\boldsymbol{x}) = 0\}$, $I$ 为作用集。
+
+    设 $g_i(\boldsymbol{x})(i \in I)$ 在 $\boldsymbol{x}^*$ 点可微, $g_i(\boldsymbol{x})(i \notin \boldsymbol{I})$ 在 $\boldsymbol{x}^*$ 连续, $h_j$ ($j=1,2,\cdots,i$)在 $\boldsymbol{x}^*$ 的某邻域内连续可微。
+    再设约束规格$(CQ)\{\nabla g_i(\boldsymbol{x}^*),i\in I,\nabla h_j(\boldsymbol{x}^*),j=1,2,\cdots,l\}$线性无关。那么存在 $u_i\ge0,i\in I,v_j,j=1,2,\cdots,l$ 使得
+    \begin{equation}
+        \nabla f(\boldsymbol{x}^*)+\sum_{i\in I}u_i\nabla g_i(\boldsymbol{x}^*)+\sum_{j=1}^{l}v_j^*\nabla h_j(\boldsymbol{x}^*)=\boldsymbol{0}
+    \end{equation}
+    如果进一步有 $g_i(\boldsymbol{x}),i\notin I$ 在 $\boldsymbol{x}^*$ 点也可微，那么下列系统成立
+    \begin{gather}
+        \nabla f(\boldsymbol{x}^*)+\sum_{i=1}^{m}u_i^*\nabla g_i(\boldsymbol{x}^*)+\sum_{j=1}^{l}v_j^*\nabla h_j(\boldsymbol{x}^*)=\boldsymbol{0} \\
+        \boldsymbol{u}\ge\boldsymbol{0}                                                                                         \\
+        \boldsymbol{u}^{T}\boldsymbol{g}(\boldsymbol{x}^*)=0\hbox{（互补松弛条件）}
+    \end{gather}
+
+\end{theorem}
 
 \section{既约梯度法}
 
