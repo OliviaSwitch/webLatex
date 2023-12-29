@@ -1672,13 +1672,62 @@ $$\begin{cases}
     \nabla f(\boldsymbol{x}^*)+\frac{\partial\boldsymbol{h}(\boldsymbol{x}^*)}{\partial\boldsymbol{x}}\boldsymbol{v}^*=\boldsymbol{0}
 \end{equation}
 
-最优性条件即为Kuhn-Tucker条件
+最优性条件即%为Kuhn-Tucker条件
 \begin{equation}
     \nabla f(\boldsymbol{x}^*) = -\sum_{i=1}^{l}\boldsymbol{v}_i^*\nabla h_i(\boldsymbol{x}^*)
-    \label{equ:Kuhn-Tucker condition}
+    % \label{equ:Kuhn-Tucker condition}
 \end{equation}
 
+% 以二维情况为例，当 $l=1$ 时，有最优性条件如图所示
+% 在 $\boldsymbol{x}^*$ 点，$\nabla f(\boldsymbol{x}^*)$ 与 $\nabla h(\boldsymbol{x}^*)$ 共线，沿函数下降方向的点不可行，故 $\boldsymbol{x}^*$ 为l.opt.；在 $\bar{\boldsymbol{x}}$ 点，$\nabla f(\bar{\boldsymbol{x}})$ 在 $\nabla h(\bar{\boldsymbol{x}})=0$ 曲线的$\bar{\boldsymbol{x}}$点的切线方向上有投影，即存在下降并线性可行方向，故 $\bar{\boldsymbol{x}}$ 不是l.opt.。这里线性可行方向指切线方向。
+
+% \begin{figure}[ht]
+%     \centering
+%     % \input{Kuhn-TuckerCondition.tex}
+%     \begin{tikzpicture}[line width=1pt]
+%         \draw (0,0) arc (190: 350: 4 );
+%         \draw[red] (0, 0) -- (4.5, -1.5); % 切线
+%     \end{tikzpicture}
+%     \caption{Kuhn-Tucker条件}
+%     \label{fig:Kuhn-Tucker condition}
+% \end{figure}
+
 \subsection{不等式约束问题的Kuhn-Tucker条件}
+
+考虑含有不等式约束的问题：
+\begin{equation}
+    (f\boldsymbol{h})\begin{cases}
+        \min & f(\boldsymbol{x})                               \\
+        s.t. & \boldsymbol{g}(\boldsymbol{x})\le\boldsymbol{0}
+    \end{cases}
+    \label{equ:constrained optimization problem with inequality constraints}
+\end{equation}
+
+设 $\boldsymbol{x}^*\in S=\{\boldsymbol{x}|\boldsymbol{g}(\boldsymbol{x})\le\boldsymbol{0}\}$ ，记
+$$
+    \boldsymbol{I}=\{i|g_i(\boldsymbol{x}^*)=0,\ i=1,2,\cdots,m\}
+$$
+为 $\boldsymbol{x}^*$ 点的起作用集或紧约束集或有效集。
+
+如果$\boldsymbol{x}^*$是l.opt.，对每一个约束函数来说，只有当它是起作用约束时，才产生影响。
+
+对于不等式约束问题有如下最优性定理，它的结论称为Kuhn-Tucker条件。
+
+\begin{theorem}[最优性必要条件；K-T条件]
+    对于问题 $(f\boldsymbol{g})$ ，设 $\boldsymbol{x}^*\in S$ ，$I$为$\boldsymbol{x}^*$点的紧约束集。设函数 $f(\boldsymbol{x}), g_i(\boldsymbol{x}),i\in I$ 在 $\boldsymbol{x}^*$ 点连续可微，$g_i(\boldsymbol{x}),i\in I$ 在 $\boldsymbol{x}^*$ 点连续。向量组 $\{\nabla g_i(\boldsymbol{x}^*),i\in I\}$ 线性无关。如果 $\boldsymbol{x}^*$ 是 $(f\boldsymbol{g})$ 的l.opt.，则存在 $\boldsymbol{u}_i^*\ge\boldsymbol{0},i\in I$ 使得
+    \begin{equation}
+        \nabla f(\boldsymbol{x}^*)+\sum_{i\in I}\boldsymbol{u}_i^*\nabla g_i(\boldsymbol{x}^*)=\boldsymbol{0}
+    \end{equation}
+    如果进一步有 $g_i(\boldsymbol{x}),i\notin I$ 在 $\boldsymbol{x}^*$ 点也可微，那么下列系统成立
+    \begin{gather}
+        % \nabla f(\boldsymbol{x}^*)+\frac{\partial\boldsymbol{g}(\boldsymbol{x}^*)}{\partial\boldsymbol{x}}\boldsymbol{u}^* =\boldsymbol{0} \\
+        \nabla f(\boldsymbol{x}^*)+\sum_{i=1}^{m}u_i^*\nabla g_i(\boldsymbol{x}^*)=\boldsymbol{0} \\
+        \boldsymbol{u}^*\ge\boldsymbol{0}                                                         \\
+        \boldsymbol{u}^{*T}\boldsymbol{g}(\boldsymbol{x}^*)=0\hbox{（互补松弛条件）}                                      \\
+    \end{gather}
+    称满足K-T条件的 $\boldsymbol{x}^*$ 为K-T点。
+    \label{thm:Kuhn-Tucker condition}
+\end{theorem}
 
 \subsection{一般约束问题的Kuhn-Tucker条件}
 
