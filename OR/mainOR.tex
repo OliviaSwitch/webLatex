@@ -47,24 +47,65 @@ linkcolor=blue,
 
 \subsubsection{梯度}
 
+当 $f(\boldsymbol{x})$ 在 $\bar{\boldsymbol{x}}$ 处可微或二次可微时，
+
 \begin{equation}
-    \nabla f(x_1, x_2, x_3) = (\frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}, \frac{\partial f}{\partial x_3})^T
-    \label{con:grad}
+    \nabla f(\bar{\boldsymbol{x}}) = (f_{x_1}(\bar{\boldsymbol{x}}), f_{x_2}(\bar{\boldsymbol{x}}),\cdots,f_{x_n}(\bar{\boldsymbol{x}}))^T = (\frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}, \cdots, \frac{\partial f}{\partial x_n})^T
+    \label{equ:grad}
 \end{equation}
 
 \subsubsection{黑塞矩阵}
 
 \begin{equation}
-    \nabla^2 f(x_1, x_2, x_3)=
-    \begin{pmatrix}
-        \cfrac{\partial^2 f}{\partial x_1^2}           & \cfrac{\partial^2 f}{\partial x_2\partial x_1}  & \cfrac{\partial^2 f}{\partial x_3\partial x_1} \\
-        \cfrac{\partial^2 f}{\partial x_1\partial x_2} & \cfrac{\partial^2 f}{\partial x_2^2}            & \cfrac{\partial^2 f}{\partial x_3\partial x_2} \\
-        \cfrac{\partial^2 f}{\partial x_1\partial x_3} & \cfrac{\partial^2 f}{\partial x_2 \partial x_3} & \cfrac{\partial^2 f}
-        {\partial x_3^2}
-        \label{con:Hesse matrix}
+    \nabla^2 f(\bar{\boldsymbol{x}})
+    =\begin{pmatrix}
+        f_{x_1x_1}(\bar{\boldsymbol{x}}) & f_{x_1x_2}(\bar{\boldsymbol{x}}) & \cdots & f_{x_1x_n}(\bar{\boldsymbol{x}}) \\
+        f_{x_2x_1}(\bar{\boldsymbol{x}}) & f_{x_2x_2}(\bar{\boldsymbol{x}}) & \cdots & f_{x_2x_n}(\bar{\boldsymbol{x}}) \\
+        \vdots                           & \vdots                           & \ddots & \vdots                           \\
+        f_{x_nx_1}(\bar{\boldsymbol{x}}) & f_{x_nx_2}(\bar{\boldsymbol{x}}) & \cdots & f_{x_nx_n}(\bar{\boldsymbol{x}})
     \end{pmatrix}
+    =\begin{pmatrix}
+        \cfrac{\partial^2 f}{\partial x_1^2}           & \cfrac{\partial^2 f}{\partial x_2\partial x_1}  & \cdots & \cfrac{\partial^2 f}{\partial x_n\partial x_1} \\
+        \cfrac{\partial^2 f}{\partial x_1\partial x_2} & \cfrac{\partial^2 f}{\partial x_2^2}            & \cdots & \cfrac{\partial^2 f}{\partial x_n\partial x_2} \\
+        \vdots                                         & \vdots                                          & \ddots & \vdots                                         \\
+        \cfrac{\partial^2 f}{\partial x_1\partial x_n} & \cfrac{\partial^2 f}{\partial x_2 \partial x_n} & \cdots & \cfrac{\partial^2 f}
+        {\partial x_n^2}
+    \end{pmatrix}
+    \label{equ:Hesse matrix}
 \end{equation}
-简而言之，式(\ref{con:Hesse matrix})即为式(\ref{con:grad})逐行关于参数（即$x_1, x_2, x_3, \cdots$）求偏导。
+简而言之，式(\ref{equ:Hesse matrix})即为式(\ref{equ:grad})逐行关于参数（即$x_1, x_2, x_3, \cdots$）求偏导。
+
+根据数学分析的有关理论，有下列泰勒展开式。当 $f(\boldsymbol{x})$ 在 $\bar{\boldsymbol{x}}$ 处二次可微时，有
+
+一阶泰勒展开式：
+\begin{equation}
+    f(\boldsymbol{x}) = f(\bar{\boldsymbol{x}}) + [\nabla f(\bar{\boldsymbol{x}})]^T(\boldsymbol{x}-\bar{\boldsymbol{x}}) + o(\Vert\boldsymbol{x}-\bar{\boldsymbol{x}}\Vert)
+    \label{equ:1st Taylor}
+\end{equation}
+
+二阶泰勒展开式：
+\begin{equation}
+    f(\boldsymbol{x}) = f(\bar{\boldsymbol{x}}) + [\nabla f(\bar{\boldsymbol{x}})]^T(\boldsymbol{x}-\bar{\boldsymbol{x}}) + \frac{1}{2}(\boldsymbol{x}-\bar{\boldsymbol{x}})^T\nabla^2f(\bar{\boldsymbol{x}})(\boldsymbol{x}-\bar{\boldsymbol{x}}) + o(\Vert\boldsymbol{x}-\bar{\boldsymbol{x}}\Vert^2)
+    \label{equ:2nd Taylor}
+\end{equation}
+
+不过实际考试中，一般会将最后一项$o()$忽略，并将等号改为约等于号$\approx$。
+
+另外，这里给出特殊函数的一阶二阶导：
+
+\begin{enumerate}
+    \item 线性函数：$f(\boldsymbol{x})=\boldsymbol{c}^T\boldsymbol{x}+d$，则$\nabla f(\boldsymbol{x})=\boldsymbol{c}$，$\nabla^2 f(\boldsymbol{x})=0$
+    \item 二次函数：$f(\boldsymbol{x})=\frac{1}{2}\boldsymbol{x}^T\boldsymbol{Qx}+\boldsymbol{c}^T\boldsymbol{x}+d$，则$\nabla f(\boldsymbol{x})=\boldsymbol{Qx}+\boldsymbol{c}$，$\nabla^2 f(\boldsymbol{x})=\boldsymbol{Q}$
+    \item 向量值线性函数：$F(\boldsymbol{x})=\boldsymbol{Ax}+\boldsymbol{b}$，则$F^{\prime}(\boldsymbol{x})=\frac{\partial F}{\partial \boldsymbol{x}}=\boldsymbol{A}^T$
+\end{enumerate}
+
+利用复合函数求导法则，注意向量运算。设 $\Phi(\boldsymbol{x})=f(\boldsymbol{Ax}+\boldsymbol{b})$ ，则
+$$
+    \Phi^{\prime}=\boldsymbol{A}^T\nabla f(\boldsymbol{Ax}+\boldsymbol{b})
+$$
+$$
+    \Phi^{\prime\prime}=\boldsymbol{A}^T\nabla^2 f(\boldsymbol{Ax}+\boldsymbol{b})\boldsymbol{A}
+$$
 
 \subsection{正定矩阵}
 
@@ -348,7 +389,7 @@ STEPS：
               \item 中间4-11 列填入约束方程中$x$的系数，其中从$x_{n+1}$开始的列组成单位矩阵
           \end{itemize}
     \item 求出$-z^{\prime}=-\sum\limits_{i=1}^mc_{n+i}b_i$(初始状态下一般为0)
-    \item 求出\textbf{检验数}$\boldsymbol{\sigma}_j=c_j-\sum\limits_{i=1}^mc_{n+i}a_{ij}$，可以通俗理解为$\sigma_1=$第一行中的$c_1$减去（$c_B$的每一项与$c_1$列对应行的$a_{\_1}$相乘的求和）。\\
+    \item 求出\textbf{检验数}$\boldsymbol{\sigma}_j=c_j-\sum\limits_{i=1}^mc_{n+i}a_{ij}$，可以通俗理解为$\sigma_1=$第一行中的$c_1$减去（$c_B$的每一项与$c_1$列对应行的$a_1$相乘的求和）。\\
           需要注意的是，这里的检验数不需要考虑基（即单位矩阵）对应的列，否则会影响下一步。
     \item 判断是否所有检验数$\sigma_j\le0$，如果全部小于等于0，则当前的基本可行解是最优解；如果有一检验数大于0，那么进行下一步的计算。
     \item 求入基变量$x_k$：
@@ -1154,7 +1195,7 @@ $\xi$ 所在区间去掉后不会失去最优解，因此可以用缩小区间�
 
 \subsubsection{牛顿法}
 
-牛顿法的基本思想是通过迭代逼近一个函数的最小值点。具体来说，该方法使用函数的二阶导数（也称为Hessian矩阵）来构建一个二次逼近，然后通过解这个二次逼近的极小值问题来更新当前��估计值。
+牛顿法的基本思想是通过迭代逼近一个函数的最小值点。具体来说，该方法使用函数的二阶导数（也称为Hessian矩阵）来构建一个二次逼近，然后通过解这个二次逼近的极小值问题来更新当前����估计值。
 
 主要用于已经知道 $\lambda_k$ 求 $\lambda^*$ 。
 
@@ -1310,7 +1351,8 @@ $$
 
 \section{最速下降法}
 
-最速下降法是无约束最优化中最简单也是最古老而基本的方法。
+最速下降法是以负梯度方向作为下降方向的极小化算法, 又称梯度法, 是1874 年法国科学家Cauchy(柯西)提出的。
+最速下降法是无约束最优化中最简单的方法。
 
 在前面的下降算法中，方向去负梯度方向 $\boldsymbol{d}^{(k)}=-\nabla f(\boldsymbol{x}^{(k)})$ 进行精确一维搜索，即得到最速下降法。
 
