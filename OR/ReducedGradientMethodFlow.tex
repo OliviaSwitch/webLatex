@@ -1,0 +1,32 @@
+\begin{tikzpicture}[node distance=4cm, line width=1pt]
+    \tikzstyle{startstop} = [rectangle, rounded corners, minimum width = 2cm, minimum height=1cm,text centered, draw = black, align=center]
+    %\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=2cm, minimum height=1cm, text centered, draw=black]
+    \tikzstyle{process} = [rectangle, minimum width=2cm, minimum height=1cm, text centered, draw=black, align=center]
+    \tikzstyle{decision} = [diamond, aspect = 3, text centered, draw=black,align=center]
+    \tikzstyle{point}=[coordinate,]
+    % 箭头形式
+    \tikzstyle{arrow} = [->,>=stealth]
+
+    \node (start) [startstop] {$\boldsymbol{x}^{(1)}\in S, \varepsilon>0,$\\ $k=1$ };
+    \node (pro1) [process, below of=start] {$J_k=\{j|\boldsymbol{x}_j\hbox{为}\boldsymbol{x}^{(k)}\hbox{中最大m个正分量之一}\}$\\
+    $\boldsymbol{B}=(\cdots,\boldsymbol{a}_j,\cdots)$\\
+    $\boldsymbol{N}=[\cdots,\boldsymbol{a}_j,\cdots)$\\
+    $\boldsymbol{r}_N^T=\nabla_Nf^T(\boldsymbol{x}^{(k)})- \nabla_{\boldsymbol{B}}f^T(\boldsymbol{x}^{(k)})\boldsymbol{B}^{-1}\boldsymbol{N}$\\
+    $\boldsymbol{d}_j=\begin{cases}-\boldsymbol{r}_j,\boldsymbol{r}_j\le0\\ -\boldsymbol{x}_j\boldsymbol{r}_j,\boldsymbol{r}_j>0\end{cases}$\\
+    $\boldsymbol{d}_{\boldsymbol{B}}=-\boldsymbol{B}^{-1}\boldsymbol{N}\boldsymbol{d}$};
+    \node (dec) [decision, below of=pro1] {$\Vert\boldsymbol{d}<\varepsilon\Vert$？};
+    \node (stop) [startstop, right of=dec] {$\boldsymbol{x}^{(k)}$-- K-T点};
+    \node (pro2) [process, left of=dec, xshift=-3cm] {$\bar{\lambda}=\begin{cases}\min\{-\frac{\boldsymbol{x}_j^{(k)}}{\boldsymbol{d}_j}|\boldsymbol{d}_j<0\},\boldsymbol{d}<0\\ +\infty,\boldsymbol{d}\ge0\end{cases}$};
+    \node (pro3) [process, left of=pro1, xshift=-3cm] {解$\begin{cases}\min& f(\boldsymbol{x}+\lambda\boldsymbol{d})\\ s.t.&0\le\lambda\le\bar{\lambda}\end{cases}$\\ 得$\boldsymbol{x}^{(k+1)}=\boldsymbol{x}^{(k)}+\lambda_k\boldsymbol{d}$};
+    \node (point1) [point, below of = start, yshift=3cm]{};
+    \node (pro4) [process, left of=point1, xshift=-3cm] {$k=k+1$};
+
+    \draw [arrow] (start) -- (pro1);
+    \draw [arrow] (pro1) -- (dec);
+    \draw [arrow] (dec) -- node[anchor=south] {Y} (stop);
+    \draw [arrow] (dec) -- node[anchor=south] {N} (pro2);
+    \draw [arrow] (pro2) -- (pro3);
+    \draw [arrow] (pro3) -- (pro4);
+    \draw [arrow] (pro4) -- (point1);
+
+\end{tikzpicture}

@@ -1753,4 +1753,35 @@ $$
 
 \section{既约梯度法}
 
+一种把约束变化为标准形式的线性约束问题的算法。问题为
+\begin{equation}
+    (f\boldsymbol{Ab})=\begin{cases}
+        \min & f(\boldsymbol{x})               \\
+        s.t. & \boldsymbol{Ax}=\boldsymbol{b}  \\
+             & \boldsymbol{x}\ge\boldsymbol{0}
+    \end{cases}
+    \label{equ:standard form of linear constraint problem}
+\end{equation}
+其中 $\boldsymbol{A}$为$m\times n$矩阵，$\boldsymbol{b}\in\mathbf{R}^m$。
+
+对问题 \ref{equ:standard form of linear constraint problem} 建立非退化假设：
+\begin{enumerate}
+    \item $\boldsymbol{A}$ 的任意 $m$ 列线性无关；
+    \item 任意可行解 $\boldsymbol{x}\in S$ 至少有 $m$ 个正分量。
+\end{enumerate}
+
+在非退化假设下，$\forall \boldsymbol{x}\in S$，存在分解 $\boldsymbol{A}=(\boldsymbol{B},\boldsymbol{N})$，使得 $\boldsymbol{x}=\begin{pmatrix}\boldsymbol{x}_{\boldsymbol{B}} \\ \boldsymbol{x}_{\boldsymbol{N}} \end{pmatrix}$，其中 $\boldsymbol{x}_{\boldsymbol{B}}>\boldsymbol{0},\boldsymbol{x}_{\boldsymbol{N}}\ge\boldsymbol{0}$，称 $\boldsymbol{x}_{\boldsymbol{B}}$ 为基变量，$\boldsymbol{x}_{\boldsymbol{N}}$ 为非基变量。
+
+相应的，$\nabla f(\boldsymbol{x})=\begin{pmatrix}
+        \nabla_{\boldsymbol{B}}f(\boldsymbol{x}) \\
+        \nabla_{\boldsymbol{N}}f(\boldsymbol{x})
+    \end{pmatrix}$，称 $\boldsymbol{r}_N^T=\nabla_{\boldsymbol{N}}f^T(\boldsymbol{x})-\nabla_{\boldsymbol{B}}f^T(\boldsymbol{x})\boldsymbol{B}^{-1}\boldsymbol{N}$ 为既约梯度。
+
+\begin{figure}[ht]
+    \centering
+    \input{ReducedGradientMethodFlow.tex}
+    \caption{既约梯度法流程}
+    \label{fig:flow of reduced gradient method}
+\end{figure}
+
 \end{document}
