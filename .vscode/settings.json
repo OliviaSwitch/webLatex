@@ -43,17 +43,17 @@
 	// 用于配置编译链
 	"latex-workshop.latex.recipes": [
 		{
-			"name": "XeLaTeX*2",
-			"tools": [
-				"xelatex",
-				"xelatex"
-			]
-		},
-		{
 			"name": "PDFLaTeX*2",
 			"tools": [
 				"pdflatex",
 				"pdflatex"
+			]
+		},
+		{
+			"name": "XeLaTeX*2",
+			"tools": [
+				"xelatex",
+				"xelatex"
 			]
 		},
 		{
@@ -131,7 +131,6 @@
 	],
 	"latex-workshop.latex.clean.method": "glob",
 	// Edit the following property to change export directory
-	// "latex-workshop.latex.outDir": "./PDF",
 	"latex-workshop.latex.autoClean.run": "onSucceeded",
 	"latex-workshop.latex.build.forceRecipeUsage": false,
 	"latex-workshop.synctex.afterBuild.enabled": true,
@@ -150,17 +149,4 @@
 	"latex-workshop.latex.pdfWatch.delay": 500,
 	//"latex-workshop.latex.watch.delay": 500, // Deprecated. See here: https://github.com/sanjib-sen/WebLaTex/issues/8
 	"latex-workshop.codespaces.portforwarding.openDelay": 20000,
-	"grammarly.files.include": [
-		"**/*.tex"
-	],
-	// Remove the following to check .md files with Grammarly.
-	"grammarly.files.exclude": [
-		"**/*.md"
-	],
-	"grammarly.selectors": [
-		{
-			"language": "latex",
-			"scheme": "file"
-		}
-	]
 }
