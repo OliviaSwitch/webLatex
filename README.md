@@ -4,6 +4,7 @@
 
 - 运筹学 Operations Research
 - 机器学习与数据分析 Machine Learning and Data Analysis
+- 高等数学 Further Mathematics
 
 # 初始化步骤
 
