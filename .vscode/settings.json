@@ -133,6 +133,7 @@
 	// Edit the following property to change export directory
 	"latex-workshop.latex.autoClean.run": "onSucceeded",
 	"latex-workshop.latex.build.forceRecipeUsage": false,
+	"latex-workshop.latex.autoBuild.run": "onSave",
 	"latex-workshop.synctex.afterBuild.enabled": true,
 	"latex-workshop.view.pdf.viewer": "tab",
 	"latex-workshop.latex.clean.subfolder.enabled": true,
