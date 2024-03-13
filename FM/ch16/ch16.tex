@@ -39,3 +39,21 @@ $$\lim_{P\to P_0}f(P)=A$$
 $$\lim_{(x,y)\to(x_0,y_0)}f(x,y)=A$$
 
 多元函数的逼近可以沿着任何一条路径进行, 但是极限只有一个, 与逼近的路径无关。如果极限不相等, 则称多元函数在该点无极限。
+
+\subsection{重极限与累次极限}
+
+在上面讨论的$\lim_{(x,y)\to(x_0,y_0)}f(x,y)=A$中, 自变量 $(x, y)$是以任何方式趋于 $(x_0, y_0)$的, 这种极限也称为重极限。
+
+而$x$与$y$依一定的先后顺序, 相继趋于 $x_0$ 与 $y_0$ 时 $f$ 的极限, 这种极限称为累次极限。
+若对每一个$y\in Y(y\not y_0)$，存在极限$\lim_{x\to x_0}f(x,y)$，它一般与$y$有关，记作
+$$\varphi(y)=\lim_{x\to x_0}f(x,y)$$
+如果进一步还存在极限
+$$L=\lim_{y\to y_0}\varphi(y)$$
+则称此$L$为$f(x,y)$先对$x(x\to x_0)$后对$y(y\to y_0)$的累次极限，记作
+$$L=\lim_{y\to y_0}\lim_{x\to x_0}f(x,y)$$
+
+\theorem{如果$f(x,y)$的重极限$\lim\limits_{(x,y)\to(x_0,y_0)}f(x,y)$与累次极限$\lim\limits_{y\to y_0}\lim\limits_{x\to x_0}f(x,y)$都存在，则两者必定相等。}
+
+\subsubsection{$\varepsilon-\delta$定义}
+
+对于任何正数$\varepsilon$，都能够找到一个正数$\delta$，当x满足${0<\mid x-a\mid <\delta }$时，对于满足上式的x都有\\ ${0<\mid f(x)-b\mid <\varepsilon }$。
