@@ -3,15 +3,15 @@
 \section{偏导数}
 
 \begin{definition}
-    设函数$z=f(x,y)$在点$(x_0,y_0)$的某邻域内有定义，当$x$在$x_0$处有增量$\Delta x$，$y$在$y_0$处有增量$\Delta y$时，相应的函数有增量$\Delta z=f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)$，如果极限
-    \[
-        \lim_{\Delta x\to 0}\frac{\Delta z}{\Delta x}=\lim_{\Delta x\to 0}\frac{f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)}{\Delta x}
-    \]
-    存在，则称此极限为函数$z=f(x,y)$在点$(x_0,y_0)$处对$x$的偏导数，记作
-    \[
-        \left.\frac{\partial z}{\partial x}\right|_{(x_0,y_0)}\quad\text{或}\quad f'_x(x_0,y_0)\quad\text{或}\quad z'_x
-    \]
-    同理可得函数$z=f(x,y)$在点$(x_0,y_0)$处对$y$的偏导数。
+    设函数$z=f(x,y)$在点$(x_0,y_0)$的某邻域内有定义，当$x$在$x_0$处有增量$\Delta x$，$y$在$y_0$处有增量\\$\Delta y$时，相应的函数有增量$\Delta z=f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)$，如果极限
+        \[
+            \lim_{\Delta x\to 0}\frac{\Delta z}{\Delta x}=\lim_{\Delta x\to 0}\frac{f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)}{\Delta x}
+        \]
+        存在，则称此极限为函数$z=f(x,y)$在点$(x_0,y_0)$处对$x$的偏导数，记作
+        \[
+            \left.\frac{\partial z}{\partial x}\right|_{(x_0,y_0)}\quad\text{或}\quad f'_x(x_0,y_0)\quad\text{或}\quad z'_x
+        \]
+        同理可得函数$z=f(x,y)$在点$(x_0,y_0)$处对$y$的偏导数。
 \end{definition}
 
 怎么求：
@@ -26,3 +26,40 @@
     \item 对于一元函数，可导必定连续
     \item 对于多元函数，偏导数存在不一定连续
 \end{enumerate}
+
+\section{全微分}
+
+\begin{definition}
+    设函数$z=f(x,y)$在点$(x_0,y_0)$的某邻域内有定义，且在该点有偏导数，则称函数\\$z=f(x,y)$在点$(x_0,y_0)$处可微分，如果存在常数$A$和$B$，使得全增量
+        \[
+            \Delta z=A\Delta x+B\Delta y+o(\rho)
+        \]
+        其中$\rho=\sqrt{(\Delta x)^2+(\Delta y)^2}$，则称$A\Delta x+B\Delta y$为函数$z=f(x,y)$在点$P_0=(x_0,y_0)$处的全微分，记作
+        \[
+            \left.\mathrm{d}z\right|_{P_0}=df(x_0,y_0)=A\Delta x+B\Delta y
+        \]
+        当$\Delta x$和$\Delta y$趋于零时，全微分$\mathrm{d}z$可作为全增量$\Delta z$的近似值，于是有近似公式
+    \[
+        f(x,y)\approx f(x_0,y_0)+A(x-x_0)+B(y-y_0)
+    \]
+\end{definition}
+
+\subsection{可微性条件}
+
+% \begin{theorem}
+%     函数$z=f(x,y)$在点$(x_0,y_0)$处可微分的充分必要条件是：函数$z=f(x,y)$在点$(x_0,y_0)$处的偏导数存在且连续。
+% \end{theorem}
+
+\begin{theorem}
+    若二元函数 $f$ 在其定义域内一点 $(x_0,y_0)$ 处可微，则 $f$ 在该点关于每个自变量的偏导数都存在。
+    此时，全微分可写成
+    \[
+        \mathrm{d}f(x,y)=f_x(x,y)\mathrm{d}x+f_y(x,y)\mathrm{d}y
+    \]
+\end{theorem}
+
+\begin{theorem}[可微的充分条件]
+    若函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 处的偏导数 $f_x(x_0,y_0)$ 和 $f_y(x_0,y_0)$ 存在且连续，则 $f$ 在该点可微。
+\end{theorem}
+
+另外，连续是可微的一个必要条件。
