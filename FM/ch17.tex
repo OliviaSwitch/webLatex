@@ -1,6 +1,8 @@
 \chapter{多元函数微分学}
 
-\section{偏导数}
+\section{可微性}
+
+\subsection{偏导数}
 
 \begin{definition}
     设函数$z=f(x,y)$在点$(x_0,y_0)$的某邻域内有定义，当$x$在$x_0$处有增量$\Delta x$，$y$在$y_0$处有增量\\$\Delta y$时，相应的函数有增量$\Delta z=f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)$，如果极限
@@ -20,14 +22,14 @@
     \item 对$y$的偏导数：将$x$看作常数，对$y$求导。
 \end{itemize}
 
-\subsection{关于连续性}
+\subsubsection{关于连续性}
 
 \begin{enumerate}
     \item 对于一元函数，可导必定连续
     \item 对于多元函数，偏导数存在不一定连续
 \end{enumerate}
 
-\section{全微分}
+\subsection{全微分}
 
 \begin{definition}
     设函数$z=f(x,y)$在点$(x_0,y_0)$的某邻域内有定义，且在该点有偏导数，则称函数\\$z=f(x,y)$在点$(x_0,y_0)$处可微分，如果存在常数$A$和$B$，使得全增量
@@ -44,7 +46,7 @@
     \]
 \end{definition}
 
-\subsection{可微性条件}
+\subsubsection{可微性条件}
 
 % \begin{theorem}
 %     函数$z=f(x,y)$在点$(x_0,y_0)$处可微分的充分必要条件是：函数$z=f(x,y)$在点$(x_0,y_0)$处的偏导数存在且连续。
@@ -64,7 +66,7 @@
 
 另外，连续是可微的一个必要条件。
 
-\section{曲面的切平面与法线}
+\subsection{曲面的切平面与法线}
 
 \begin{definition}
     设曲面 $z=f(x,y)$ 在点 $(x_0,y_0,z_0)$ 处可微，且 $f_x(x_0,y_0)\neq 0$，则曲面在该点的切平面方程为
