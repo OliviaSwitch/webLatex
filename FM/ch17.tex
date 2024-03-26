@@ -124,3 +124,39 @@
         \mathrm{d}z=\frac{\partial z}{\partial u}\mathrm{d}u+\frac{\partial z}{\partial v}\mathrm{d}v
     \]
 \end{theorem}
+
+\section{方向导数与梯度}
+
+\subsection{方向导数}
+
+\begin{definition}
+    设函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 的某邻域内有定义，点 $P_0(x_0,y_0)$ 处沿方向 $\bm{l}=(\cos\alpha,\cos\beta)$ 的方向导数为
+    \[
+        \frac{\partial z}{\partial l}=\lim_{\rho\to 0}\frac{f(x_0+\rho\cos\alpha,y_0+\rho\cos\beta)-f(x_0,y_0)}{\rho}
+    \]
+    其中 $\rho=\sqrt{(\cos\alpha)^2+(\cos\beta)^2}$。
+\end{definition}
+
+\begin{theorem}
+    函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 处可微，则函数在该点沿任一方向 $\bm{l}=(\cos\alpha,\cos\beta)$ 的方向导数存在，且有
+    \[
+        \frac{\partial z}{\partial l}=f_x(x_0,y_0)\cos\alpha+f_y(x_0,y_0)\cos\beta
+    \]
+\end{theorem}
+
+\subsection{梯度}
+
+\begin{definition}
+    设函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 处可微，定义函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 处的梯度为
+    \[
+        \nabla f(x_0,y_0)=\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y}\right)
+    \]
+\end{definition}
+
+\begin{theorem}
+    函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 处可微，则函数在该点的梯度 $\nabla f(x_0,y_0)$ 就是函数在该点沿各个方向的方向导数的最大值，且有
+    \[
+        \frac{\partial z}{\partial l}=\nabla f(x_0,y_0)\cdot\bm{l}
+    \]
+\end{theorem}
+
