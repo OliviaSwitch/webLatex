@@ -160,3 +160,40 @@
     \]
 \end{theorem}
 
+\section{泰勒公式与极值}
+
+\subsection{高阶偏导数}
+
+二元函数的二阶偏导数有如下四种形式:
+\[
+    \begin{aligned}
+        f_{xx} & =\frac{\partial^2 f}{\partial x^2}=\frac{\partial}{\partial x}\left(\frac{\partial f}{\partial x}\right)         \\
+        f_{yy} & =\frac{\partial^2 f}{\partial y^2}=\frac{\partial}{\partial y}\left(\frac{\partial f}{\partial y}\right)         \\
+        f_{xy} & =\frac{\partial^2 f}{\partial x\partial y}=\frac{\partial}{\partial x}\left(\frac{\partial f}{\partial y}\right) \\
+        f_{yx} & =\frac{\partial^2 f}{\partial y\partial x}=\frac{\partial}{\partial y}\left(\frac{\partial f}{\partial x}\right)
+    \end{aligned}
+\]
+
+另外，称 $\frac{\partial^2 f}{\partial x\partial y}$ 和 $\frac{\partial^2 f}{\partial x\partial y}$ 这种既有关于 x, 又有关于 y 的高阶偏导数为混合偏导数。
+\begin{theorem}
+    若函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 处的二阶偏导数 $f_{xx},f_{yy},f_{xy},f_{yx}$ 都存在且连续，则
+    \[
+        f_{xy}(x_0,y_0)=f_{yx}(x_0,y_0)
+    \]
+\end{theorem}
+
+\subsubsection{复合函数的高阶偏导数}
+
+设
+\[
+    z=f(x,y), x=\varphi(s,t), y=\phi(s,t)
+\]
+若函数 $f,\varphi,\phi$ 都具有连续的二阶偏导数，则复合函数 $z=f(\varphi(s,t),\phi(s,t))$ 对 $s,t$ 同样存在二阶连续偏导数。
+\[
+    \begin{aligned}
+        \frac{\partial z}{\partial s}=\frac{\partial z}{\partial x}\frac{\partial x}{\partial s}+\frac{\partial z}{\partial y}\frac{\partial y}{\partial s} \\
+        \frac{\partial z}{\partial t}= \frac{\partial z}{\partial x}\frac{\partial x}{\partial t}+\frac{\partial z}{\partial y}\frac{\partial y}{\partial t}
+    \end{aligned}
+\]
+显然 $\frac{\partial z}{\partial s},\frac{\partial z}{\partial t}$ 仍然是 $s,t$ 的复合函数，其中 $\frac{\partial z}{\partial x},\frac{\partial z}{\partial y}$ 是 $x,y$ 的函数，$\frac{\partial x}{\partial s},\frac{\partial x}{\partial t}, \frac{\partial y}{\partial s}, \frac{\partial y}{\partial t}$ 是 $s,t$ 的函数。
+继续求... （求不出来了）
