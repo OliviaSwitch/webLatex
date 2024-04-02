@@ -227,3 +227,18 @@
 \[
     f(x_0+h,y_0+k)=\sum_{p=1}^n\frac{1}{p!}(h\frac{\partial}{\partial x}+k\frac{\partial}{\partial y})^pf(x_0,y_0)+o(\rho^n)
 \]
+
+实际优化问题的目标函数往往比较复杂。为了使问题简化，通常将目标函数在某点附近展开为泰勒(Taylor)多项式来逼近原函数。
+
+一元函数在点 $x_k$ 处的泰勒展开式为：
+\[
+    f(x)=f(x_k)+f'(x_k)(x-x_k)+\frac{1}{2}f''(x_k)(x-x_k)^2+o^n)
+\]
+
+二元函数在点$(x_k,x_y)$处的泰勒展开式为：
+\[
+    \begin{aligned}
+        f(x,y) & =f(x_k,y_k)+(x-x_k)f_x(x_k,y_k)+(y-y_k)f_y(x_k,y_k)                                                 \\
+               & +\frac{1}{2!}[(x-x_k)^2f_{xx}(x_k,y_k)+2(x-x_k)(y-y_k)f_{xy}(x_k,y_k)+(y-y_k)^2f_{yy}(x_k,y_k)]+o^n
+    \end{aligned}
+\]
