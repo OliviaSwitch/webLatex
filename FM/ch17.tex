@@ -137,10 +137,12 @@
     其中 $\rho=\sqrt{(\cos\alpha)^2+(\cos\beta)^2}$。
 \end{definition}
 
+就是多元函数沿着某个特定方向的变化率。
+
 \begin{theorem}
     函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 处可微，则函数在该点沿任一方向 $\bm{l}=(\cos\alpha,\cos\beta)$ 的方向导数存在，且有
     \[
-        \frac{\partial z}{\partial l}=f_x(x_0,y_0)\cos\alpha+f_y(x_0,y_0)\cos\beta
+        \frac{\partial z}{\partial l}=f_x(x_0,y_0)\cos\alpha+f_y(x_0,y_0)\cos\beta\quad\star
     \]
 \end{theorem}
 
@@ -149,9 +151,11 @@
 \begin{definition}
     设函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 处可微，定义函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 处的梯度为
     \[
-        \nabla f(x_0,y_0)=\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y}\right)
+        \nabla f(x_0,y_0)=\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y}\right)\quad\star
     \]
 \end{definition}
+
+就是多元函数变化率取值最大的方向。
 
 \begin{theorem}
     函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 处可微，则函数在该点的梯度 $\nabla f(x_0,y_0)$ 就是函数在该点沿各个方向的方向导数的最大值，且有
