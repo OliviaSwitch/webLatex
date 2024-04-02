@@ -197,3 +197,33 @@
 \]
 显然 $\frac{\partial z}{\partial s},\frac{\partial z}{\partial t}$ 仍然是 $s,t$ 的复合函数，其中 $\frac{\partial z}{\partial x},\frac{\partial z}{\partial y}$ 是 $x,y$ 的函数，$\frac{\partial x}{\partial s},\frac{\partial x}{\partial t}, \frac{\partial y}{\partial s}, \frac{\partial y}{\partial t}$ 是 $s,t$ 的函数。
 继续求... （求不出来了）
+
+\subsection{中值定理和泰勒公式}
+
+\begin{theorem}[拉格朗日中值定理]
+    设函数 $z=f(x,y)$ 在凸开域 $D\in R^2$ 连续，在 $D$ 的所有内点都可微，则对于 $D$ 内任意两点 $P(a,b),Q(a+h,b+k)\in D, \forall\theta(0<\theta<1)$，使得
+    \[
+        f(a+h,b+k)-f(a,b)=f_x(a+\theta h,b+\theta k)h+f_y(a+\theta h,b+\theta k)k
+    \]
+\end{theorem}
+
+\begin{theorem}[泰勒公式]
+    设函数 $z=f(x,y)$ 在点 $P_0(x_0,y_0)$ 的某邻域内具有 $n+1$ 阶连续偏导数，则对于任意一点 $(x_0+h,y_0+k),\forall \theta \in (0,1)$，使得
+    \[
+        \begin{aligned}
+            f(x_0+h,y_0+k) & =f(x_0,y_0)+(h\frac{\partial}{\partial x}+k\frac{\partial}{\partial y})f(x_0,y_0)+\frac{1}{2!}(h\frac{\partial}{\partial x}+k\frac{\partial}{\partial y})^2f(x_0,y_0)+\cdots \\
+                           & +\frac{1}{n!}(h\frac{\partial}{\partial x}+k\frac{\partial}{\partial y})^nf(x_0,y_0)+R_n
+        \end{aligned}
+    \]
+    其中 $R_n$ 为拉格朗日余项，即
+    \[
+        R_n=\frac{1}{(n+1)!}(h\frac{\partial}{\partial x}+k\frac{\partial}{\partial y})^{n+1}f(x_0+\theta h,y_0+\theta k)
+    \]
+\end{theorem}
+
+前面的中值定理是泰勒公式的特殊情况，即 $n=0$。
+
+若只要求 $R_n=o(\rho^n)$，此时 $n$ 阶泰勒公式为
+\[
+    f(x_0+h,y_0+k)=\sum_{p=1}^n\frac{1}{p!}(h\frac{\partial}{\partial x}+k\frac{\partial}{\partial y})^pf(x_0,y_0)+o(\rho^n)
+\]
