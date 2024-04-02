@@ -256,24 +256,24 @@
     \]
 \end{theorem}
 
-\begin{definition}[驻点]
-    若函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 处有偏导数，且在该点处有偏导数 $f_x(x_0,y_0)=0,f_y(x_0,y_0)=0$，则称点 $(x_0,y_0)$ 为函数 $z=f(x,y)$ 的一个驻点。
+\begin{definition}[稳定点]，即驻点
+    若函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 处有偏导数，且在该点处有偏导数 $f_x(x_0,y_0)=0,f_y(x_0,y_0)=0$，则称点 $(x_0,y_0)$ 为函数 $z=f(x,y)$ 的一个稳定点。
 \end{definition}
 
 \begin{itemize}
-    \item 驻点不一定是极值点；
-    \item 极值点一定是驻点。
+    \item 稳定点不一定是极值点；
+    \item 极值点一定是稳定点。
 \end{itemize}
 
 \begin{theorem}[极值的充分条件]判断驻点是否等于极值点\\
-    设函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 处有连续偏导数，且在该点处有偏导数 $f_x(x_0,y_0)=0,f_y(x_0,y_0)=0$，则有
+    设函数 $z=f(x,y)$ 在点 $P_0(x_0,y_0)$ 处有连续偏导数，且在该点处有偏导数 $f_x(x_0,y_0)=0,f_y(x_0,y_0)=0$，则有
     \begin{itemize}
-        \item 若 $f_{xx}(x_0,y_0)f_{yy}(x_0,y_0)-f_{xy}^2(x_0,y_0)>0$，则 $f(x_0,y_0)$ 是函数 $z=f(x,y)$ 的一个极值点：
+        \item 若 $f_{xx}(P_0)f_{yy}(P_0)-f_{xy}^2(P_0)>0$，则 $P_0$ 是函数 $z=f(x,y)$ 的一个极值点：
               \begin{itemize}
-                  \item 若 $f_{xx}(x_0,y_0)>0$，则 $f(x_0,y_0)$ 是函数 $z=f(x,y)$ 的一个极小值点；
-                  \item 若 $f_{xx}(x_0,y_0)<0$，则 $f(x_0,y_0)$ 是函数 $z=f(x,y)$ 的一个极大值点。
+                  \item 若 $f_{xx}(P_0)>0$，则 $P_0$ 是函数 $z=f(x,y)$ 的一个极小值点；
+                  \item 若 $f_{xx}(P_0)<0$，则 $P_0$ 是函数 $z=f(x,y)$ 的一个极大值点。
               \end{itemize}
-        \item 若 $f_{xx}(x_0,y_0)f_{yy}(x_0,y_0)-f_{xy}^2(x_0,y_0)<0$，则 $f(x_0,y_0)$ 不是函数 $z=f(x,y)$ 的一个极值点；
-        \item 若 $f_{xx}(x_0,y_0)f_{yy}(x_0,y_0)-f_{xy}^2(x_0,y_0)=0$，则无法判断$f(x_0,y_0)$ 是否为函数 $z=f(x,y)$ 的一个极值点。
+        \item 若 $f_{xx}(P_0)f_{yy}(P_0)-f_{xy}^2(P_0)<0$，则 $P_0$ 不是函数 $z=f(x,y)$ 的一个极值点；
+        \item 若 $f_{xx}(P_0)f_{yy}(P_0)-f_{xy}^2(P_0)=0$，则无法判断$P_0$ 是否为函数 $z=f(x,y)$ 的一个极值点。
     \end{itemize}
 \end{theorem}
