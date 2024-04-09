@@ -36,3 +36,29 @@
 %         \frac{\mathrm{d}y}{\mathrm{d}x}=-\frac{F^{\prime}_x}{F^{\prime}_y}
 %     \end{equation}
 % \end{theorem}
+
+\section{隐函数组}
+
+\begin{equation}
+    \begin{cases}
+        F(x,y,u,v)=0 \\
+        G(x,y,u,v)=0
+    \end{cases}
+\end{equation}
+
+\begin{theorem}[雅可比行列式]
+    设函数 $F(x,y,u,v)$ 和 $G(x,y,u,v)$ 在点 $(x_0,y_0,u_0,v_0)$ 的某一邻域内有连续偏导数 $F_{x},F_{y},F_{u},F_{v},G_{x},G_{y},G_{u},G_{v}$，且
+    \begin{equation}
+        J= \frac{\partial(F,G)}{\partial(u,v)}=\begin{vmatrix}
+            F_{u} & F_{v} \\
+            G_{u} & G_{v}
+        \end{vmatrix}\neq 0
+    \end{equation}
+    则在点 $(x_0,y_0,u_0,v_0)$ 的某一邻域内，方程组 $F(x,y,u,v)=0$ 和 $G(x,y,u,v)=0$ 有且仅有一个连续可微的隐函数组 $u=f(x,y)$ 和 $v=g(x,y)$，满足 $F(x,y,f(x,y),g(x,y))=0$ 和 $G(x,y,f(x,y),g(x,y))=0$，且 $u_0=u(x_0,y_0)$ 和 $v_0=v(x_0,y_0)$，并有
+    \begin{equation}
+        \begin{cases}
+            \frac{\partial u}{\partial x}=\frac{1}{J}\frac{\partial(F,G)}{\partial(x,v)}=-\frac{\begin{vmatrix} F_{x} & F_{v} \\ G_{x} & G_{v} \end{vmatrix}}{\begin{vmatrix} F_{u} & F_{v} \\ G_{u} & G_{v} \end{vmatrix}} , \frac{\partial v}{\partial x}=\frac{1}{J}\frac{\partial(F,G)}{\partial(u,x)}=-\frac{\begin{vmatrix} F_{u} & F_{v} \\ G_{u} & G_{v} \end{vmatrix}}{\begin{vmatrix} F_{x} & F_{v} \\ G_{x} & G_{v} \end{vmatrix}} \\
+            \frac{\partial u}{\partial y}=\frac{1}{J}\frac{\partial(F,G)}{\partial(y,v)}=-\frac{\begin{vmatrix} F_{u} & F_{x} \\ G_{u} & G_{x} \end{vmatrix}}{\begin{vmatrix} F_{u} & F_{v} \\ G_{u} & G_{v} \end{vmatrix}} , \frac{\partial v}{\partial y}=\frac{1}{J}\frac{\partial(F,G)}{\partial(u,y)}=-\frac{\begin{vmatrix} F_{u} & F_{v} \\ G_{u} & G_{v} \end{vmatrix}}{\begin{vmatrix} F_{u} & F_{x} \\ G_{u} & G_{x} \end{vmatrix}}
+        \end{cases}
+    \end{equation}
+\end{theorem}
