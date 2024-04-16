@@ -62,3 +62,28 @@
         \end{cases}
     \end{equation}
 \end{theorem}
+
+\section{条件极值}
+
+\begin{theorem}[拉格朗日乘数法]
+    设函数 $z=f(x,y)$ 在条件 $\varphi(x,y)=0$ 下取得极值，则可以构造拉格朗日函数
+    \begin{equation}
+        L(x,y,\lambda)=f(x,y)+\lambda\phi(x,y)
+    \end{equation}
+    其中 $\lambda$ 为拉格朗日乘子。则 $z=f(x,y)$ 在条件 $\varphi(x,y)=0$ 下取得极值的必要条件是
+    \begin{equation}
+        \begin{cases}
+            L^{\prime}_x=0 \\
+            L^{\prime}_y=0 \\
+            \varphi(x,y)=0
+        \end{cases}
+    \end{equation}
+    即
+    \begin{equation}
+        \begin{cases}
+            f^{\prime}_x+\lambda\varphi^{\prime}_x=0 \\
+            f^{\prime}_y+\lambda\varphi^{\prime}_y=0 \\
+            \varphi(x,y)=0
+        \end{cases}
+    \end{equation}
+\end{theorem}
