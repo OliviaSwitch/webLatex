@@ -25,3 +25,42 @@
         y = r \sin \theta
     \end{cases}
 \]
+
+\section{第二型曲线积分}
+
+第二型曲线积分是对向量场的积分，它是曲线积分的一般形式。
+
+计算步骤：
+
+\begin{enumerate}
+    \item 画出所积曲线的示意图，并转化为定积分的形式：
+          \[
+              \int_{L} P(x,y) \, \mathrm{d}x + \int{L} Q(x,y) \, \mathrm{d}y = \int_{L} P(x,y) \, \mathrm{d}x + Q(x,y) \, \mathrm{d}y = \int_{L} \vec{F}(x,y) \cdot \, \mathrm{d}\vec{r}
+          \]
+    \item 确定积分区间 $[x_1,x_2]$ 或 $[y_1,y_2]$ 或 $[t_1,t_2]$（注意有方向）
+    \item 计算 $\mathrm{d}x$ 和 $\mathrm{d}y$ ：
+          \[
+              \begin{cases}
+                  \mathrm{d}x = \frac{\mathrm{d}x}{\mathrm{d}t} \, \mathrm{d}t \\
+                  \mathrm{d}y = \frac{\mathrm{d}y}{\mathrm{d}t} \, \mathrm{d}t
+              \end{cases}
+          \]
+    \item 将 $\mathrm{d}x$ 和 $\mathrm{d}y$ 代入积分式中，计算积分
+\end{enumerate}
+
+性质：
+
+\begin{enumerate}
+    \item 线积分与路径无关：
+          \[
+              \int_{L} \vec{F}(x,y) \cdot \, \mathrm{d}\vec{r} = \int_{L_1} \vec{F}(x,y) \cdot \, \mathrm{d}\vec{r} = \int_{L_2} \vec{F}(x,y) \cdot \, \mathrm{d}\vec{r}
+          \]
+    \item 线积分与参数化无关
+          \[
+              \int_{L} (\alpha \vec{F}_1 (x,y) + \beta \vec{F}_2 (x,y)) \cdot \, \mathrm{d}\vec{r} = \alpha \int_{L} \vec{F}_1 (x,y) \cdot \, \mathrm{d}\vec{r} + \beta \int_{L} \vec{F}_2 (x,y) \cdot \, \mathrm{d}\vec{r}
+          \]
+    \item 线积分与方向有关
+          \[
+              -\int_{L} \vec{F}(x,y) \cdot \, \mathrm{d}\vec{r} = \int_{-L} \vec{F}(x,y) \cdot \, \mathrm{d}\vec{r}
+          \]
+\end{enumerate}
