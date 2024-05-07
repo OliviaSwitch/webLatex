@@ -73,3 +73,42 @@
               \iint_{D} f(x,y) \, \mathrm{d}\delta = \int_{a}^{b} \left( \int_{\varphi_{1}(x)}^{\varphi_{2}(x)} f(x,y) \, \mathrm{d}y \right) \, \mathrm{d}x
           \]
 \end{enumerate}
+
+\subsection{二重积分的变量代换}
+
+\begin{enumerate}
+    \item 设 $x=x(u,v),y=y(u,v)$ 为区域 $D$ 到区域 $D'$ 的一一映射，且满足
+          \[
+              \begin{cases}
+                  x=x(u,v) \\
+                  y=y(u,v)
+              \end{cases}
+          \]
+          为 $D$ 到 $D'$ 的可逆变换，且 $x(u,v),y(u,v)$ 具有一阶连续偏导数，则
+          \[
+              \iint_{D} f(x,y) \, \mathrm{d}\delta = \iint_{D'} f(x(u,v),y(u,v)) \left| J \right| \, \mathrm{d}\delta'
+          \]
+          其中 $J = \left| \frac{\partial(x,y)}{\partial(u,v)} \right| = \left| \frac{\partial x}{\partial u} \frac{\partial y}{\partial v} - \frac{\partial x}{\partial v} \frac{\partial y}{\partial u} \right|$
+    \item 设 $x=x(u),y=y(v)$ 为区域 $D$ 到区域 $D'$ 的一一映射，且满足
+          \[
+              \begin{cases}
+                  x=x(u) \\
+                  y=y(v)
+              \end{cases}
+          \]
+          为 $D$ 到 $D'$ 的可逆变换，且 $x(u),y(v)$ 具有一阶连续偏导数，则
+          \[
+              \iint_{D} f(x,y) \, \mathrm{d}\delta = \iint_{D'} f(x(u),y(v)) \left| J \right| \, \mathrm{d}\delta'
+          \]
+          其中 $J = \left| \frac{\mathrm{d}x}{\mathrm{d}u} \frac{\mathrm{d}y}{\mathrm{d}v} \right|$，$\mathrm{d}\delta' = \left| \frac{\mathrm{d}x}{\mathrm{d}u} \frac{\mathrm{d}y}{\mathrm{d}v} \right| \, \mathrm{d}u \, \mathrm{d}v$
+\end{enumerate}
+
+\subsubsection{极坐标变换}
+
+设 $x=r\cos\theta,y=r\sin\theta$，则
+\[
+    \begin{aligned}
+        \iint_{D} f(x,y) \, \mathrm{d}\delta & = \iint_{D'} f(r\cos\theta,r\sin\theta) \left| J \right| \, \mathrm{d}\delta' \\
+                                             & = \iint_{D'} f(r\cos\theta,r\sin\theta) r \, \mathrm{d}r \, \mathrm{d}\theta
+    \end{aligned}
+\]
