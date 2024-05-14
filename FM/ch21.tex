@@ -141,3 +141,102 @@
 \[
     \frac{\partial Q}{\partial x} = \frac{\partial P}{\partial y}
 \]
+
+\section{三重积分}
+
+\subsection{三重积分的概念}
+
+\begin{definition}
+    设 $f(x,y,z)$ 在有界闭区域 $V$ 上有界，将 $V$ 划分为 $n$ 个小体积 $V_{i}$，在每个小体积 $V_{i}$ 取一点 $(\xi_{i},\eta_{i},\zeta_{i})$，作积分和
+    \[
+        \sum_{i=1}^{n} f(\xi_{i},\eta_{i},\zeta_{i}) \Delta V_{i}
+    \]
+    如果当小体积的直径趋于零时，这个积分和的极限存在，且与划分方法和点的选取无关，那么称此极限为 $f(x,y,z)$ 在区域 $V$ 上的三重积分，记作
+    \[
+        \iiint\limits_{V} f(x,y,z) \, \mathrm{d}V
+    \]
+\end{definition}
+
+\subsection{累次积分}
+
+\begin{theorem}
+    设 $f(x,y,z)$ 在有界闭区域 $V$ 上有界，且 $V$ 的边界为 $a \leq x \leq b, \varphi_{1}(x) \leq y \leq \varphi_{2}(x), \psi_{1}(x,y) \leq z \leq \psi_{2}(x,y)$，则
+    \[
+        \iiint_{V} f(x,y,z) \, \mathrm{d}V = \int_{a}^{b} \left( \int_{\varphi_{1}(x)}^{\varphi_{2}(x)} \left( \int_{\psi_{1}(x,y)}^{\psi_{2}(x,y)} f(x,y,z) \, \mathrm{d}z \right) \, \mathrm{d}y \right) \, \mathrm{d}x = \int_{a}^{b} \, \mathrm{d}x \int_{\varphi_{1}(x)}^{\varphi_{2}(x)} \, \mathrm{d}y \int_{\psi_{1}(x,y)}^{\psi_{2}(x,y)} f(x,y,z) \, \mathrm{d}z
+    \]
+\end{theorem}
+
+\subsection{三重积分的计算}
+
+\begin{enumerate}
+    \item 若积分区域 $V$ 为长方体区域，若函数 $f(x,y,z)$ 在长方体
+          \[
+              V = [a,b] \times [c,d] \times [e,f]
+          \]
+          上的三重积分存在，则
+          \[
+              \iiint_{V} f(x,y,z) \, \mathrm{d}V = \int_{a}^{b} \left( \int_{c}^{d} \left( \int_{e}^{f} f(x,y,z) \, \mathrm{d}z \right) \, \mathrm{d}y \right) \, \mathrm{d}x
+          \]
+    \item 若积分区域 $V$ 为棱柱区域，且 $f(x,y,z)$ 在 $V$ 上连续，则
+          \[
+              \iiint_{V} f(x,y,z) \, \mathrm{d}V = \int_{a}^{b} \left( \int_{\varphi_{1}(x)}^{\varphi_{2}(x)} \left( \int_{\psi_{1}(x,y)}^{\psi_{2}(x,y)} f(x,y,z) \, \mathrm{d}z \right) \, \mathrm{d}y \right) \, \mathrm{d}x
+          \]
+\end{enumerate}
+
+\subsection{三重积分的变量代换}
+
+\begin{enumerate}
+    \item 设 $x=x(u,v,w),y=y(u,v,w),z=z(u,v,w)$ 为区域 $V$ 到区域 $V'$ 的一一映射，且满足
+          \[
+              \begin{cases}
+                  x=x(u,v,w) \\
+                  y=y(u,v,w) \\
+                  z=z(u,v,w)
+              \end{cases}
+          \]
+          为 $V$ 到 $V'$ 的可逆变换，且 $x(u,v,w),y(u,v,w),z(u,v,w)$ 具有一阶连续偏导数，则
+          \[
+              \iiint_{V} f(x,y,z) \, \mathrm{d}V = \iiint_{V'} f(x(u,v,w),y(u,v,w),z(u,v,w)) \left| J \right| \, \mathrm{d}V'
+          \]
+          其中
+          \[J = \left| \frac{\partial(x,y,z)}{\partial(u,v,w)} \right| = \left| \begin{array}{ccc}
+                  \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} & \frac{\partial x}{\partial w} \\
+                  \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} & \frac{\partial y}{\partial w} \\
+                  \frac{\partial z}{\partial u} & \frac{\partial z}{\partial v} & \frac{\partial z}{\partial w}
+              \end{array} \right|
+          \]
+    \item 设 $x=x(u,v),y=y(u,v),z=z(u,v)$ 为区域 $V$ 到区域 $V'$ 的一一映射，且满足
+          \[
+              \begin{cases}
+                  x=x(u,v) \\
+                  y=y(u,v) \\
+                  z=z(u,v)
+              \end{cases}
+          \]
+          为 $V$ 到 $V'$ 的可逆变换，且 $x(u,v),y(u,v),z(u,v)$ 具有一阶连续
+          偏导数，则
+          \[
+              \iiint_{V} f(x,y,z) \, \mathrm{d}V = \iiint_{V'} f(x(u,v),y(u,v),z(u,v)) \left| J \right| \, \mathrm{d}V'
+          \]
+          其中 $J = \left| \frac{\mathrm{d}x}{\mathrm{d}u} \frac{\mathrm{d}y}{\mathrm{d}v} \frac{\mathrm{d}z}{\mathrm{d}v} \right|$，$\mathrm{d}V' = \left| \frac{\mathrm{d}x}{\mathrm{d}u} \frac{\mathrm{d}y}{\mathrm{d}v} \frac{\mathrm{d}z}{\mathrm{d}v} \right| \, \mathrm{d}u \, \mathrm{d}v$
+\end{enumerate}
+
+\subsubsection{柱坐标变换}
+
+设 $x=r\cos\theta,y=r\sin\theta,z=z$，其中 $0 \leq r \leq +\infty, 0 \leq \theta \leq 2\pi, -\infty \leq z \leq +\infty$，
+\[
+    \begin{aligned}
+        \iiint_{V} f(x,y,z) \, \mathrm{d}V & = \iiint_{V'} f(r\cos\theta,r\sin\theta,z) \left| J \right| \, \mathrm{d}V'                    \\
+                                           & = \iiint_{V'} f(r\cos\theta,r\sin\theta,z) r \, \mathrm{d}r \, \mathrm{d}\theta \, \mathrm{d}z
+    \end{aligned}
+\]
+
+\subsubsection{球坐标变换}
+
+设 $x=r\sin\varphi\cos\theta,y=r\sin\varphi\sin\theta,z=r\cos\varphi$，其中 $0 \leq r \leq +\infty, 0 \leq \theta \leq 2\pi, 0 \leq \varphi \leq \pi$，
+\[
+    \begin{aligned}
+        \iiint_{V} f(x,y,z) \, \mathrm{d}V & = \iiint_{V'} f(r\sin\varphi\cos\theta,r\sin\varphi\sin\theta,r\cos\varphi) \left| J \right| \, \mathrm{d}V'                                          \\
+                                           & = \iiint_{V'} f(r\sin\varphi\cos\theta,r\sin\varphi\sin\theta,r\cos\varphi) r^{2} \sin\varphi \, \mathrm{d}r \, \mathrm{d}\varphi \, \mathrm{d}\theta
+    \end{aligned}
+\]
