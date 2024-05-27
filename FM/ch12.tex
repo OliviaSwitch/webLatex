@@ -1,0 +1,49 @@
+\chapter{数项级数}
+
+\section{级数的收敛性}
+
+\subsection{级数的概念}
+
+\begin{definition}
+    设 $\{a_{n}\}$ 是一个数列，称 $\sum\limits_{n=1}^{\infty} a_{n}$ 为数项级数，记作 $\sum a_{n}$，其中 $a_{n}$ 称为级数的通项。
+\end{definition}
+
+\subsection{级数的收敛性}
+
+\begin{definition}
+    设 $\sum a_{n}$ 是一个数项级数，如果数列 $\{S_{n}\}$ 收敛，其中 $S_{n} = \sum\limits_{i=1}^{n} a_{i}$，则称级数 $\sum a_{n}$ 收敛，否则称级数 $\sum a_{n}$ 发散。
+\end{definition}
+
+\begin{theorem}[级数收敛的柯西准则]
+    设 $\sum a_{n}$ 是一个数项级数，级数 $\sum a_{n}$ 收敛的充分必要条件是：对于任意 $\varepsilon > 0$，存在正整数 $N$，使得对于任意 $m > N$ 及任意的正整数 $p$，有
+    \begin{equation*}
+        \left| a_{m+1} + a_{m+2} + \cdots + a_{m+p} \right| < \varepsilon
+    \end{equation*}
+\end{theorem}
+
+\begin{theorem}[级数收敛的必要条件]
+    设 $\sum a_{n}$ 是一个数项级数，如果 $\sum a_{n}$ 收敛，则 $\lim\limits_{n \to \infty} a_{n} = 0$。
+\end{theorem}
+
+\begin{theorem}
+    设 $\sum a_{n}$ 和 $\sum b_{n}$ 是两个数项级数，则对任意常数 $c,d$，级数 $\sum (ca_{n} + db_{n})$ 也收敛，并且有
+    \begin{equation*}
+        \sum (ca_{n} + db_{n}) = c \sum a_{n} + d \sum b_{n}
+    \end{equation*}
+\end{theorem}
+
+\begin{theorem}
+    去掉、增加或改变级数的有限项并不改变级数的敛散性。
+\end{theorem}
+
+\begin{theorem}
+    在收敛级数的项中任意加括号, 既不改变级数的收敛性,也不改变它的和。
+\end{theorem}
+
+\subsubsection{常见的级数}
+
+\begin{enumerate}
+    \item 等比级数：$\sum\limits_{n=0}^{\infty} a q^{n} = \frac{a}{1-q}$，其中 $|q| < 1$ 时收敛。
+    \item 调和级数：$\sum\limits_{n=1}^{\infty} \frac{1}{n}$ 发散。
+    \item $p$ 级数：$\sum\limits_{n=1}^{\infty} \frac{1}{n^{p}}$ 当 $p > 1$ 时收敛，$p \leq 1$ 时发散。
+\end{enumerate}
