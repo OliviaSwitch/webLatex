@@ -47,3 +47,66 @@
     \item 调和级数：$\sum\limits_{n=1}^{\infty} \frac{1}{n}$ 发散。
     \item $p$ 级数：$\sum\limits_{n=1}^{\infty} \frac{1}{n^{p}}$ 当 $p > 1$ 时收敛，$p \leq 1$ 时发散。
 \end{enumerate}
+
+\section{正项级数}
+
+\subsection{正项级数收敛性的一般判别原则}
+
+\begin{theorem}[比较原则]
+    设 $\sum a_{n}$ 和 $\sum b_{n}$ 是两个正项级数，如果存在正整数 $N$，使得对于任意 $n > N$，有 $a_{n} \leq b_{n}$，则有
+    \begin{enumerate}
+        \item 若 $\sum b_{n}$ 收敛，则 $\sum a_{n}$ 也收敛；
+        \item 若 $\sum a_{n}$ 发散，则 $\sum b_{n}$ 也发散。
+    \end{enumerate}
+\end{theorem}
+
+在实际使用上，比较原则的极限形式通常更方便
+
+\begin{theorem}[比较原则的极限形式]
+    设 $\sum a_{n}$ 和 $\sum b_{n}$ 是两个正项级数，如果 $\lim\limits_{n \to \infty} \frac{a_{n}}{b_{n}} = A$，则有
+    \begin{enumerate}
+        \item 若 $0 < A < +\infty$，则 $\sum a_{n}$ 与 $\sum b_{n}$ 同时收敛或同时发散；
+        \item 若 $A = 0$ 且 $\sum b_{n}$ 收敛，则 $\sum a_{n}$ 也收敛；
+        \item 若 $A = +\infty$ 且 $\sum b_{n}$ 发散，则 $\sum a_{n}$ 也发散。
+    \end{enumerate}
+\end{theorem}
+
+\subsection{比式判别法和根式判别法}
+
+\begin{theorem}[比式判别法]
+    设 $\sum a_{n}$ 是一个正项级数，如果且存在某正整数 $N$，及常数 $q(0<q<1)$，使得对于任意 $n > N$，有
+    \begin{enumerate}
+        \item $\frac{a_{n+1}}{a_{n}} \leq q$，则 $\sum a_{n}$ 收敛；
+        \item $\frac{a_{n+1}}{a_{n}} \geq 1$，则 $\sum a_{n}$ 发散。
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[比式判别法的极限形式]
+    设 $\sum a_{n}$ 是一个正项级数，如果 $\lim\limits_{n \to \infty} \frac{a_{n+1}}{a_{n}} = q$，则有
+    \begin{enumerate}
+        \item 若 $q < 1$，则 $\sum a_{n}$ 收敛；
+        \item 若 $q > 1$ 或 $q = +\infty$，则 $\sum a_{n}$ 发散。
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[根式判别法]
+    设 $\sum a_{n}$ 是一个正项级数，且存在某正数 $N$ 及常数 $l$，使得对于任意 $n > N$，有
+    \begin{enumerate}
+        \item $\sqrt[n]{a_{n}} \leq l < 1$，则 $\sum a_{n}$ 收敛；
+        \item $\sqrt[n]{a_{n}} \geq 1$，则 $\sum a_{n}$ 发散。
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[根式判别法的极限形式]
+    设 $\sum a_{n}$ 是一个正项级数，如果 $\lim\limits_{n \to \infty} \sqrt[n]{a_{n}} = l$，则有
+    \begin{enumerate}
+        \item 若 $l < 1$，则 $\sum a_{n}$ 收敛；
+        \item 若 $l > 1$，则 $\sum a_{n}$ 发散。
+    \end{enumerate}
+\end{theorem}
+
+\subsection{积分判别法}
+
+\begin{theorem}[积分判别法]
+设 $f$ 为 $[1,+\infty)$ 上的连续正函数，且单调递减，那么正项级数 $\sum f(n)$ 与反常积分 $\int_{1}^{+\infty} f(x) \, \mathrm{d}x$ 同时收敛或同时发散。
+\end{theorem}
