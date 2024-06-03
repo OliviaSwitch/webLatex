@@ -108,5 +108,74 @@
 \subsection{积分判别法}
 
 \begin{theorem}[积分判别法]
-设 $f$ 为 $[1,+\infty)$ 上的连续正函数，且单调递减，那么正项级数 $\sum f(n)$ 与反常积分 $\int_{1}^{+\infty} f(x) \, \mathrm{d}x$ 同时收敛或同时发散。
+    设 $f$ 为 $[1,+\infty)$ 上的连续正函数，且单调递减，那么正项级数 $\sum f(n)$ 与反常积分 $\int_{1}^{+\infty} f(x) \, \mathrm{d}x$ 同时收敛或同时发散。
+\end{theorem}
+
+\section{一般项级数}
+
+\subsection{交错级数}
+
+\begin{definition}
+    若级数的各项符号正负相间，即 $\sum (-1)^{n} a_{n}$，则称该级数为交错级数。
+\end{definition}
+
+\begin{theorem}[莱布尼茨判别法]
+    若交错级数满足
+    \begin{enumerate}
+        \item $a_{n} \geq 0$；
+        \item $\lim\limits_{n \to \infty} a_{n} = 0$ 单调递减；
+    \end{enumerate}
+    则交错级数 $\sum (-1)^{n} a_{n}$ 收敛。
+\end{theorem}
+
+\subsection{绝对收敛级数及其性质}
+
+\begin{definition}
+    若级数 $\sum |a_{n}|$ 收敛，则称级数 $\sum a_{n}$ 绝对收敛。
+\end{definition}
+
+\begin{theorem}
+    绝对收敛级数必收敛。
+\end{theorem}
+
+\begin{theorem}[级数的重排]
+    设 $\sum a_{n}$ 是一个绝对收敛级数，对于任意一一对应的正整数 $n_{1},n_{2},\cdots,n_{k},\cdots$，级数 $\sum a_{n_{k}}$ 也收敛，并且有
+    \begin{equation*}
+        \sum a_{n} = \sum a_{n_{k}}
+    \end{equation*}
+\end{theorem}
+
+\begin{theorem}
+    绝对收敛级数的任意重排仍然绝对收敛，且其和不变。
+\end{theorem}
+
+\begin{theorem}[级数的乘积]
+    若 $\sum a_{n}$ 为收敛级数，a为常数，则 $\sum u a_{n} = u \sum a_{n}$。
+\end{theorem}
+
+% \begin{theorem}[柯西定理]
+%     设 $\sum a_{n}$ 为绝对收敛级数，则对于任意 $\varepsilon > 0$，存在正整数 $N$，使得对于任意 $m > N$ 及任意的正整数 $p$，有
+%     \begin{equation*}
+%         \left| a_{m+1} + a_{m+2} + \cdots + a_{m+p} \right| < \varepsilon
+%     \end{equation*}
+% \end{theorem}
+
+\subsection{阿贝尔判别法和狄利克雷判别法}
+
+\begin{theorem}[阿贝尔判别法]
+    设 $\sum a_{n}$ 为一个级数，如果
+    \begin{enumerate}
+        \item $\sum a_{n}$ 的部分和数列 $\{S_{n}\}$ 有界；
+        \item $\sum b_{n}$ 单调趋于零。
+    \end{enumerate}
+    则 $\sum a_{n} b_{n}$ 收敛。
+\end{theorem}
+
+\begin{theorem}[狄利克雷判别法]
+    设 $\sum a_{n}$ 为一个级数，如果
+    \begin{enumerate}
+        \item $\sum a_{n}$ 的部分和数列 $\{S_{n}\}$ 有界；
+        \item $\sum b_{n}$ 单调趋于零且单调递减。
+    \end{enumerate}
+    则 $\sum a_{n} b_{n}$ 收敛。
 \end{theorem}
