@@ -183,3 +183,66 @@
     \end{enumerate}
     则 $\sum a_{n} b_{n}$ 收敛。
 \end{theorem}
+
+\section{幂级数}
+
+\subsection{幂级数的概念}
+
+\begin{definition}
+    设 $\{a_{n}\}$ 是一个数列，称级数 $\sum a_{n} x^{n}$ 为幂级数。
+\end{definition}
+
+\begin{theorem}[阿贝尔定理]
+    若幂级数 $\sum a_{n} x^{n}$ 在 $x = x_{0}$ 处收敛，那么当 $|x|<|x_0|$ 时该幂级数一定绝对收敛；反之当 $x=x_0$ 发散，那么当 $|x|<|x_0|$ 时该幂级数一定发散。
+\end{theorem}
+
+\begin{definition}[收敛半径]
+    设幂级数 $\sum a_{n} x^{n}$ 的收敛半径为 $R$，则当 $x \in (-R,R)$ 时，该幂级数收敛。
+\end{definition}
+
+收敛半径的计算：
+
+设幂级数 $\sum a_{n} x^{n}$ 的收敛半径为 $R$，则
+
+\[\rho = \lim\limits_{n \to \infty} \left| \frac{a_{n+1}}{a_{n}} \right| \]
+\[R = \frac{1}{\rho}\]
+
+\subsection{函数展开成幂级数}
+
+\begin{theorem}
+    设函数 $f(x)$ 在 $x_{0}$ 处有 $n$ 阶导数，且 $f^{(n)}(x)$ 在 $x_{0}$ 处连续，那么 $f(x)$ 在 $x_{0}$ 处展开成幂级数的表达式为
+    \[f(x) = f(x_{0}) + f'(x_{0})(x-x_{0}) + \cdots + \frac{f^{(n)}(x_{0})}{n!}(x-x_{0})^{n} + o((x-x_{0})^{n})\]
+\end{theorem}
+
+\subsubsection{利用泰勒公式直接展开}
+
+由泰勒级数理论可知, 函数 $f(x)$展开成幂级数的步骤如下 :
+\begin{enumerate}
+    \item 求函数及其各阶导数在 $x = 0$ 处的值 ;
+    \item 写出 $x_0=0$ 麦克劳林级数 $f(x)=\sum\limits_{n=0}^{\infty}\frac{f^{(n)}(0)}{n!}(0)x^n$ , 并求出其收敛半径 $R$ ;
+    \item 判别在收敛区间 $(-R,R)$ 内 $\lim_{n \to \infty} R_n(x)$ 是否为$0$
+\end{enumerate}
+
+常见的泰勒级数
+\begin{itemize}
+    \item $e^{x} = \sum\limits_{n=0}^{\infty} \frac{x^{n}}{n!}$；
+    \item $\sin x = \sum\limits_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{(2n+1)!}$；
+    \item $\cos x = \sum\limits_{n=0}^{\infty} (-1)^{n} \frac{x^{2n}}{(2n)!}$；
+    \item $\ln(1+x) = \sum\limits_{n=1}^{\infty} (-1)^{n-1} \frac{x^{n}}{n}$；
+    \item $\arctan x = \sum\limits_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{2n+1}$；
+    \item $\frac{1}{1-x} = \sum\limits_{n=0}^{\infty} x^{n},x\in(-1,1)$;
+    \item $\frac{1}{1+x} = \sum\limits_{n=0}^{\infty} (-1)^{n} x^{n},x\in(-1,1)$;
+\end{itemize}
+
+\subsubsection{利用已知幂级数展开}
+
+\subsection{求幂级数的和函数}
+
+\begin{theorem}[性质]
+    \begin{enumerate}
+        \item 逐项可积性：设幂级数 $\sum a_{n} x^{n}$ 的和函数 $S(t)$ 在收敛域上可积，
+              \[\int_{0}^{x}S(t)dt=\int_{0}^x(\sum a_n t^n)dt =\sum \frac{a_n}{n+1}x^{n+1}\]
+        \item 逐项微分性：设幂级数 $\sum a_{n} x^{n}$ 的和函数 $S(t)$ 在收敛域上可导，
+              \[S'(x)=\sum na_n x^{n-1}\]
+    \end{enumerate}
+\end{theorem}
